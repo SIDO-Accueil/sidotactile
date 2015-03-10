@@ -1,0 +1,219 @@
+@import "compass/reset";
+
+$white: #FFF;
+$gray: #666;
+$grayMedium: #999;
+$grayLight: #bebfc1;
+$grayWhite: #efefef;
+$black: #000;
+$green: #99d774;
+$greenLight: #33d774;
+$orange: #f37320;
+$red: #A32121;
+$yellow: #DC911B;
+$blue: #0001D4;
+
+
+@mixin borderRadius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+@mixin simpleShadow() {
+	moz-box-shadow: 0px 0px 10px #DDD;
+	-webkit-box-shadow: 0px 0px 10px #DDD;
+	box-shadow: 0px 0px 10px #DDD;
+}
+
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	line-height: 1.3em;
+	font-family: sans-serif;
+	font-weight: 300;
+	background: $black;
+	color: $white;
+	height:100%;
+	font-family: 'Inconsolata', sans-serif;
+}
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+p,
+form,
+fieldset,
+h1,h2,h3,h4,h5,h6 {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+	line-height: 1.1em;
+}
+p {
+	padding-bottom: 1em;
+}
+a {
+	text-decoration: none;
+	font-weight: bold;
+	color: $white;
+	&:hover {
+		color: $gray;
+	}
+}
+.clearer {
+	clear: both;
+}
+input {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*STYLE*/
+.wrapperAll {
+	padding: 10px;
+}
+
+/*FORMS*/
+.form {
+	width: 33.333%;
+	float: left; 
+	.formIns {
+		padding: 20px;
+	}
+	h2 {
+		font-weight: bold;
+		font-size: 1.2em;
+		padding-bottom: 10px;
+	}
+	.sliderSection {
+		padding-bottom: 30px;
+		h3 {
+			font-size: 0.8em;
+			padding-bottom: 15px;
+			strong {
+				font-size: 1.2em;
+				font-weight: bold;
+			}
+		}
+	}
+	.sidomeImage {
+		padding-bottom: 20px;
+		.sidomeImageIns {
+			canvas {
+				width: 100px;
+				height: 100px;
+				margin: auto;
+				background: $black;
+				display: block;
+			}
+		}
+	}
+}
+
+/*SLIDER*/
+.ui-slider {
+	position: relative;
+	text-align: left;
+	background: $grayLight;
+	@include borderRadius(3px);
+}
+.ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 0.7em;
+	height: 0.7em;
+	cursor: default;
+	-ms-touch-action: none;
+	touch-action: none;
+	background: $white;
+	border: 1px solid $grayLight;
+	cursor: pointer;
+	@include borderRadius(2px);
+}
+.ui-slider-range {
+	position: absolute;
+	z-index: 1;
+	font-size: .7em;
+	display: block;
+	border: 0;
+	background-position: 0 0;
+	background: $red;
+}
+
+.ui-slider.ui-state-disabled .ui-slider-handle,
+.ui-slider.ui-state-disabled .ui-slider-range {
+	filter: inherit;
+}
+
+.ui-slider-horizontal {
+	height: .1em;
+}
+.ui-slider-horizontal .ui-slider-handle {
+	top: -.3em;
+	margin-left: -.6em;
+}
+.ui-slider-horizontal .ui-slider-range {
+	top: 0;
+	height: 100%;
+}
+.ui-slider-horizontal .ui-slider-range-min {
+	left: 0;
+}
+.ui-slider-horizontal .ui-slider-range-max {
+	right: 0;
+}
+
+.ui-slider-vertical {
+	width: .8em;
+	height: 100px;
+}
+.ui-slider-vertical .ui-slider-handle {
+	left: -.3em;
+	margin-left: 0;
+	margin-bottom: -.6em;
+}
+.ui-slider-vertical .ui-slider-range {
+	left: 0;
+	width: 100%;
+}
+.ui-slider-vertical .ui-slider-range-min {
+	bottom: 0;
+}
+.ui-slider-vertical .ui-slider-range-max {
+	top: 0;
+}
+
+/*BUTTONS*/
+.buttons {
+	padding-top: 20px;
+	.buttonsIns {
+		width: 80%;
+		margin: auto;
+	}
+	.button {
+		width: 30%;
+		padding: 2%;
+		border: 3px solid $white;
+		cursor: pointer;
+		text-transform: uppercase;
+		font-weight: bold;
+		text-align: center;
+		&:hover {
+			background: $white;
+			color: $black;
+		}
+	}
+	.buttonRestart {
+		float: left;
+	}
+	.buttonStop {
+		float: right;
+	}
+}

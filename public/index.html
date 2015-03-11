@@ -81,8 +81,9 @@
                             };
 
                             void setup()  {
-                                size(640, 360, P3D);
+                                size(300, 300, P3D);
                                 colorMode(RGB, 1);
+                                strokeWeight(10);
                             }
 
                             function drawPoints(pt1, pt2, pt3) {
@@ -206,101 +207,101 @@
                         <div class="sidomeImageIns">
                         <script type="text/processing">
 
-                        float xmag, ymag = 0;
-                        float newXmag, newYmag = 0;
+                            float xmag, ymag = 0;
+                            float newXmag, newYmag = 0;
 
-                        var v1 = {
-                            "x": -1,
-                            "y": 0,
-                            "z": 0
-                        };
+                            var v1 = {
+                                "x": -1,
+                                "y": 0,
+                                "z": 0
+                            };
 
-                        var v2 = {
-                            "x": 0,
-                            "y": 0,
-                            "z": 1
-                        };
+                            var v2 = {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            };
 
-                        var v3 = {
-                            "x": 0,
-                            "y": 1,
-                            "z": 0
-                        };
+                            var v3 = {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            };
 
-                        var v4 = {
-                            "x": 1,
-                            "y": 0,
-                            "z": 0
-                        };
+                            var v4 = {
+                                "x": 1,
+                                "y": 0,
+                                "z": 0
+                            };
 
-                        var v5 = {
-                            "x": 0,
-                            "y": 0,
-                            "z": -1
-                        };
+                            var v5 = {
+                                "x": 0,
+                                "y": 0,
+                                "z": -1
+                            };
 
-                        var v6 = {
-                            "x": 0,
-                            "y": -1,
-                            "z": 0
-                        };
+                            var v6 = {
+                                "x": 0,
+                                "y": -1,
+                                "z": 0
+                            };
 
-                        void setup()  {
-                            size(640, 360, P3D);
-                            colorMode(RGB, 1);
-                        }
-
-                        function drawPoints(pt1, pt2, pt3) {
-                            vertex(pt1.x, pt1.y, pt1.z);
-                            vertex(pt2.x, pt2.y, pt2.z);
-                            vertex(pt3.x, pt3.y, pt3.z);
-                        }
-
-                        void draw()  {
-
-                            pushMatrix();
-                            translate(width/2, height/2, -30);
-
-                            newXmag = mouseX/float(width) * TWO_PI;
-                            newYmag = mouseY/float(height) * TWO_PI;
-
-                            float diff = xmag-newXmag;
-                            if (abs(diff) >  0.01) {
-                                xmag -= diff/4.0;
+                            void setup()  {
+                                size(300, 300, P3D);
+                                colorMode(RGB, 1);
+                                strokeWeight(10);
                             }
 
-                            diff = ymag-newYmag;
-                            if (abs(diff) >  0.01) {
-                                ymag -= diff/4.0;
+                            function drawPoints(pt1, pt2, pt3) {
+                                vertex(pt1.x, pt1.y, pt1.z);
+                                vertex(pt2.x, pt2.y, pt2.z);
+                                vertex(pt3.x, pt3.y, pt3.z);
                             }
 
-                            background(0);
-                            stroke(255, 255, 255);
+                            void draw()  {
 
-                            rotateX(-ymag);
-                            rotateY(-xmag);
+                                pushMatrix();
+                                translate(width/2, height/2, -30);
 
-                            scale(90);
-                            noFill();
-                            beginShape(TRIANGLES);
+                                newXmag = mouseX/float(width) * TWO_PI;
+                                newYmag = mouseY/float(height) * TWO_PI;
 
-                            /*haut*/
-                            drawPoints(v1, v2, v3)
-                            drawPoints(v2, v4, v3)
-                            drawPoints(v3, v5, v4);
-                            drawPoints(v5, v3, v1);
+                                float diff = xmag-newXmag;
+                                if (abs(diff) >  0.01) {
+                                    xmag -= diff/4.0;
+                                }
 
-                            /*bas*/
-                            drawPoints(v4, v2, v6);
-                            drawPoints(v4, v5, v6);
-                            drawPoints(v1, v6, v2);
-                            drawPoints(v1, v6, v5);
+                                diff = ymag-newYmag;
+                                if (abs(diff) >  0.01) {
+                                    ymag -= diff/4.0;
+                                }
 
-                            endShape();
+                                background(0);
+                                stroke(255, 255, 255);
 
-                            popMatrix();
-                        }
-                        </script>
+                                rotateX(-ymag);
+                                rotateY(-xmag);
+
+                                scale(90);
+                                noFill();
+                                beginShape(TRIANGLES);
+
+                                /*haut*/
+                                drawPoints(v1, v2, v3)
+                                drawPoints(v2, v4, v3)
+                                drawPoints(v3, v5, v4);
+                                drawPoints(v5, v3, v1);
+
+                                /*bas*/
+                                drawPoints(v4, v2, v6);
+                                drawPoints(v4, v5, v6);
+                                drawPoints(v1, v6, v2);
+                                drawPoints(v1, v6, v5);
+
+                                endShape();
+
+                                popMatrix();
+                            }                        </script>
                         <canvas></canvas>
                     </div>
                 </div>
@@ -371,100 +372,101 @@
                     <div class="sidomeImageIns">
                     <script type="text/processing">
 
-                    float xmag, ymag = 0;
-                    float newXmag, newYmag = 0;
+                            float xmag, ymag = 0;
+                            float newXmag, newYmag = 0;
 
-                    var v1 = {
-                        "x": -1,
-                        "y": 0,
-                        "z": 0
-                    };
+                            var v1 = {
+                                "x": -1,
+                                "y": 0,
+                                "z": 0
+                            };
 
-                    var v2 = {
-                        "x": 0,
-                        "y": 0,
-                        "z": 1
-                    };
+                            var v2 = {
+                                "x": 0,
+                                "y": 0,
+                                "z": 1
+                            };
 
-                    var v3 = {
-                        "x": 0,
-                        "y": 1,
-                        "z": 0
-                    };
+                            var v3 = {
+                                "x": 0,
+                                "y": 1,
+                                "z": 0
+                            };
 
-                    var v4 = {
-                        "x": 1,
-                        "y": 0,
-                        "z": 0
-                    };
+                            var v4 = {
+                                "x": 1,
+                                "y": 0,
+                                "z": 0
+                            };
 
-                    var v5 = {
-                        "x": 0,
-                        "y": 0,
-                        "z": -1
-                    };
+                            var v5 = {
+                                "x": 0,
+                                "y": 0,
+                                "z": -1
+                            };
 
-                    var v6 = {
-                        "x": 0,
-                        "y": -1,
-                        "z": 0
-                    };
+                            var v6 = {
+                                "x": 0,
+                                "y": -1,
+                                "z": 0
+                            };
 
-                    void setup()  {
-                        size(640, 360, P3D);
-                        colorMode(RGB, 1);
-                    }
+                            void setup()  {
+                                size(300, 300, P3D);
+                                colorMode(RGB, 1);
+                                strokeWeight(10);
+                            }
 
-                    function drawPoints(pt1, pt2, pt3) {
-                        vertex(pt1.x, pt1.y, pt1.z);
-                        vertex(pt2.x, pt2.y, pt2.z);
-                        vertex(pt3.x, pt3.y, pt3.z);
-                    }
+                            function drawPoints(pt1, pt2, pt3) {
+                                vertex(pt1.x, pt1.y, pt1.z);
+                                vertex(pt2.x, pt2.y, pt2.z);
+                                vertex(pt3.x, pt3.y, pt3.z);
+                            }
 
-                    void draw()  {
+                            void draw()  {
 
-                        pushMatrix();
-                        translate(width/2, height/2, -30);
+                                pushMatrix();
+                                translate(width/2, height/2, -30);
 
-                        newXmag = mouseX/float(width) * TWO_PI;
-                        newYmag = mouseY/float(height) * TWO_PI;
+                                newXmag = mouseX/float(width) * TWO_PI;
+                                newYmag = mouseY/float(height) * TWO_PI;
 
-                        float diff = xmag-newXmag;
-                        if (abs(diff) >  0.01) {
-                            xmag -= diff/4.0;
-                        }
+                                float diff = xmag-newXmag;
+                                if (abs(diff) >  0.01) {
+                                    xmag -= diff/4.0;
+                                }
 
-                        diff = ymag-newYmag;
-                        if (abs(diff) >  0.01) {
-                            ymag -= diff/4.0;
-                        }
+                                diff = ymag-newYmag;
+                                if (abs(diff) >  0.01) {
+                                    ymag -= diff/4.0;
+                                }
 
-                        background(0);
-                        stroke(255, 255, 255);
+                                background(0);
+                                stroke(255, 255, 255);
 
-                        rotateX(-ymag);
-                        rotateY(-xmag);
+                                rotateX(-ymag);
+                                rotateY(-xmag);
 
-                        scale(90);
-                        noFill();
-                        beginShape(TRIANGLES);
+                                scale(90);
+                                noFill();
+                                beginShape(TRIANGLES);
 
-                        /*haut*/
-                        drawPoints(v1, v2, v3)
-                        drawPoints(v2, v4, v3)
-                        drawPoints(v3, v5, v4);
-                        drawPoints(v5, v3, v1);
+                                /*haut*/
+                                drawPoints(v1, v2, v3)
+                                drawPoints(v2, v4, v3)
+                                drawPoints(v3, v5, v4);
+                                drawPoints(v5, v3, v1);
 
-                        /*bas*/
-                        drawPoints(v4, v2, v6);
-                        drawPoints(v4, v5, v6);
-                        drawPoints(v1, v6, v2);
-                        drawPoints(v1, v6, v5);
+                                /*bas*/
+                                drawPoints(v4, v2, v6);
+                                drawPoints(v4, v5, v6);
+                                drawPoints(v1, v6, v2);
+                                drawPoints(v1, v6, v5);
 
-                        endShape();
+                                endShape();
 
-                        popMatrix();
-                    }
+                                popMatrix();
+                            }
                     </script>
                     <canvas></canvas>
                 </div>

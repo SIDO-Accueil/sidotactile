@@ -17,133 +17,234 @@
 
 </head>
 <body>
-    <div id="bodyFrame">
-        <div class="wrapperAll">
-            <div class="forms">
+<div id="bodyFrame">
+    <div class="wrapperAll">
+        <div class="forms">
 
-                <div class="form form1">
-                    <form method="POST" action="" class="formSite">
-                        <fieldset>
-                            <input type="hidden" name="idSidoMe" value=""/>
-                            <input type="hidden" class="questionHidden" name="question1" value="50"/>
-                            <input type="hidden" class="questionHidden" name="question2" value="50"/>
-                            <input type="hidden" class="questionHidden" name="question3" value="50"/>
-                            <input type="hidden" class="questionHidden" name="question4" value="50"/>
-                            <input type="hidden" class="questionHidden" name="question5" value="50"/>
-                            <input type="hidden" class="questionHidden" name="question6" value="50"/>
-                        </fieldset>
-                    </form>
-                    <div class="formIns">
-                        <h2>Chasddsdfrles</h2>
-                        <div class="sidomeImage">
-                            <div class="sidomeImageIns">
+            <div class="form form1">
+                <form method="POST" action="" class="formSite">
+                    <fieldset>
+                        <input type="hidden" name="idSidoMe" value=""/>
+                        <input type="hidden" class="questionHidden" name="question1" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question2" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question3" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question4" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question5" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question6" value="50"/>
+                    </fieldset>
+                </form>
+                <div class="formIns">
+                    <h2>Chasddsdfrles</h2>
+                    <div class="sidomeImage">
+                        <div class="sidomeImageIns">
                             <script type="text/processing">
 
-                            float xmag, ymag = 0;
-                            float newXmag, newYmag = 0;
-                            float a = 1.0;
+float xmag, ymag = 0;
+float newXmag, newYmag = 0;
+float a = 1.0;
 
-                            void setup()  {
-                                size(300, 300, P3D);
-                                colorMode(RGB, 1);
-                                strokeWeight(10);
-                            }
+void setup()  {
+size(300, 300, P3D);
+colorMode(RGB, 1);
+strokeWeight(10);
+}
 
-                            function drawPoints(pt1, pt2, pt3) {
-                                vertex(pt1.x, pt1.y, pt1.z);
-                                vertex(pt2.x, pt2.y, pt2.z);
-                                vertex(pt3.x, pt3.y, pt3.z);
-                            }
+function drawPoints(pt1, pt2, pt3) {
+vertex(pt1.x, pt1.y, pt1.z);
+vertex(pt2.x, pt2.y, pt2.z);
+vertex(pt3.x, pt3.y, pt3.z);
+}
 
-                            void draw()  {
+void draw()  {
 
-                                var nodes = $(".form1").val().sidome.nodes;
+var nodes = $(".form1").val().sidome.nodes;
 
-                                var v1 = {
-                                    "x": nodes.node1.x,
-                                    "y": 0,
-                                    "z": 0
-                                };
+pushMatrix();
+translate(width/2, height/2, -30);
 
-                                 var v2 = {
-                                    "x": 0,
-                                    "y": 0,
-                                    "z": nodes.node2.z
-                                };
+// ROTATION:
+a += 0.005;
+if(a > TWO_PI) {
+a = 0.0;
+}
+rotateX(a * 1.5);
+rotateY(a * 1.5);
 
-                                var v3 = {
-                                    "x": 0,
-                                    "y": nodes.node3.y,
-                                    "z": 0
-                                };
+float diff = xmag-newXmag;
+if (abs(diff) >  0.01) {
+xmag -= diff/4.0;
+}
 
-                                var v4 = {
-                                    "x": nodes.node4.x,
-                                    "y": 0,
-                                    "z": 0
-                                };
+diff = ymag-newYmag;
+if (abs(diff) >  0.01) {
+ymag -= diff/4.0;
+}
 
-                                var v5 = {
-                                    "x": 0,
-                                    "y": 0,
-                                    "z": nodes.node5.z
-                                }
+background(0);
+stroke(255, 255, 255);
 
-                                var v6 = {
-                                    "x": 0,
-                                    "y": nodes.node6.y,
-                                    "z": 0
-                                };
+rotateX(-ymag);
+rotateY(-xmag);
 
-                                pushMatrix();
-                                translate(width/2, height/2, -30);
+scale(90);
+noFill();
+beginShape(TRIANGLES);
 
-                                // ROTATION:
-                                a += 0.005;
-                                if(a > TWO_PI) {
-                                    a = 0.0;
-                                }
-                                rotateX(a * 1.5);
-                                rotateY(a * 1.5);
+/*haut*/
+drawPoints(nodes.node1, nodes.node3, nodes.node2)
+drawPoints(nodes.node4, nodes.node3, nodes.node2)
+drawPoints(nodes.node3, nodes.node5, nodes.node4);
+drawPoints(nodes.node5, nodes.node3, nodes.node1);
 
-                                float diff = xmag-newXmag;
-                                if (abs(diff) >  0.01) {
-                                    xmag -= diff/4.0;
-                                }
+/*bas*/
+drawPoints(nodes.node4, nodes.node2, nodes.node6);
+drawPoints(nodes.node4, nodes.node5, nodes.node6);
+drawPoints(nodes.node1, nodes.node6, nodes.node2);
+drawPoints(nodes.node1, nodes.node6, nodes.node5);
 
-                                diff = ymag-newYmag;
-                                if (abs(diff) >  0.01) {
-                                    ymag -= diff/4.0;
-                                }
+endShape();
 
-                                background(0);
-                                stroke(255, 255, 255);
+popMatrix();
+}
 
-                                rotateX(-ymag);
-                                rotateY(-xmag);
+</script>
+                            <canvas></canvas>
+                        </div>
+                    </div>
+                    <div class="wrapperSliders">
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>1.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="1"></div>
+                            </div>
+                        </div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>2.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="2"></div>
+                            </div>
+                        </div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>3.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="3"></div>
+                            </div>
+                        </div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>4.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="4"></div>
+                            </div>
+                        </div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>5.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="5"></div>
+                            </div>
+                        </div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>6.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="6"></div>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <div class="buttonsIns">
+                                <div class="button buttonRestart">Restart</div>
+                                <div class="button buttonStop">Stop</div>
+                                <div class="clearer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form form2">
+                <form method="POST" action="" class="formSite">
+                    <fieldset>
+                        <input type="hidden" name="idSidoMe" value=""/>
+                        <input type="hidden" class="questionHidden" name="question1" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question2" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question3" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question4" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question5" value="50"/>
+                        <input type="hidden" class="questionHidden" name="question6" value="50"/>
+                    </fieldset>
+                </form>
+                <div class="formIns">
+                    <h2>Charles</h2>
+                    <div class="sidomeImage">
+                        <div class="sidomeImageIns">
+                            <script type="text/processing">
 
-                                scale(90);
-                                noFill();
-                                beginShape(TRIANGLES);
 
-                                /*haut*/
-                                drawPoints(v1, v2, v3)
-                                drawPoints(v2, v4, v3)
-                                drawPoints(v3, v5, v4);
-                                drawPoints(v5, v3, v1);
+float xmag, ymag = 0;
+float newXmag, newYmag = 0;
+float a = 1.0;
 
-                                /*bas*/
-                                drawPoints(v4, v2, v6);
-                                drawPoints(v4, v5, v6);
-                                drawPoints(v1, v6, v2);
-                                drawPoints(v1, v6, v5);
+void setup()  {
+size(300, 300, P3D);
+colorMode(RGB, 1);
+strokeWeight(10);
+}
 
-                                endShape();
+function drawPoints(pt1, pt2, pt3) {
+vertex(pt1.x, pt1.y, pt1.z);
+vertex(pt2.x, pt2.y, pt2.z);
+vertex(pt3.x, pt3.y, pt3.z);
+}
 
-                                popMatrix();
-                            }
+void draw()  {
 
-                            </script>
+var nodes = $(".form2").val().sidome.nodes;
+
+pushMatrix();
+translate(width/2, height/2, -30);
+
+// ROTATION:
+a += 0.005;
+if(a > TWO_PI) {
+a = 0.0;
+}
+rotateX(a * 1.5);
+rotateY(a * 1.5);
+
+float diff = xmag-newXmag;
+if (abs(diff) >  0.01) {
+xmag -= diff/4.0;
+}
+
+diff = ymag-newYmag;
+if (abs(diff) >  0.01) {
+ymag -= diff/4.0;
+}
+
+background(0);
+stroke(255, 255, 255);
+
+rotateX(-ymag);
+rotateY(-xmag);
+
+scale(90);
+noFill();
+beginShape(TRIANGLES);
+
+/*haut*/
+drawPoints(nodes.node1, nodes.node3, nodes.node2)
+drawPoints(nodes.node4, nodes.node3, nodes.node2)
+drawPoints(nodes.node3, nodes.node5, nodes.node4);
+drawPoints(nodes.node5, nodes.node3, nodes.node1);
+
+/*bas*/
+drawPoints(nodes.node4, nodes.node2, nodes.node6);
+drawPoints(nodes.node4, nodes.node5, nodes.node6);
+drawPoints(nodes.node1, nodes.node6, nodes.node2);
+drawPoints(nodes.node1, nodes.node6, nodes.node5);
+
+endShape();
+
+popMatrix();
+}
+</script>
                             <canvas></canvas>
                         </div>
                     </div>
@@ -196,7 +297,7 @@
             </div>
 
 
-            <div class="form form2">
+            <div class="form form3">
                 <form method="POST" action="" class="formSite">
                     <fieldset>
                         <input type="hidden" name="idSidoMe" value=""/>
@@ -212,135 +313,129 @@
                     <h2>Charles</h2>
                     <div class="sidomeImage">
                         <div class="sidomeImageIns">
-                        <script type="text/processing">
-  </script>
-                        <canvas></canvas>
-                    </div>
-                </div>
-                <div class="wrapperSliders">
-                    <div class="sliderSection">
-                        <div class="sliderSectionIns">
-                            <h3><strong>1.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                            <div class="slider" rel="1"></div>
+                            <script id = "processing1" type="text/processing">
+
+float xmag, ymag = 0;
+float newXmag, newYmag = 0;
+float a = 1.0;
+
+void setup()  {
+size(300, 300, P3D);
+colorMode(RGB, 1);
+strokeWeight(10);
+}
+
+function drawPoints(pt1, pt2, pt3) {
+vertex(pt1.x, pt1.y, pt1.z);
+vertex(pt2.x, pt2.y, pt2.z);
+vertex(pt3.x, pt3.y, pt3.z);
+}
+
+void draw()  {
+
+var nodes = $(".form3").val().sidome.nodes;
+
+pushMatrix();
+translate(width/2, height/2, -30);
+
+// ROTATION:
+a += 0.005;
+if(a > TWO_PI) {
+a = 0.0;
+}
+rotateX(a * 1.5);
+rotateY(a * 1.5);
+
+float diff = xmag-newXmag;
+if (abs(diff) >  0.01) {
+xmag -= diff/4.0;
+}
+
+diff = ymag-newYmag;
+if (abs(diff) >  0.01) {
+ymag -= diff/4.0;
+}
+
+background(0);
+stroke(255, 255, 255);
+
+rotateX(-ymag);
+rotateY(-xmag);
+
+scale(90);
+noFill();
+beginShape(TRIANGLES);
+
+/*haut*/
+drawPoints(nodes.node1, nodes.node3, nodes.node2)
+drawPoints(nodes.node4, nodes.node3, nodes.node2)
+drawPoints(nodes.node3, nodes.node5, nodes.node4);
+drawPoints(nodes.node5, nodes.node3, nodes.node1);
+
+/*bas*/
+drawPoints(nodes.node4, nodes.node2, nodes.node6);
+drawPoints(nodes.node4, nodes.node5, nodes.node6);
+drawPoints(nodes.node1, nodes.node6, nodes.node2);
+drawPoints(nodes.node1, nodes.node6, nodes.node5);
+
+endShape();
+
+popMatrix();
+}
+</script>
+                            <canvas></canvas>
                         </div>
                     </div>
-                    <div class="sliderSection">
-                        <div class="sliderSectionIns">
-                            <h3><strong>2.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                            <div class="slider" rel="2"></div>
+                    <div class="wrapperSliders">
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>1.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="1"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sliderSection">
-                        <div class="sliderSectionIns">
-                            <h3><strong>3.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                            <div class="slider" rel="3"></div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>2.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="2"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sliderSection">
-                        <div class="sliderSectionIns">
-                            <h3><strong>4.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                            <div class="slider" rel="4"></div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>3.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="3"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sliderSection">
-                        <div class="sliderSectionIns">
-                            <h3><strong>5.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                            <div class="slider" rel="5"></div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>4.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="4"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sliderSection">
-                        <div class="sliderSectionIns">
-                            <h3><strong>6.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                            <div class="slider" rel="6"></div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>5.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="5"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="buttons">
-                        <div class="buttonsIns">
-                            <div class="button buttonRestart">Restart</div>
-                            <div class="button buttonStop">Stop</div>
-                            <div class="clearer"></div>
+                        <div class="sliderSection">
+                            <div class="sliderSectionIns">
+                                <h3><strong>6.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
+                                <div class="slider" rel="6"></div>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <div class="buttonsIns">
+                                <div class="button buttonRestart">Restart</div>
+                                <div class="button buttonStop">Stop</div>
+                                <div class="clearer"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="form form3">
-            <form method="POST" action="" class="formSite">
-                <fieldset>
-                    <input type="hidden" name="idSidoMe" value=""/>
-                    <input type="hidden" class="questionHidden" name="question1" value="50"/>
-                    <input type="hidden" class="questionHidden" name="question2" value="50"/>
-                    <input type="hidden" class="questionHidden" name="question3" value="50"/>
-                    <input type="hidden" class="questionHidden" name="question4" value="50"/>
-                    <input type="hidden" class="questionHidden" name="question5" value="50"/>
-                    <input type="hidden" class="questionHidden" name="question6" value="50"/>
-                </fieldset>
-            </form>
-            <div class="formIns">
-                <h2>Charles</h2>
-                <div class="sidomeImage">
-                    <div class="sidomeImageIns">
-                    <script id = "processing1" type="text/processing">
-
-  </script>
-                    <canvas></canvas>
-                </div>
-            </div>
-            <div class="wrapperSliders">
-                <div class="sliderSection">
-                    <div class="sliderSectionIns">
-                        <h3><strong>1.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                        <div class="slider" rel="1"></div>
-                    </div>
-                </div>
-                <div class="sliderSection">
-                    <div class="sliderSectionIns">
-                        <h3><strong>2.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                        <div class="slider" rel="2"></div>
-                    </div>
-                </div>
-                <div class="sliderSection">
-                    <div class="sliderSectionIns">
-                        <h3><strong>3.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                        <div class="slider" rel="3"></div>
-                    </div>
-                </div>
-                <div class="sliderSection">
-                    <div class="sliderSectionIns">
-                        <h3><strong>4.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                        <div class="slider" rel="4"></div>
-                    </div>
-                </div>
-                <div class="sliderSection">
-                    <div class="sliderSectionIns">
-                        <h3><strong>5.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                        <div class="slider" rel="5"></div>
-                    </div>
-                </div>
-                <div class="sliderSection">
-                    <div class="sliderSectionIns">
-                        <h3><strong>6.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h3>
-                        <div class="slider" rel="6"></div>
-                    </div>
-                </div>
-                <div class="buttons">
-                    <div class="buttonsIns">
-                        <div class="button buttonRestart">Restart</div>
-                        <div class="button buttonStop">Stop</div>
-                        <div class="clearer"></div>
-                    </div>
-                </div>
-            </div>
+            <div class="clearer"></div>
         </div>
     </div>
-
-
-
-    <div class="clearer"></div>
-</div>
-</div>
 </div>
 </body>
 </html>

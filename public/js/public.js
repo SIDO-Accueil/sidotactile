@@ -86,6 +86,173 @@ $(document).ready(function(){
         }
     });
 
+    // INITIALISATION
+    $(".form2").val(
+        {
+            "sidome": {
+                "default": true, // the sidome is a cube by default
+                "visible": true,  // visibilty
+                "badge": "<NUMERO DE BADGE>",
+                "color": {
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                },
+                "nodes": {
+                    "node1": {
+                        "x": -1,
+                        "y": 0,
+                        "z": 0,
+                        "faces": {       // each faces on where the node is needed
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node2": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 1,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node3": {
+                        "x": 0,
+                        "y": 1,
+                        "z": 0,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node4": {
+                        "x": 1,
+                        "y": 0,
+                        "z": 0,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node5": {
+                        "x": 0,
+                        "y": 0,
+                        "z": -1,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node6": {
+                        "x": 0,
+                        "y": -1,
+                        "z": 0,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    }
+                }
+            }
+        });
+
+    // INITIALISATION
+    $(".form3").val(
+        {
+            "sidome": {
+                "default": true, // the sidome is a cube by default
+                "visible": true,  // visibilty
+                "badge": "<NUMERO DE BADGE>",
+                "color": {
+                    "r": 255,
+                    "g": 255,
+                    "b": 255
+                },
+                "nodes": {
+                    "node1": {
+                        "x": -1,
+                        "y": 0,
+                        "z": 0,
+                        "faces": {       // each faces on where the node is needed
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node2": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 1,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node3": {
+                        "x": 0,
+                        "y": 1,
+                        "z": 0,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node4": {
+                        "x": 1,
+                        "y": 0,
+                        "z": 0,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node5": {
+                        "x": 0,
+                        "y": 0,
+                        "z": -1,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    },
+                    "node6": {
+                        "x": 0,
+                        "y": -1,
+                        "z": 0,
+                        "faces": {
+                            "face1": 0,
+                            "face2": 0,
+                            "face3": 0,
+                            "face4": 0
+                        }
+                    }
+                }
+            }
+        });
+
+
     //$(".form1").val({
     //    "v1": 50,
     //    "v2": 50,

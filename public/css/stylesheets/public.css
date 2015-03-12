@@ -312,3 +312,13 @@ input {
 .buttons .buttonStop {
   float: right;
 }
+
+.custom{
+	width:100% !important;
+	border-radius:0 !important;
+	height:5px !important;
+}
+
+.custom::-webkit-slider-thumb{
+	background:#fff !important;
+}

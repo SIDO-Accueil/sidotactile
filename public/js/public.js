@@ -3,6 +3,10 @@
 $(document).ready(function(){
     "use strict";
 
+    $('input[type="range"]').change(function () {
+        console.log($(this).val());
+    });
+
     // INITIALISATION
     $(".form1").val(
     {

@@ -44,7 +44,7 @@
                     </fieldset>
                 </form>
                 <div class="formIns">
-                    <h2>Chasddsdfrles</h2>
+                    <h2>John</h2>
                     <div class="sidomeImage">
                         <div class="sidomeImageIns">
                             <script type="text/processing">
@@ -54,67 +54,67 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, P3D);
-colorMode(RGB, 1);
-strokeWeight(10);
+	size(400, 400, P3D);
+	colorMode(RGB, 1);
+	strokeWeight(10);
 }
 
 function drawPoints(pt1, pt2, pt3) {
-vertex(pt1.x, pt1.y, pt1.z);
-vertex(pt2.x, pt2.y, pt2.z);
-vertex(pt3.x, pt3.y, pt3.z);
+	vertex(pt1.x, pt1.y, pt1.z);
+	vertex(pt2.x, pt2.y, pt2.z);
+	vertex(pt3.x, pt3.y, pt3.z);
 }
 
 void draw()  {
 
-var nodes = $(".form1").val().sidome.nodes;
+	var nodes = $(".form1").val().sidome.nodes;
 
-pushMatrix();
-translate(width/2, height/2, -30);
+	pushMatrix();
+	translate(width/2, height/2, -30);
 
-// ROTATION:
-a += 0.005;
-if(a > TWO_PI) {
-a = 0.0;
-}
-rotateX(a * 1.5);
-rotateY(a * 1.5);
+	// ROTATION:
+	a += 0.005;
+	if(a > TWO_PI) {
+	a = 0.0;
+	}
+	rotateX(a * 1.5);
+	rotateY(a * 1.5);
 
-float diff = xmag-newXmag;
-if (abs(diff) >  0.01) {
-xmag -= diff/4.0;
-}
+	float diff = xmag-newXmag;
+	if (abs(diff) >  0.01) {
+	xmag -= diff/4.0;
+	}
 
-diff = ymag-newYmag;
-if (abs(diff) >  0.01) {
-ymag -= diff/4.0;
-}
+	diff = ymag-newYmag;
+	if (abs(diff) >  0.01) {
+	ymag -= diff/4.0;
+	}
 
-background(0);
-stroke(255, 255, 255);
+	background(0);
+	stroke(255, 255, 255);
 
-rotateX(-ymag);
-rotateY(-xmag);
+	rotateX(-ymag+200);
+	rotateY(-xmag+200);
 
-scale(90);
-noFill();
-beginShape(TRIANGLES);
+	scale(90);
+	noFill();
+	beginShape(TRIANGLES);
 
-/*haut*/
-drawPoints(nodes.node1, nodes.node3, nodes.node2)
-drawPoints(nodes.node4, nodes.node3, nodes.node2)
-drawPoints(nodes.node3, nodes.node5, nodes.node4);
-drawPoints(nodes.node5, nodes.node3, nodes.node1);
+	/*haut*/
+	drawPoints(nodes.node1, nodes.node3, nodes.node2)
+	drawPoints(nodes.node4, nodes.node3, nodes.node2)
+	drawPoints(nodes.node5, nodes.node3, nodes.node4);
+	drawPoints(nodes.node5, nodes.node3, nodes.node1);
 
-/*bas*/
-drawPoints(nodes.node4, nodes.node2, nodes.node6);
-drawPoints(nodes.node4, nodes.node5, nodes.node6);
-drawPoints(nodes.node1, nodes.node6, nodes.node2);
-drawPoints(nodes.node1, nodes.node6, nodes.node5);
+	/*bas*/
+	drawPoints(nodes.node4, nodes.node6, nodes.node2);
+	drawPoints(nodes.node4, nodes.node6, nodes.node5);
+	drawPoints(nodes.node1, nodes.node6, nodes.node2);
+	drawPoints(nodes.node1, nodes.node6, nodes.node5);
 
-endShape();
+	endShape();
 
-popMatrix();
+	popMatrix();
 }
 
 </script>
@@ -193,7 +193,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, P3D);
+size(400, 400, P3D);
 colorMode(RGB, 1);
 strokeWeight(10);
 }
@@ -232,8 +232,8 @@ ymag -= diff/4.0;
 background(0);
 stroke(255, 255, 255);
 
-rotateX(-ymag);
-rotateY(-xmag);
+rotateX(-ymag+100);
+rotateY(-xmag+100);
 
 scale(90);
 noFill();
@@ -331,7 +331,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, P3D);
+size(400, 400, P3D);
 colorMode(RGB, 1);
 strokeWeight(10);
 }

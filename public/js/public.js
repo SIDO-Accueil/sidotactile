@@ -1,10 +1,106 @@
+
+function init_JSON(form, badge)
+{
+	form.val(
+    {
+        "sidome": {
+            "default": true, // the sidome is a cube by default
+            "visible": true,  // visibilty
+            "badge":  badge,
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "nodes": {
+                "node1": {
+                    "x": -1,
+                    "y": 0,
+                    "z": 0,
+                    "faces": {       // each faces on where the node is needed
+                        "face1": 1,
+                        "face2": 4,
+                        "face3": 7,
+                        "face4": 8
+                    }
+                },
+                "node2": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1,
+                    "faces": {
+                        "face1": 1,
+                        "face2": 2,
+                        "face3": 5,
+                        "face4": 7
+                    }
+                },
+                "node3": {
+                    "x": 0,
+                    "y": 1,
+                    "z": 0,
+                    "faces": {
+                        "face1": 1,
+                        "face2": 2,
+                        "face3": 3,
+                        "face4": 4
+                    }
+                },
+                "node4": {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0,
+                    "faces": {
+                        "face1": 2,
+                        "face2": 3,
+                        "face3": 5,
+                        "face4": 6
+                    }
+                },
+                "node5": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -1,
+                    "faces": {
+                        "face1": 3,
+                        "face2": 4,
+                        "face3": 6,
+                        "face4": 8
+                    }
+                },
+                "node6": {
+                    "x": 0,
+                    "y": -1,
+                    "z": 0,
+                    "faces": {
+                        "face1": 5,
+                        "face2": 6,
+                        "face3": 7,
+                        "face4": 8
+                    }
+                }
+            }
+        }
+    });
+}
+
+
 /*eslint-env jquery, browser */
 
 $(document).ready(function(){
     "use strict";
 
+
+	$(".form").each(function(){
+		init_JSON($(this), "<NUMERO DE BADGE>");
+	});
+
+    $('input[type="range"]').change(function () {
+        console.log($(this).val());
+    });
+
     // INITIALISATION
-    $(".form1").val(
+    /*$(".form1").val(
     {
         "sidome": {
             "default": true, // the sidome is a cube by default
@@ -21,10 +117,10 @@ $(document).ready(function(){
                     "y": 0,
                     "z": 0,
                     "faces": {       // each faces on where the node is needed
-                        "face1": 0,
-                        "face2": 0,
-                        "face3": 0,
-                        "face4": 0
+                        "face1": 1,
+                        "face2": 4,
+                        "face3": 7,
+                        "face4": 8
                     }
                 },
                 "node2": {
@@ -32,10 +128,10 @@ $(document).ready(function(){
                     "y": 0,
                     "z": 1,
                     "faces": {
-                        "face1": 0,
-                        "face2": 0,
-                        "face3": 0,
-                        "face4": 0
+                        "face1": 1,
+                        "face2": 2,
+                        "face3": 5,
+                        "face4": 7
                     }
                 },
                 "node3": {
@@ -43,10 +139,10 @@ $(document).ready(function(){
                     "y": 1,
                     "z": 0,
                     "faces": {
-                        "face1": 0,
-                        "face2": 0,
-                        "face3": 0,
-                        "face4": 0
+                        "face1": 1,
+                        "face2": 2,
+                        "face3": 3,
+                        "face4": 4
                     }
                 },
                 "node4": {
@@ -54,10 +150,10 @@ $(document).ready(function(){
                     "y": 0,
                     "z": 0,
                     "faces": {
-                        "face1": 0,
-                        "face2": 0,
-                        "face3": 0,
-                        "face4": 0
+                        "face1": 2,
+                        "face2": 3,
+                        "face3": 5,
+                        "face4": 6
                     }
                 },
                 "node5": {
@@ -65,10 +161,10 @@ $(document).ready(function(){
                     "y": 0,
                     "z": -1,
                     "faces": {
-                        "face1": 0,
-                        "face2": 0,
-                        "face3": 0,
-                        "face4": 0
+                        "face1": 3,
+                        "face2": 4,
+                        "face3": 6,
+                        "face4": 8
                     }
                 },
                 "node6": {
@@ -76,10 +172,10 @@ $(document).ready(function(){
                     "y": -1,
                     "z": 0,
                     "faces": {
-                        "face1": 0,
-                        "face2": 0,
-                        "face3": 0,
-                        "face4": 0
+                        "face1": 5,
+                        "face2": 6,
+                        "face3": 7,
+                        "face4": 8
                     }
                 }
             }
@@ -100,71 +196,71 @@ $(document).ready(function(){
                 },
                 "nodes": {
                     "node1": {
-                        "x": -1,
-                        "y": 0,
-                        "z": 0,
-                        "faces": {       // each faces on where the node is needed
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node2": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 1,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node3": {
-                        "x": 0,
-                        "y": 1,
-                        "z": 0,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node4": {
-                        "x": 1,
-                        "y": 0,
-                        "z": 0,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node5": {
-                        "x": 0,
-                        "y": 0,
-                        "z": -1,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node6": {
-                        "x": 0,
-                        "y": -1,
-                        "z": 0,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    }
+						"x": -1,
+						"y": 0,
+						"z": 0,
+						"faces": {       // each faces on where the node is needed
+							"face1": 1,
+							"face2": 4,
+							"face3": 7,
+							"face4": 8
+						}
+					},
+					"node2": {
+						"x": 0,
+						"y": 0,
+						"z": 1,
+						"faces": {
+							"face1": 1,
+							"face2": 2,
+							"face3": 5,
+							"face4": 7
+						}
+					},
+					"node3": {
+						"x": 0,
+						"y": 1,
+						"z": 0,
+						"faces": {
+							"face1": 1,
+							"face2": 2,
+							"face3": 3,
+							"face4": 4
+						}
+					},
+					"node4": {
+						"x": 1,
+						"y": 0,
+						"z": 0,
+						"faces": {
+							"face1": 2,
+							"face2": 3,
+							"face3": 5,
+							"face4": 6
+						}
+					},
+					"node5": {
+						"x": 0,
+						"y": 0,
+						"z": -1,
+						"faces": {
+							"face1": 3,
+							"face2": 4,
+							"face3": 6,
+							"face4": 8
+						}
+					},
+					"node6": {
+						"x": 0,
+						"y": -1,
+						"z": 0,
+						"faces": {
+							"face1": 5,
+							"face2": 6,
+							"face3": 7,
+							"face4": 8
+						}
+					}
                 }
             }
         });
@@ -183,75 +279,75 @@ $(document).ready(function(){
                 },
                 "nodes": {
                     "node1": {
-                        "x": -1,
-                        "y": 0,
-                        "z": 0,
-                        "faces": {       // each faces on where the node is needed
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node2": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 1,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node3": {
-                        "x": 0,
-                        "y": 1,
-                        "z": 0,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node4": {
-                        "x": 1,
-                        "y": 0,
-                        "z": 0,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node5": {
-                        "x": 0,
-                        "y": 0,
-                        "z": -1,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    },
-                    "node6": {
-                        "x": 0,
-                        "y": -1,
-                        "z": 0,
-                        "faces": {
-                            "face1": 0,
-                            "face2": 0,
-                            "face3": 0,
-                            "face4": 0
-                        }
-                    }
+						"x": -1,
+						"y": 0,
+						"z": 0,
+						"faces": {       // each faces on where the node is needed
+							"face1": 1,
+							"face2": 4,
+							"face3": 7,
+							"face4": 8
+						}
+					},
+					"node2": {
+						"x": 0,
+						"y": 0,
+						"z": 1,
+						"faces": {
+							"face1": 1,
+							"face2": 2,
+							"face3": 5,
+							"face4": 7
+						}
+					},
+					"node3": {
+						"x": 0,
+						"y": 1,
+						"z": 0,
+						"faces": {
+							"face1": 1,
+							"face2": 2,
+							"face3": 3,
+							"face4": 4
+						}
+					},
+					"node4": {
+						"x": 1,
+						"y": 0,
+						"z": 0,
+						"faces": {
+							"face1": 2,
+							"face2": 3,
+							"face3": 5,
+							"face4": 6
+						}
+					},
+					"node5": {
+						"x": 0,
+						"y": 0,
+						"z": -1,
+						"faces": {
+							"face1": 3,
+							"face2": 4,
+							"face3": 6,
+							"face4": 8
+						}
+					},
+					"node6": {
+						"x": 0,
+						"y": -1,
+						"z": 0,
+						"faces": {
+							"face1": 5,
+							"face2": 6,
+							"face3": 7,
+							"face4": 8
+						}
+					}
                 }
             }
         });
-
+*/
 
     //$(".form1").val({
     //    "v1": 50,

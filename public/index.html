@@ -44,7 +44,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, P3D);
+size(400, 400, P3D);
 colorMode(RGB, 1);
 strokeWeight(10);
 }
@@ -83,8 +83,8 @@ ymag -= diff/4.0;
 background(0);
 stroke(255, 255, 255);
 
-rotateX(-ymag);
-rotateY(-xmag);
+rotateX(-ymag+200);
+rotateY(-xmag+200);
 
 scale(90);
 noFill();
@@ -93,12 +93,12 @@ beginShape(TRIANGLES);
 /*haut*/
 drawPoints(nodes.node1, nodes.node3, nodes.node2)
 drawPoints(nodes.node4, nodes.node3, nodes.node2)
-drawPoints(nodes.node3, nodes.node5, nodes.node4);
+drawPoints(nodes.node5, nodes.node3, nodes.node4);
 drawPoints(nodes.node5, nodes.node3, nodes.node1);
 
 /*bas*/
-drawPoints(nodes.node4, nodes.node2, nodes.node6);
-drawPoints(nodes.node4, nodes.node5, nodes.node6);
+drawPoints(nodes.node4, nodes.node6, nodes.node2);
+drawPoints(nodes.node4, nodes.node6, nodes.node5);
 drawPoints(nodes.node1, nodes.node6, nodes.node2);
 drawPoints(nodes.node1, nodes.node6, nodes.node5);
 
@@ -182,7 +182,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, P3D);
+size(400, 400, P3D);
 colorMode(RGB, 1);
 strokeWeight(10);
 }
@@ -221,8 +221,8 @@ ymag -= diff/4.0;
 background(0);
 stroke(255, 255, 255);
 
-rotateX(-ymag);
-rotateY(-xmag);
+rotateX(-ymag+100);
+rotateY(-xmag+100);
 
 scale(90);
 noFill();
@@ -320,7 +320,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, P3D);
+size(400, 400, P3D);
 colorMode(RGB, 1);
 strokeWeight(10);
 }

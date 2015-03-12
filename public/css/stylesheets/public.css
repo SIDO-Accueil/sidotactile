@@ -169,8 +169,8 @@ input {
 }
 /* line 109, ../sass/public.scss */
 .form .sidomeImage .sidomeImageIns canvas {
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
   margin: auto;
   background: black;
   display: block;

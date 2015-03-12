@@ -21,8 +21,6 @@
         <div class="wrapperAll">
             <div class="forms">
 
-
-
                 <div class="form form1">
                     <form method="POST" action="" class="formSite">
                         <fieldset>
@@ -36,49 +34,14 @@
                         </fieldset>
                     </form>
                     <div class="formIns">
-                        <h2>Charles</h2>
+                        <h2>Chasddsdfrles</h2>
                         <div class="sidomeImage">
                             <div class="sidomeImageIns">
                             <script type="text/processing">
 
                             float xmag, ymag = 0;
                             float newXmag, newYmag = 0;
-
-                            var v1 = {
-                                "x": -1,
-                                "y": 0,
-                                "z": 0
-                            };
-
-                            var v2 = {
-                                "x": 0,
-                                "y": 0,
-                                "z": 1
-                            };
-
-                            var v3 = {
-                                "x": 0,
-                                "y": 1,
-                                "z": 0
-                            };
-
-                            var v4 = {
-                                "x": 1,
-                                "y": 0,
-                                "z": 0
-                            };
-
-                            var v5 = {
-                                "x": 0,
-                                "y": 0,
-                                "z": -1
-                            };
-
-                            var v6 = {
-                                "x": 0,
-                                "y": -1,
-                                "z": 0
-                            };
+                            float a = 0.0;
 
                             void setup()  {
                                 size(300, 300, P3D);
@@ -94,11 +57,53 @@
 
                             void draw()  {
 
+                                var v1 = {
+                                    "x": nodes.v1/-50,
+                                    "y": 0,
+                                    "z": 0
+                                };
+
+                                 var v2 = {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": nodes.v2/50
+                                };
+
+                                var v3 = {
+                                    "x": 0,
+                                    "y": nodes.v3/50,
+                                    "z": 0
+                                };
+
+                                var v4 = {
+                                    "x": nodes.v4/50,
+                                    "y": 0,
+                                    "z": 0
+                                };
+
+                                var v5 = {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": nodes.v5/-50
+                                }
+
+                                var v6 = {
+                                    "x": 0,
+                                    "y": nodes.v6/-50,
+                                    "z": 0
+                                };
+
+
                                 pushMatrix();
                                 translate(width/2, height/2, -30);
 
-                                newXmag = mouseX/float(width) * TWO_PI;
-                                newYmag = mouseY/float(height) * TWO_PI;
+                                // ROTATION:
+                                a += 0.005;
+                                if(a > TWO_PI) {
+                                    a = 0.0;
+                                }
+                                rotateX(a * 1.5);
+                                rotateY(a * 1.5);
 
                                 float diff = xmag-newXmag;
                                 if (abs(diff) >  0.01) {
@@ -209,42 +214,7 @@
 
                             float xmag, ymag = 0;
                             float newXmag, newYmag = 0;
-
-                            var v1 = {
-                                "x": -1,
-                                "y": 0,
-                                "z": 0
-                            };
-
-                            var v2 = {
-                                "x": 0,
-                                "y": 0,
-                                "z": 1
-                            };
-
-                            var v3 = {
-                                "x": 0,
-                                "y": 1,
-                                "z": 0
-                            };
-
-                            var v4 = {
-                                "x": 1,
-                                "y": 0,
-                                "z": 0
-                            };
-
-                            var v5 = {
-                                "x": 0,
-                                "y": 0,
-                                "z": -1
-                            };
-
-                            var v6 = {
-                                "x": 0,
-                                "y": -1,
-                                "z": 0
-                            };
+                            float a = 1.0;
 
                             void setup()  {
                                 size(300, 300, P3D);
@@ -260,11 +230,53 @@
 
                             void draw()  {
 
+                                var v1 = {
+                                    "x": nodes.v1/-50,
+                                    "y": 0,
+                                    "z": 0
+                                };
+
+                                 var v2 = {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": nodes.v2/50
+                                };
+
+                                var v3 = {
+                                    "x": 0,
+                                    "y": nodes.v3/50,
+                                    "z": 0
+                                };
+
+                                var v4 = {
+                                    "x": nodes.v4/50,
+                                    "y": 0,
+                                    "z": 0
+                                };
+
+                                var v5 = {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": nodes.v5/-50
+                                }
+
+                                var v6 = {
+                                    "x": 0,
+                                    "y": nodes.v6/-50,
+                                    "z": 0
+                                };
+
+
                                 pushMatrix();
                                 translate(width/2, height/2, -30);
 
-                                newXmag = mouseX/float(width) * TWO_PI;
-                                newYmag = mouseY/float(height) * TWO_PI;
+                                // ROTATION:
+                                a += 0.005;
+                                if(a > TWO_PI) {
+                                    a = 0.0;
+                                }
+                                rotateX(a * 1.5);
+                                rotateY(a * 1.5);
 
                                 float diff = xmag-newXmag;
                                 if (abs(diff) >  0.01) {
@@ -301,7 +313,8 @@
                                 endShape();
 
                                 popMatrix();
-                            }                        </script>
+                            }
+                        </script>
                         <canvas></canvas>
                     </div>
                 </div>
@@ -374,42 +387,7 @@
 
                             float xmag, ymag = 0;
                             float newXmag, newYmag = 0;
-
-                            var v1 = {
-                                "x": -1,
-                                "y": 0,
-                                "z": 0
-                            };
-
-                            var v2 = {
-                                "x": 0,
-                                "y": 0,
-                                "z": 1
-                            };
-
-                            var v3 = {
-                                "x": 0,
-                                "y": 1,
-                                "z": 0
-                            };
-
-                            var v4 = {
-                                "x": 1,
-                                "y": 0,
-                                "z": 0
-                            };
-
-                            var v5 = {
-                                "x": 0,
-                                "y": 0,
-                                "z": -1
-                            };
-
-                            var v6 = {
-                                "x": 0,
-                                "y": -1,
-                                "z": 0
-                            };
+                            float a = 2.0;
 
                             void setup()  {
                                 size(300, 300, P3D);
@@ -425,11 +403,53 @@
 
                             void draw()  {
 
+                                var v1 = {
+                                    "x": nodes.v1/-50,
+                                    "y": 0,
+                                    "z": 0
+                                };
+
+                                 var v2 = {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": nodes.v2/50
+                                };
+
+                                var v3 = {
+                                    "x": 0,
+                                    "y": nodes.v3/50,
+                                    "z": 0
+                                };
+
+                                var v4 = {
+                                    "x": nodes.v4/50,
+                                    "y": 0,
+                                    "z": 0
+                                };
+
+                                var v5 = {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": nodes.v5/-50
+                                }
+
+                                var v6 = {
+                                    "x": 0,
+                                    "y": nodes.v6/-50,
+                                    "z": 0
+                                };
+
+
                                 pushMatrix();
                                 translate(width/2, height/2, -30);
 
-                                newXmag = mouseX/float(width) * TWO_PI;
-                                newYmag = mouseY/float(height) * TWO_PI;
+                                // ROTATION:
+                                a += 0.005;
+                                if(a > TWO_PI) {
+                                    a = 0.0;
+                                }
+                                rotateX(a * 1.5);
+                                rotateY(a * 1.5);
 
                                 float diff = xmag-newXmag;
                                 if (abs(diff) >  0.01) {
@@ -467,6 +487,7 @@
 
                                 popMatrix();
                             }
+
                     </script>
                     <canvas></canvas>
                 </div>

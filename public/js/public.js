@@ -90,12 +90,15 @@ function init_JSON(form, badge)
 $(document).ready(function(){
     "use strict";
 
+
 	$(".form").each(function(){
 		init_JSON($(this), "<NUMERO DE BADGE>");
 	});
-	/*init_JSON($(".form1"), "<NUMERO DE BADGE>");
-	init_JSON($(".form2"), "<NUMERO DE BADGE>");
-	init_JSON($(".form3"), "<NUMERO DE BADGE>");*/
+
+    $('input[type="range"]').change(function () {
+        console.log($(this).val());
+    });
+
     // INITIALISATION
     /*$(".form1").val(
     {

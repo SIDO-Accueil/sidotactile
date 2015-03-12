@@ -41,7 +41,7 @@
 
                             float xmag, ymag = 0;
                             float newXmag, newYmag = 0;
-                            float a = 0.0;
+                            float a = 1.0;
 
                             void setup()  {
                                 size(300, 300, P3D);
@@ -57,10 +57,10 @@
 
                             void draw()  {
 
-                                var nodes = $(".form1").val();
+                                var nodes = $(".form1").val().sidome.nodes;
 
                                 var v1 = {
-                                    "x": nodes.v1/-50,
+                                    "x": nodes.node1.x,
                                     "y": 0,
                                     "z": 0
                                 };
@@ -68,17 +68,17 @@
                                  var v2 = {
                                     "x": 0,
                                     "y": 0,
-                                    "z": nodes.v2/50
+                                    "z": nodes.node2.z
                                 };
 
                                 var v3 = {
                                     "x": 0,
-                                    "y": nodes.v3/50,
+                                    "y": nodes.node3.y,
                                     "z": 0
                                 };
 
                                 var v4 = {
-                                    "x": nodes.v4/50,
+                                    "x": nodes.node4.x,
                                     "y": 0,
                                     "z": 0
                                 };
@@ -86,15 +86,14 @@
                                 var v5 = {
                                     "x": 0,
                                     "y": 0,
-                                    "z": nodes.v5/-50
+                                    "z": nodes.node5.z
                                 }
 
                                 var v6 = {
                                     "x": 0,
-                                    "y": nodes.v6/-50,
+                                    "y": nodes.node6.y,
                                     "z": 0
                                 };
-
 
                                 pushMatrix();
                                 translate(width/2, height/2, -30);
@@ -143,6 +142,7 @@
 
                                 popMatrix();
                             }
+
                             </script>
                             <canvas></canvas>
                         </div>
@@ -213,112 +213,7 @@
                     <div class="sidomeImage">
                         <div class="sidomeImageIns">
                         <script type="text/processing">
-
-                            float xmag, ymag = 0;
-                            float newXmag, newYmag = 0;
-                            float a = 1.0;
-
-                            void setup()  {
-                                size(300, 300, P3D);
-                                colorMode(RGB, 1);
-                                strokeWeight(10);
-                            }
-
-                            function drawPoints(pt1, pt2, pt3) {
-                                vertex(pt1.x, pt1.y, pt1.z);
-                                vertex(pt2.x, pt2.y, pt2.z);
-                                vertex(pt3.x, pt3.y, pt3.z);
-                            }
-
-                            void draw()  {
-
-                                var nodes = $(".form2").val();
-
-                                var v1 = {
-                                    "x": nodes.v1/-50,
-                                    "y": 0,
-                                    "z": 0
-                                };
-
-                                 var v2 = {
-                                    "x": 0,
-                                    "y": 0,
-                                    "z": nodes.v2/50
-                                };
-
-                                var v3 = {
-                                    "x": 0,
-                                    "y": nodes.v3/50,
-                                    "z": 0
-                                };
-
-                                var v4 = {
-                                    "x": nodes.v4/50,
-                                    "y": 0,
-                                    "z": 0
-                                };
-
-                                var v5 = {
-                                    "x": 0,
-                                    "y": 0,
-                                    "z": nodes.v5/-50
-                                }
-
-                                var v6 = {
-                                    "x": 0,
-                                    "y": nodes.v6/-50,
-                                    "z": 0
-                                };
-
-
-                                pushMatrix();
-                                translate(width/2, height/2, -30);
-
-                                // ROTATION:
-                                a += 0.005;
-                                if(a > TWO_PI) {
-                                    a = 0.0;
-                                }
-                                rotateX(a * 1.5);
-                                rotateY(a * 1.5);
-
-                                float diff = xmag-newXmag;
-                                if (abs(diff) >  0.01) {
-                                    xmag -= diff/4.0;
-                                }
-
-                                diff = ymag-newYmag;
-                                if (abs(diff) >  0.01) {
-                                    ymag -= diff/4.0;
-                                }
-
-                                background(0);
-                                stroke(255, 255, 255);
-
-                                rotateX(-ymag);
-                                rotateY(-xmag);
-
-                                scale(90);
-                                noFill();
-                                beginShape(TRIANGLES);
-
-                                /*haut*/
-                                drawPoints(v1, v2, v3)
-                                drawPoints(v2, v4, v3)
-                                drawPoints(v3, v5, v4);
-                                drawPoints(v5, v3, v1);
-
-                                /*bas*/
-                                drawPoints(v4, v2, v6);
-                                drawPoints(v4, v5, v6);
-                                drawPoints(v1, v6, v2);
-                                drawPoints(v1, v6, v5);
-
-                                endShape();
-
-                                popMatrix();
-                            }
-                        </script>
+  </script>
                         <canvas></canvas>
                     </div>
                 </div>
@@ -389,112 +284,7 @@
                     <div class="sidomeImageIns">
                     <script id = "processing1" type="text/processing">
 
-                            float xmag, ymag = 0;
-                            float newXmag, newYmag = 0;
-                            float a = 2.0;
-
-                            void setup()  {
-                                size(300, 300, P3D);
-                                colorMode(RGB, 1);
-                                strokeWeight(10);
-                            }
-
-                            function drawPoints(pt1, pt2, pt3) {
-                                vertex(pt1.x, pt1.y, pt1.z);
-                                vertex(pt2.x, pt2.y, pt2.z);
-                                vertex(pt3.x, pt3.y, pt3.z);
-                            }
-
-                            void draw()  {
-
-                                var nodes = $(".form3").val();
-
-                                var v1 = {
-                                    "x": nodes.v1/-50,
-                                    "y": 0,
-                                    "z": 0
-                                };
-
-                                 var v2 = {
-                                    "x": 0,
-                                    "y": 0,
-                                    "z": nodes.v2/50
-                                };
-
-                                var v3 = {
-                                    "x": 0,
-                                    "y": nodes.v3/50,
-                                    "z": 0
-                                };
-
-                                var v4 = {
-                                    "x": nodes.v4/50,
-                                    "y": 0,
-                                    "z": 0
-                                };
-
-                                var v5 = {
-                                    "x": 0,
-                                    "y": 0,
-                                    "z": nodes.v5/-50
-                                }
-
-                                var v6 = {
-                                    "x": 0,
-                                    "y": nodes.v6/-50,
-                                    "z": 0
-                                };
-
-
-                                pushMatrix();
-                                translate(width/2, height/2, -30);
-
-                                // ROTATION:
-                                a += 0.005;
-                                if(a > TWO_PI) {
-                                    a = 0.0;
-                                }
-                                rotateX(a * 1.5);
-                                rotateY(a * 1.5);
-
-                                float diff = xmag-newXmag;
-                                if (abs(diff) >  0.01) {
-                                    xmag -= diff/4.0;
-                                }
-
-                                diff = ymag-newYmag;
-                                if (abs(diff) >  0.01) {
-                                    ymag -= diff/4.0;
-                                }
-
-                                background(0);
-                                stroke(255, 255, 255);
-
-                                rotateX(-ymag);
-                                rotateY(-xmag);
-
-                                scale(90);
-                                noFill();
-                                beginShape(TRIANGLES);
-
-                                /*haut*/
-                                drawPoints(v1, v2, v3)
-                                drawPoints(v2, v4, v3)
-                                drawPoints(v3, v5, v4);
-                                drawPoints(v5, v3, v1);
-
-                                /*bas*/
-                                drawPoints(v4, v2, v6);
-                                drawPoints(v4, v5, v6);
-                                drawPoints(v1, v6, v2);
-                                drawPoints(v1, v6, v5);
-
-                                endShape();
-
-                                popMatrix();
-                            }
-
-                    </script>
+  </script>
                     <canvas></canvas>
                 </div>
             </div>

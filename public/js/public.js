@@ -3,10 +3,6 @@
 $(document).ready(function(){
     "use strict";
 
-    $('input[type="range"]').change(function () {
-        console.log($(this).val());
-    });
-
     // INITIALISATION
     $(".form1").val(
     {
@@ -288,36 +284,24 @@ $(document).ready(function(){
 	// RESET THE FORM VALUES BECAUSE SOME BROWSERS USE CACHED VALUES
 	$(".questionHidden").val(50);
 
-	// SLIDER
-	$(".slider").each(function(index, ele){
-		$(ele).slider({
-			min: -100,
-			max: 100,
-			slide: function(event, ui) {
-				var valuePercentage = parseInt((ui.value + 100) / 2);
-				var sliderRel = $(ele).attr("rel") + "";
+    $("input[type=\"range\"]").on("touchmove", function() {
+        var valuePercentage = $(this).val();
+        var sliderRel = $(this).attr("rel");
 
-                if (sliderRel === "1") {
-                    $(ele).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
-                } else if (sliderRel === "2") {
-                    $(ele).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / 50;
-                } else if (sliderRel === "3") {
-                    $(ele).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / 50;
-                } else if (sliderRel === "4") {
-                    $(ele).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
-                } else if (sliderRel === "5") {
-                    $(ele).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
-                } else if (sliderRel === "6") {
-                    $(ele).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / -50;
-                }
-			},
-			stop: function(event, ui) {
-				var valuePercentage = parseInt((ui.value + 100) / 2);
-				var sliderRel = $(ele).attr("rel") + "";
-				$(ele).parents(".form").find("input[name=\"question" + sliderRel + "\"]").val(valuePercentage);
-			}
-		});
-	});
+        if (sliderRel === "1") {
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+        } else if (sliderRel === "2") {
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / 50;
+        } else if (sliderRel === "3") {
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / 50;
+        } else if (sliderRel === "4") {
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
+        } else if (sliderRel === "5") {
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
+        } else if (sliderRel === "6") {
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / -50;
+        }
+    });
 
 	// BUTTONS
 	$(".buttonRestart").click(function(){

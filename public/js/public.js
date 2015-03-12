@@ -1,13 +1,34 @@
-nodes = {
-    "v1": 50,
-    "v2": 50,
-    "v3": 50,
-    "v4": 50,
-    "v5": 50,
-    "v6": 50
-};
-
 $(document).ready(function(){
+
+    // INITIALISATION
+
+    $(".form1").val({
+        "v1": 50,
+        "v2": 50,
+        "v3": 50,
+        "v4": 50,
+        "v5": 50,
+        "v6": 50
+    });
+
+    $(".form2").val({
+        "v1": 50,
+        "v2": 50,
+        "v3": 50,
+        "v4": 50,
+        "v5": 50,
+        "v6": 50
+    });
+
+    $(".form3").val({
+        "v1": 50,
+        "v2": 50,
+        "v3": 50,
+        "v4": 50,
+        "v5": 50,
+        "v6": 50
+    });
+
 
 	// RESET THE FORM VALUES BECAUSE SOME BROWSERS USE CACHED VALUES
 	$('.questionHidden').val(50);
@@ -20,7 +41,7 @@ $(document).ready(function(){
 			slide: function(event, ui) {
 				var valuePercentage = parseInt((ui.value+100)/2);
 				var sliderRel = $(ele).attr('rel') + "";
-                nodes["v" + sliderRel] = valuePercentage;
+                $(ele).parents('.form').val()["v"+sliderRel] = valuePercentage;
 				$(ele).parents('.form').find('input[name="question'+sliderRel+'"]').val(valuePercentage);
 			},
 			stop: function(event, ui) {

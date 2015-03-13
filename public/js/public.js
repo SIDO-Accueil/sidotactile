@@ -142,13 +142,6 @@ $(document).ready(function(){
 		// Not sure what to do here
 	});
 
-	// PROCESSING
-	var processingInstances = [];
-	$(".sidomeImage canvas").each(function(index, ele){
-		processingInstances.push(new Processing(ele, drawPoly));
-	});
-
-
 	// FORM SUBMIT
 	$(".formSite").submit(function(evt){
 		evt.stopImmediatePropagation();
@@ -172,22 +165,4 @@ function cleanForm(formDiv) {
     "use strict";
     $(formDiv).find(".questionHidden").val(50);
 	$(formDiv).find(".slider").slider({value: 0});
-}
-
-function drawPoly(processing) {
-    "use strict";
-    processing.draw = function() {
-		// Some tests using processing, I dunno how to make the 3D (as the box) work
-		// The reference is on http://processingjs.org/reference/
-
-		processing.background(0);
-		processing.fill(204, 102, 0);
-		processing.stroke(255);
-		processing.ellipse(100,70,60,60);
-		processing.stroke(204, 102, 0);
-		processing.rect(30, 20, 20, 20);
-		processing.translate(58, 48, 0);
-		processing.rotateY(0.5);
-		processing.box(40);
-	};
 }

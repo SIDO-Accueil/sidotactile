@@ -9,7 +9,7 @@ function initJSON(form, badge)
         "sidome": {
             "default": true, // the sidome is a cube by default
             "visible": true,  // visibilty
-            "badge":  badge,
+            "id": badge,
             "color": {
                 "r": 255,
                 "g": 255,
@@ -187,6 +187,24 @@ function cleanForm(formDiv) {
     console.log($(formDiv).find(".slider"));
 }
 
+function postSidome(sidome) {
+    "use strict";
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/sidomes",
+        data: JSON.stringify(sidome),
+        processData: false,
+        contentType: "application/json"
+    }).then(
+        function(d) {
+            console.log( "$.get succeeded" );
+        }, function(e) {
+            console.log( "$.get failed!" );
+        }
+    );
+}
+
 function getUser(input)
 {
     if(input.value != "")
@@ -199,14 +217,24 @@ function getUser(input)
         //console.log(form.childNodes[7].childNodes[3].childNodes[1].childNodes[3]);
         /*$(".bienvenue1").css("display","none");
         $(".form1 .formIns").css("display","block");*/
-        form.value.sidome.badge = input.value;
+        form.value.sidome.id = input.value;
         //$(form).children$(".formIns").children("h2").append(" Conor");
         console.log(form.childNodes[7].childNodes[1]);
 
         var prenom = "John";
         var mail = "alaala@gmail.com"
         form.childNodes[7].childNodes[1].innerHTML += " " + prenom;
-        console.log(form.value.sidome.badge);
+        //console.log(form.value.sidome.id);
 
+        var sidome;
+        // si c'est le premier formulaire
+        if (form.className.match(/form1/)) {
+            sidome = $(".form1").val().sidome;
+        } else if (form.className.match(/form2/)) {
+            sidome = $(".form2").val().sidome;
+        } else {
+            console.error("! form.className.match(/form1/) [NOT MATCH]");
+        }
+        postSidome(sidome);
     }
 }

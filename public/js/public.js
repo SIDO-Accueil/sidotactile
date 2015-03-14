@@ -147,8 +147,9 @@ $(document).ready(function(){
         //console.log(a.parents(".form"));
         a.parents(".form").children(".remerciement").css("display","block");
         var c = a.children(".sidomeImage").children('.sidomeImageIns').children('canvas');
-        console.log(c);
+        //console.log(c);
         a.parents(".form").children(".remerciement").append(c);
+        c.draggable();
 	});
 
 	// FORM SUBMIT

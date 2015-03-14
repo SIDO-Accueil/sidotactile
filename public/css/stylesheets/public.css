@@ -136,7 +136,7 @@ input {
 /*FORMS*/
 /* line 84, ../sass/public.scss */
 .form {
-  width: 50%;
+  width: 49.5%;
   float: left;
 }
 /* line 87, ../sass/public.scss */
@@ -169,11 +169,12 @@ input {
 }
 /* line 109, ../sass/public.scss */
 .form .sidomeImage .sidomeImageIns canvas {
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   margin: auto;
   background: black;
   display: block;
+  z-index: 3;
 }
 
 /*SLIDER*/
@@ -325,7 +326,7 @@ input {
 
 .remerciement, .bienvenue{
 	/*float:bottom;*/
-	padding-top:50%;
+	
   
   width:100%;
   text-align: center;
@@ -351,4 +352,38 @@ body{
 
 .bienvenue input{
   float : top;
+}
+
+.remerciement h1 {
+  margin-bottom: 20px;
+}
+
+.bienvenue {
+  padding-top:40%;
+}
+
+.haut{
+  z-index: 1;
+  font-size: 0px; line-height: 0%; width:0px;
+  margin:auto;
+border-bottom: 50px solid #fff;/* couleur du triangle*/
+border-left: 40px solid transparent; 
+border-right: 40px solid transparent; 
+}
+
+.bas{
+  z-index: 1;
+  margin:auto;
+  width:20px;
+  border-bottom: 300px solid #fff;
+  border-left: 0px solid transparent; 
+border-right: 0px solid transparent; 
+}
+
+.form1{
+  border-right: 1px solid #fff;
+}
+
+.form2{
+  border-left: 1px solid #fff;
 }

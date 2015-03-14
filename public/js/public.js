@@ -101,6 +101,7 @@ $(document).ready(function(){
         var valuePercentage = $(this).val();
         var sliderRel = $(this).attr("rel");
 
+        console.log($(this).parents(".form"));
         if (sliderRel === "1") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
         } else if (sliderRel === "2") {
@@ -119,7 +120,8 @@ $(document).ready(function(){
 	$("input[type=\"range\"]").change(function () {
         var valuePercentage = $(this).val();
         var sliderRel = $(this).attr("rel");
-
+        console.log($(this).parents(".form").val());
+        console.log($(".form1").val());
         if (sliderRel === "1") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
         } else if (sliderRel === "2") {
@@ -139,6 +141,7 @@ $(document).ready(function(){
 	$(".buttonRestart").click(function(){
 		cleanForm($(this).parents(".form"));
 	});
+
 	$(".buttonStop").click(function(){
 		// Not sure what to do here
         var a = $(this).parents(".formIns");
@@ -148,7 +151,12 @@ $(document).ready(function(){
         a.parents(".form").children(".remerciement").css("display","block");
         var c = a.children(".sidomeImage").children('.sidomeImageIns').children('canvas');
         //console.log(c);
+
+        a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
         a.parents(".form").children(".remerciement").append(c);
+        a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre sidome dans la Sidosphère ! </p></h1>");
+
+
         c.draggable();
 	});
 
@@ -173,22 +181,32 @@ $(window).resize(function() {
 
 function cleanForm(formDiv) {
     "use strict";
-    $(formDiv).find(".questionHidden").val(50);
-	$(formDiv).find(".slider").slider({value: 0});
+    console.log($(formDiv).find(".questionHidden"));
+    $(formDiv).find(".questionHidden").val("50");
+	$(formDiv).find(".slider").val(50);
+    console.log($(formDiv).find(".slider"));
 }
 
 function getUser(input)
 {
     if(input.value != "")
     {
-        //console.log(input);
-        //console.log(input.nextSibling.nextSibling);
         input.nextSibling.nextSibling.style.display = "none";
 
         var form = input.parentNode;
+
         form.childNodes[7].style.display = "block";
         //console.log(form.childNodes[7].childNodes[3].childNodes[1].childNodes[3]);
         /*$(".bienvenue1").css("display","none");
         $(".form1 .formIns").css("display","block");*/
+        form.value.sidome.badge = input.value;
+        //$(form).children$(".formIns").children("h2").append(" Conor");
+        console.log(form.childNodes[7].childNodes[1]);
+
+        var prenom = "John";
+        var mail = "alaala@gmail.com"
+        form.childNodes[7].childNodes[1].innerHTML += " " + prenom;
+        console.log(form.value.sidome.badge);
+
     }
 }

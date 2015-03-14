@@ -3,6 +3,7 @@
 function initJSON(form, badge)
 {
     "use strict";
+
 	form.val(
     {
         "sidome": {
@@ -140,6 +141,14 @@ $(document).ready(function(){
 	});
 	$(".buttonStop").click(function(){
 		// Not sure what to do here
+        var a = $(this).parents(".formIns");
+        //console.log(a);
+        a.css("display","none");
+        //console.log(a.parents(".form"));
+        a.parents(".form").children(".remerciement").css("display","block");
+        var c = a.children(".sidomeImage").children('.sidomeImageIns').children('canvas');
+        console.log(c);
+        a.parents(".form").children(".remerciement").append(c);
 	});
 
 	// FORM SUBMIT
@@ -165,4 +174,20 @@ function cleanForm(formDiv) {
     "use strict";
     $(formDiv).find(".questionHidden").val(50);
 	$(formDiv).find(".slider").slider({value: 0});
+}
+
+function getUser(input)
+{
+    if(input.value != "")
+    {
+        //console.log(input);
+        //console.log(input.nextSibling.nextSibling);
+        input.nextSibling.nextSibling.style.display = "none";
+
+        var form = input.parentNode;
+        form.childNodes[7].style.display = "block";
+        //console.log(form.childNodes[7].childNodes[3].childNodes[1].childNodes[3]);
+        /*$(".bienvenue1").css("display","none");
+        $(".form1 .formIns").css("display","block");*/
+    }
 }

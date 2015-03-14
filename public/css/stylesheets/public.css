@@ -136,7 +136,7 @@ input {
 /*FORMS*/
 /* line 84, ../sass/public.scss */
 .form {
-  width: 33.333%;
+  width: 50%;
   float: left;
 }
 /* line 87, ../sass/public.scss */
@@ -321,4 +321,34 @@ input {
 
 .custom::-webkit-slider-thumb{
 	background:#fff !important;
+}
+
+.remerciement, .bienvenue{
+	/*float:bottom;*/
+	padding-top:50%;
+  
+  width:100%;
+  text-align: center;
+  display: inline-block;
+}
+
+.formIns{
+  display:none;
+}
+
+.remerciement{
+  display:none;
+}
+
+.wrapperAll, .forms, #bodyFrame, .form{
+  height: 100%;
+  
+}
+
+body{
+  margin-left: 0 !important;
+}
+
+.bienvenue input{
+  float : top;
 }

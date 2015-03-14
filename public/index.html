@@ -53,7 +53,7 @@ vertex(pt3.x, pt3.y, pt3.z);
 
 void draw()  {
 
-var nodes = $(".form2").val().sidome.nodes;
+var nodes = $(".form1").val().sidome.nodes;
 
 pushMatrix();
 translate(width/2, height/2, -30);
@@ -63,8 +63,8 @@ a += 0.005;
 if(a > TWO_PI) {
 a = 0.0;
 }
-rotateX(a * 5);
-rotateY(a * 5);
+rotateX(a * 1.5);
+rotateY(a * 1.5);
 
 float diff = xmag-newXmag;
 if (abs(diff) >  0.01) {
@@ -100,7 +100,7 @@ endShape();
 popMatrix();
 }
 </script>
-                            <canvas class ="keep-canvas keep-canvas1"></canvas>
+                            <canvas></canvas>
                 </div>
 
                 <form method="POST" action="" class="formSite">
@@ -115,7 +115,7 @@ popMatrix();
                     </fieldset>
                 </form>
                 <div class="formIns">
-                    <h2>John</h2>
+                    <h2>Bienvenue</h2>
                     <div class="sidomeImage">
                         <div class="sidomeImageIns">
                             <script type="text/processing">
@@ -125,8 +125,9 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-	size(300, 300, WEBGL);
-	fill(153);
+	size(400, 400, WEBGL);
+	/*fill(#BF6FBF);
+    lights();*/
 	colorMode(RGB, 1);
 	strokeWeight(10);
 }
@@ -163,8 +164,8 @@ void draw()  {
 	}
 
 	background(0,0);
-	stroke(255, 255, 255);
-
+	/*stroke(#954595);*/
+    stroke(255,255,255);
 	scale(90);
 	noFill();
 	beginShape(TRIANGLES);
@@ -239,7 +240,7 @@ void draw()  {
                     </div>
                 </div>
                  <div class="remerciement remerciement2">
-                    <h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre sidome dans la Sidosphère ! </p></h1>
+                   
                 </div>
             </div>
 
@@ -341,7 +342,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, WEBGL);
+size(400, 400, WEBGL);
 colorMode(RGB, 1);
 strokeWeight(10);
 }
@@ -377,7 +378,7 @@ if (abs(diff) >  0.01) {
 ymag -= diff/4.0;
 }
 
-background(0);
+background(0,0);
 stroke(255, 255, 255);
 
 scale(90);
@@ -401,7 +402,7 @@ endShape();
 popMatrix();
 }
 </script>
-                            <canvas></canvas>
+                            <canvas class="keep-canvas keep-canvas2"></canvas>
                         </div>
                     </div>
                     <div class="wrapperSliders">
@@ -444,17 +445,17 @@ popMatrix();
                         <div class="buttons">
                             <div class="buttonsIns">
                                 <div class="button buttonRestart">Restart</div>
-                                <div class="button buttonStop">Stop</div>
+                                <div class="button buttonStop">Send</div>
                                 <div class="clearer"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="remerciement remerciement2">
-                    <h1>Merci de votre participation ! Un mail contenant votre sidome vous sera envoyé. Envoyez votre sidome dans la Sidosphère ! </h1>
+                     
                 </div>
             </div>
-            
+            <!--
             <div class="form form3">
                 <form method="POST" action="" class="formSite">
                     <fieldset>
@@ -587,7 +588,7 @@ popMatrix();
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="clearer"></div>
         </div>
     </div>

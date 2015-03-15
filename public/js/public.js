@@ -93,7 +93,7 @@ function getPerson(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://vps.schrodingerscat.ovh:3000/persons/" + id,
+        url: "http://localhost:3000/persons/" + id,
         accept: "application/json"
     });
 }
@@ -103,7 +103,7 @@ function postPerson(json) {
 
     return $.ajax({
         type: "POST",
-        url: "http://vps.schrodingerscat.ovh:3000/persons",
+        url: "http://localhost:3000/persons",
         data: JSON.stringify(json),
         processData: false,
         contentType: "application/json"
@@ -115,7 +115,7 @@ function postSidome(sidome) {
 
     return $.ajax({
         type: "POST",
-        url: "http://vps.schrodingerscat.ovh:3000/sidomes",
+        url: "http://localhost:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -126,7 +126,7 @@ function putSidome(sidome) {
     "use strict";
     $.ajax({
         type: "PUT",
-        url: "http://vps.schrodingerscat.ovh:3000/sidomes",
+        url: "http://localhost:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -235,7 +235,7 @@ $(document).ready(function(){
 
         a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
         a.parents(".form").children(".remerciement").append(c);
-        a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre sidome dans la Sidosphère ! </p></h1>");
+        a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre Sidôme dans la Sidosphère ! </p></h1><h1>Bonne journée au SIDO!</h1>");
 
 
         c.draggable();
@@ -266,4 +266,83 @@ function cleanForm(formDiv) {
     $(formDiv).find(".questionHidden").val("50");
 	$(formDiv).find(".slider").val(50);
     console.log($(formDiv).find(".slider"));
+
 }
+
+
+function getPerson(id) {
+    "use strict";
+
+    // returns a promises that fullfiled with the json object
+    return $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/persons/" + id,
+        accept: "application/json"
+    });
+}
+
+function postPerson(json) {
+    "use strict";
+
+    return $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/persons",
+        data: JSON.stringify(json),
+        processData: false,
+        contentType: "application/json"
+    });
+}
+
+function postSidome(sidome) {
+    "use strict";
+
+    return $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/sidomes",
+        data: JSON.stringify(sidome),
+        processData: false,
+        contentType: "application/json"
+    });
+}
+
+function putSidome(sidome) {
+    "use strict";
+    $.ajax({
+        type: "PUT",
+        url: "http://localhost:3000/sidomes",
+        data: JSON.stringify(sidome),
+        processData: false,
+        contentType: "application/json"
+    });
+}
+
+function getUser(input) {
+    "use strict";
+    if(input.value != "")
+    {
+        input.nextSibling.nextSibling.style.display = "none";
+
+        var form = input.parentNode;
+
+        form.childNodes[7].style.display = "block";
+        form.value.sidome.id = input.value;
+
+        var prenom = "John";
+        form.childNodes[7].childNodes[1].innerHTML += " " + prenom;
+
+        getPerson(input.value)
+            .then(function(json) {
+
+                postPerson(json).then(function() {
+
+                    var sidome = form.value.sidome;
+                    postSidome(sidome).then(function(){
+                        setInterval( function() {
+                            putSidome(sidome);
+                        }, 5000 );
+                    });
+                });
+            });
+    }
+}
+

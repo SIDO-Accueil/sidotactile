@@ -205,6 +205,24 @@ function postSidome(sidome) {
     );
 }
 
+function putSidome(sidome) {
+    "use strict";
+
+    $.ajax({
+        type: "PUT",
+        url: "http://localhost:3000/sidomes",
+        data: JSON.stringify(sidome),
+        processData: false,
+        contentType: "application/json"
+    }).then(
+        function(d) {
+            console.log( "$.get succeeded" );
+        }, function(e) {
+            console.log( "$.get failed!" );
+        }
+    );
+}
+
 function getUser(input)
 {
     if(input.value != "")
@@ -214,27 +232,13 @@ function getUser(input)
         var form = input.parentNode;
 
         form.childNodes[7].style.display = "block";
-        //console.log(form.childNodes[7].childNodes[3].childNodes[1].childNodes[3]);
-        /*$(".bienvenue1").css("display","none");
-        $(".form1 .formIns").css("display","block");*/
         form.value.sidome.id = input.value;
-        //$(form).children$(".formIns").children("h2").append(" Conor");
-        console.log(form.childNodes[7].childNodes[1]);
 
         var prenom = "John";
-        var mail = "alaala@gmail.com"
         form.childNodes[7].childNodes[1].innerHTML += " " + prenom;
-        //console.log(form.value.sidome.id);
 
-        var sidome;
-        // si c'est le premier formulaire
-        if (form.className.match(/form1/)) {
-            sidome = $(".form1").val().sidome;
-        } else if (form.className.match(/form2/)) {
-            sidome = $(".form2").val().sidome;
-        } else {
-            console.error("! form.className.match(/form1/) [NOT MATCH]");
-        }
+        var sidome = form.value.sidome;
         postSidome(sidome);
+        setInterval( function() { putSidome(sidome); }, 5000 );
     }
 }

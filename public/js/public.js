@@ -141,11 +141,11 @@ function getUser(input) {
 
         var form = input.parentNode;
 
-        $(form.childNodes[7]).show( "clip", 500 );
+        $(form.childNodes[7]).show( "clip", 1000 );
         form.value.sidome.id = input.value;
 
         var prenom = "John";
-        form.childNodes[7].childNodes[1].innerHTML += " " + prenom;
+        // form.childNodes[7].childNodes[1].innerHTML += " " + prenom; // TODO BUG ICI
 
         getPerson(input.value)
             .then(function(json) {
@@ -268,81 +268,3 @@ function cleanForm(formDiv) {
     console.log($(formDiv).find(".slider"));
 
 }
-
-
-function getPerson(id) {
-    "use strict";
-
-    // returns a promises that fullfiled with the json object
-    return $.ajax({
-        type: "GET",
-        url: "http://localhost:3000/persons/" + id,
-        accept: "application/json"
-    });
-}
-
-function postPerson(json) {
-    "use strict";
-
-    return $.ajax({
-        type: "POST",
-        url: "http://localhost:3000/persons",
-        data: JSON.stringify(json),
-        processData: false,
-        contentType: "application/json"
-    });
-}
-
-function postSidome(sidome) {
-    "use strict";
-
-    return $.ajax({
-        type: "POST",
-        url: "http://localhost:3000/sidomes",
-        data: JSON.stringify(sidome),
-        processData: false,
-        contentType: "application/json"
-    });
-}
-
-function putSidome(sidome) {
-    "use strict";
-    $.ajax({
-        type: "PUT",
-        url: "http://localhost:3000/sidomes",
-        data: JSON.stringify(sidome),
-        processData: false,
-        contentType: "application/json"
-    });
-}
-
-function getUser(input) {
-    "use strict";
-    if(input.value != "")
-    {
-        input.nextSibling.nextSibling.style.display = "none";
-
-        var form = input.parentNode;
-
-        form.childNodes[7].style.display = "block";
-        form.value.sidome.id = input.value;
-
-        var prenom = "John";
-        form.childNodes[7].childNodes[1].innerHTML += " " + prenom;
-
-        getPerson(input.value)
-            .then(function(json) {
-
-                postPerson(json).then(function() {
-
-                    var sidome = form.value.sidome;
-                    postSidome(sidome).then(function(){
-                        setInterval( function() {
-                            putSidome(sidome);
-                        }, 5000 );
-                    });
-                });
-            });
-    }
-}
-

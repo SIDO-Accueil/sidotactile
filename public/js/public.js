@@ -141,7 +141,7 @@ function getUser(input) {
 
         var form = input.parentNode;
 
-        form.childNodes[7].style.display = "block";
+        $(form.childNodes[7]).show( "clip", 500 );
         form.value.sidome.id = input.value;
 
         var prenom = "John";

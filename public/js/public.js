@@ -138,11 +138,11 @@ function getUser(input) {
     if(input.value != "")
     {
 
-        $(input.nextSibling.nextSibling).hide( "clip", 100 );
+        $(input.nextSibling.nextSibling).hide( "blind", 1000 );
 
         var form = input.parentNode;
 
-        $(form.childNodes[7]).show( "clip", 1000 );
+        $(form.childNodes[7]).show( "clip", 3000 );
         form.value.sidome.id = input.value;
 
         var prenom = "John";
@@ -179,7 +179,6 @@ $(document).ready(function(){
         var valuePercentage = $(this).val();
         var sliderRel = $(this).attr("rel");
 
-        console.log($(this).parents(".form"));
         if (sliderRel === "1") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
         } else if (sliderRel === "2") {
@@ -198,8 +197,7 @@ $(document).ready(function(){
 	$("input[type=\"range\"]").change(function () {
         var valuePercentage = $(this).val();
         var sliderRel = $(this).attr("rel");
-        console.log($(this).parents(".form").val());
-        console.log($(".form1").val());
+		
         if (sliderRel === "1") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
         } else if (sliderRel === "2") {
@@ -227,12 +225,9 @@ $(document).ready(function(){
         clearInterval($(a).parent().val().refreshIntervalId);
         putSidome($(a).parent().val().sidome);
 
-        //console.log(a);
         a.css("display","none");
-        //console.log(a.parents(".form"));
         a.parents(".form").children(".remerciement").css("display","block");
         var c = a.children(".sidomeImage").children('.sidomeImageIns').children('canvas');
-        //console.log(c);
 
         a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
         a.parents(".form").children(".remerciement").append(c);
@@ -263,9 +258,8 @@ $(window).resize(function() {
 
 function cleanForm(formDiv) {
     "use strict";
-    console.log($(formDiv).find(".questionHidden"));
+	
     $(formDiv).find(".questionHidden").val("50");
 	$(formDiv).find(".slider").val(50);
-    console.log($(formDiv).find(".slider"));
 
 }

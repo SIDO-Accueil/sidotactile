@@ -154,7 +154,7 @@ $(document).ready(function(){
 
         a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
         a.parents(".form").children(".remerciement").append(c);
-        a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre sidome dans la Sidosphère ! </p></h1>");
+        a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre Sidôme dans la Sidosphère ! </p></h1><h1>Bonne journée au SIDO!</h1>");
 
 
         c.draggable();
@@ -194,7 +194,7 @@ function getPerson(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://localhost:3000/persons/" + id,
+        url: "http://vps.schrodingerscat.ovh:3000/persons/" + id,
         accept: "application/json"
     });
 }
@@ -204,7 +204,7 @@ function postPerson(json) {
 
     return $.ajax({
         type: "POST",
-        url: "http://localhost:3000/persons",
+        url: "http://vps.schrodingerscat.ovh:3000/persons",
         data: JSON.stringify(json),
         processData: false,
         contentType: "application/json"
@@ -216,7 +216,7 @@ function postSidome(sidome) {
 
     return $.ajax({
         type: "POST",
-        url: "http://localhost:3000/sidomes",
+        url: "http://vps.schrodingerscat.ovh:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -227,7 +227,7 @@ function putSidome(sidome) {
     "use strict";
     $.ajax({
         type: "PUT",
-        url: "http://localhost:3000/sidomes",
+        url: "http://vps.schrodingerscat.ovh:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"

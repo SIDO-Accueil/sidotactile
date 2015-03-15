@@ -137,7 +137,8 @@ function getUser(input) {
     "use strict";
     if(input.value != "")
     {
-        input.nextSibling.nextSibling.style.display = "none";
+
+        $(input.nextSibling.nextSibling).hide( "clip", 100 );
 
         var form = input.parentNode;
 

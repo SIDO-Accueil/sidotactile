@@ -87,6 +87,83 @@ function initJSON(form, badge)
     });
 }
 
+function getPerson(id) {
+    "use strict";
+
+    // returns a promises that fullfiled with the json object
+    return $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/persons/" + id,
+        accept: "application/json"
+    });
+}
+
+function postPerson(json) {
+    "use strict";
+
+    return $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/persons",
+        data: JSON.stringify(json),
+        processData: false,
+        contentType: "application/json"
+    });
+}
+
+function postSidome(sidome) {
+    "use strict";
+
+    return $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/sidomes",
+        data: JSON.stringify(sidome),
+        processData: false,
+        contentType: "application/json"
+    });
+}
+
+function putSidome(sidome) {
+    "use strict";
+    $.ajax({
+        type: "PUT",
+        url: "http://localhost:3000/sidomes",
+        data: JSON.stringify(sidome),
+        processData: false,
+        contentType: "application/json"
+    });
+}
+
+function getUser(input) {
+    "use strict";
+    if(input.value != "")
+    {
+        input.nextSibling.nextSibling.style.display = "none";
+
+        var form = input.parentNode;
+
+        form.childNodes[7].style.display = "block";
+        form.value.sidome.id = input.value;
+
+        var prenom = "John";
+        form.childNodes[7].childNodes[1].innerHTML += " " + prenom;
+
+        getPerson(input.value)
+            .then(function(json) {
+
+                postPerson(json).then(function() {
+
+                    var sidome = form.value.sidome;
+                    postSidome(sidome).then(function(){
+                        var refreshIntervalId = setInterval( function() {
+                            putSidome(sidome);
+                        }, 5000 );
+                        form.value.refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                    });
+                });
+            });
+    }
+}
+
 $(document).ready(function(){
     "use strict";
 
@@ -145,6 +222,10 @@ $(document).ready(function(){
 	$(".buttonStop").click(function(){
 		// Not sure what to do here
         var a = $(this).parents(".formIns");
+
+        clearInterval($(a).parent().val().refreshIntervalId);
+        putSidome($(a).parent().val().sidome);
+
         //console.log(a);
         a.css("display","none");
         //console.log(a.parents(".form"));
@@ -185,6 +266,7 @@ function cleanForm(formDiv) {
     $(formDiv).find(".questionHidden").val("50");
 	$(formDiv).find(".slider").val(50);
     console.log($(formDiv).find(".slider"));
+
 }
 
 
@@ -194,7 +276,7 @@ function getPerson(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://vps.schrodingerscat.ovh:3000/persons/" + id,
+        url: "http://localhost:3000/persons/" + id,
         accept: "application/json"
     });
 }
@@ -204,7 +286,7 @@ function postPerson(json) {
 
     return $.ajax({
         type: "POST",
-        url: "http://vps.schrodingerscat.ovh:3000/persons",
+        url: "http://localhost:3000/persons",
         data: JSON.stringify(json),
         processData: false,
         contentType: "application/json"
@@ -216,7 +298,7 @@ function postSidome(sidome) {
 
     return $.ajax({
         type: "POST",
-        url: "http://vps.schrodingerscat.ovh:3000/sidomes",
+        url: "http://localhost:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -227,7 +309,7 @@ function putSidome(sidome) {
     "use strict";
     $.ajax({
         type: "PUT",
-        url: "http://vps.schrodingerscat.ovh:3000/sidomes",
+        url: "http://localhost:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -263,3 +345,4 @@ function getUser(input) {
             });
     }
 }
+

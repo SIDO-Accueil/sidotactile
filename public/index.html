@@ -40,64 +40,89 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, WEBGL);
+size(500, 500, WEBGL);
 colorMode(RGB, 1);
 strokeWeight(10);
 }
 
-function drawPoints(pt1, pt2, pt3) {
-vertex(pt1.x, pt1.y, pt1.z);
-vertex(pt2.x, pt2.y, pt2.z);
-vertex(pt3.x, pt3.y, pt3.z);
-}
+function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
+        // +Z "front" face
+        vertex(v1.x, v1.y, v1.z); // v1
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v3.x, v3.y, v3.z); // v3
+        vertex(v4.x, v4.y, v4.z); // v4
+ 
+        // -Z "back" face
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v7.x, v7.y, v7.z); // v7
+        vertex(v8.x, v8.y, v8.z); // v8
+ 
+        // +Y "bottom" face
+        vertex(v4.x, v4.y, v4.z); // v4
+        vertex(v3.x, v3.y, v3.z); // v3
+        vertex(v8.x, v8.y, v8.z); // v8
+        vertex(v7.x, v7.y, v7.z); // v7
+ 
+        // -Y "top" face
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v1.x, v1.y, v1.z); // v1
+ 
+        // +X "right" face
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v8.x, v8.y, v8.z); // v8
+        vertex(v3.x, v3.y, v3.z); // v3
+ 
+        // -X "left" face
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v1.x, v1.y, v1.z); // v1
+        vertex(v4.x, v4.y, v4.z); // v4
+        vertex(v7.x, v7.y, v7.z); // v7
+    }
 
 void draw()  {
 
-var nodes = $(".form1").val().sidome.nodes;
+    var nodes = $(".form1").val().sidome.nodes;
 
-pushMatrix();
-translate(width/2, height/2, -30);
+    pushMatrix();
+    translate(width/2, height/2, -30);
 
-// ROTATION:
-a += 0.005;
-if(a > TWO_PI) {
-a = 0.0;
-}
-rotateX(a * 1.5);
-rotateY(a * 1.5);
+    // ROTATION:
+    a += 0.005;
+    if(a > TWO_PI) {
+    a = 0.0;
+    }
+    rotateX(a * 1.5);
+    rotateY(a * 1.5);
 
-float diff = xmag-newXmag;
-if (abs(diff) >  0.01) {
-xmag -= diff/4.0;
-}
+    float diff = xmag-newXmag;
+    if (abs(diff) >  0.01) {
+    xmag -= diff/4.0;
+    }
 
-diff = ymag-newYmag;
-if (abs(diff) >  0.01) {
-ymag -= diff/4.0;
-}
+    diff = ymag-newYmag;
+    if (abs(diff) >  0.01) {
+    ymag -= diff/4.0;
+    }
 
-background(0);
-stroke(255, 255, 255);
+    background(0,0);
+    /*stroke(#954595);*/
+    stroke(255,255,255);
+    scale(90);
+    noFill();
 
-scale(90);
-noFill();
-beginShape(TRIANGLES);
 
-/*haut*/
-drawPoints(nodes.node1, nodes.node3, nodes.node2)
-drawPoints(nodes.node4, nodes.node3, nodes.node2)
-drawPoints(nodes.node3, nodes.node5, nodes.node4);
-drawPoints(nodes.node5, nodes.node3, nodes.node1);
+    beginShape(QUADS);
+  
+    drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
 
-/*bas*/
-drawPoints(nodes.node4, nodes.node2, nodes.node6);
-drawPoints(nodes.node4, nodes.node5, nodes.node6);
-drawPoints(nodes.node1, nodes.node6, nodes.node2);
-drawPoints(nodes.node1, nodes.node6, nodes.node5);
+  endShape();
 
-endShape();
-
-popMatrix();
+    popMatrix();
+    
 }
 </script>
                             <canvas></canvas>
@@ -125,67 +150,91 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-	size(400, 400, WEBGL);
+	size(500, 500, WEBGL);
 	/*fill(#BF6FBF);
     lights();*/
 	colorMode(RGB, 1);
 	strokeWeight(10);
 }
 
-function drawPoints(pt1, pt2, pt3) {
-	vertex(pt1.x, pt1.y, pt1.z);
-	vertex(pt2.x, pt2.y, pt2.z);
-	vertex(pt3.x, pt3.y, pt3.z);
-}
+function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
+        // +Z "front" face
+        vertex(v1.x, v1.y, v1.z); // v1
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v3.x, v3.y, v3.z); // v3
+        vertex(v4.x, v4.y, v4.z); // v4
+ 
+        // -Z "back" face
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v7.x, v7.y, v7.z); // v7
+        vertex(v8.x, v8.y, v8.z); // v8
+ 
+        // +Y "bottom" face
+        vertex(v4.x, v4.y, v4.z); // v4
+        vertex(v3.x, v3.y, v3.z); // v3
+        vertex(v8.x, v8.y, v8.z); // v8
+        vertex(v7.x, v7.y, v7.z); // v7
+ 
+        // -Y "top" face
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v1.x, v1.y, v1.z); // v1
+ 
+        // +X "right" face
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v8.x, v8.y, v8.z); // v8
+        vertex(v3.x, v3.y, v3.z); // v3
+ 
+        // -X "left" face
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v1.x, v1.y, v1.z); // v1
+        vertex(v4.x, v4.y, v4.z); // v4
+        vertex(v7.x, v7.y, v7.z); // v7
+    }
 
 void draw()  {
 
-	var nodes = $(".form1").val().sidome.nodes;
+    var nodes = $(".form1").val().sidome.nodes;
 
-	pushMatrix();
-	translate(width/2, height/2, -30);
+    pushMatrix();
+    translate(width/2, height/2, -30);
 
-	// ROTATION:
-	a += 0.005;
-	if(a > TWO_PI) {
-	a = 0.0;
-	}
-	rotateX(a * 1.5);
-	rotateY(a * 1.5);
+    // ROTATION:
+    a += 0.005;
+    if(a > TWO_PI) {
+    a = 0.0;
+    }
+    rotateX(a * 1.5);
+    rotateY(a * 1.5);
 
-	float diff = xmag-newXmag;
-	if (abs(diff) >  0.01) {
-	xmag -= diff/4.0;
-	}
+    float diff = xmag-newXmag;
+    if (abs(diff) >  0.01) {
+    xmag -= diff/4.0;
+    }
 
-	diff = ymag-newYmag;
-	if (abs(diff) >  0.01) {
-	ymag -= diff/4.0;
-	}
+    diff = ymag-newYmag;
+    if (abs(diff) >  0.01) {
+    ymag -= diff/4.0;
+    }
 
-	background(0,0);
-	/*stroke(#954595);*/
+    background(0,0);
+    /*stroke(#954595);*/
     stroke(255,255,255);
-	scale(90);
-	noFill();
-	beginShape(TRIANGLES);
+    scale(90);
+    noFill();
 
-	/*haut*/
-	drawPoints(nodes.node1, nodes.node3, nodes.node2)
-	drawPoints(nodes.node4, nodes.node3, nodes.node2)
-	drawPoints(nodes.node5, nodes.node3, nodes.node4);
-	drawPoints(nodes.node5, nodes.node3, nodes.node1);
 
-	/*bas*/
-	drawPoints(nodes.node4, nodes.node6, nodes.node2);
-	drawPoints(nodes.node4, nodes.node6, nodes.node5);
-	drawPoints(nodes.node1, nodes.node6, nodes.node2);
-	drawPoints(nodes.node1, nodes.node6, nodes.node5);
+    beginShape(QUADS);
+  
+    drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
 
-	endShape();
+  endShape();
 
-	popMatrix();
-	
+    popMatrix();
+    
 }
 
 </script>
@@ -256,64 +305,89 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, WEBGL);
+size(500, 500, WEBGL);
 colorMode(RGB, 1);
 strokeWeight(10);
 }
 
-function drawPoints(pt1, pt2, pt3) {
-vertex(pt1.x, pt1.y, pt1.z);
-vertex(pt2.x, pt2.y, pt2.z);
-vertex(pt3.x, pt3.y, pt3.z);
-}
+function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
+        // +Z "front" face
+        vertex(v1.x, v1.y, v1.z); // v1
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v3.x, v3.y, v3.z); // v3
+        vertex(v4.x, v4.y, v4.z); // v4
+ 
+        // -Z "back" face
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v7.x, v7.y, v7.z); // v7
+        vertex(v8.x, v8.y, v8.z); // v8
+ 
+        // +Y "bottom" face
+        vertex(v4.x, v4.y, v4.z); // v4
+        vertex(v3.x, v3.y, v3.z); // v3
+        vertex(v8.x, v8.y, v8.z); // v8
+        vertex(v7.x, v7.y, v7.z); // v7
+ 
+        // -Y "top" face
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v1.x, v1.y, v1.z); // v1
+ 
+        // +X "right" face
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v8.x, v8.y, v8.z); // v8
+        vertex(v3.x, v3.y, v3.z); // v3
+ 
+        // -X "left" face
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v1.x, v1.y, v1.z); // v1
+        vertex(v4.x, v4.y, v4.z); // v4
+        vertex(v7.x, v7.y, v7.z); // v7
+    }
 
 void draw()  {
 
-var nodes = $(".form2").val().sidome.nodes;
+    var nodes = $(".form1").val().sidome.nodes;
 
-pushMatrix();
-translate(width/2, height/2, -30);
+    pushMatrix();
+    translate(width/2, height/2, -30);
 
-// ROTATION:
-a += 0.005;
-if(a > TWO_PI) {
-a = 0.0;
-}
-rotateX(a * 1.5);
-rotateY(a * 1.5);
+    // ROTATION:
+    a += 0.005;
+    if(a > TWO_PI) {
+    a = 0.0;
+    }
+    rotateX(a * 1.5);
+    rotateY(a * 1.5);
 
-float diff = xmag-newXmag;
-if (abs(diff) >  0.01) {
-xmag -= diff/4.0;
-}
+    float diff = xmag-newXmag;
+    if (abs(diff) >  0.01) {
+    xmag -= diff/4.0;
+    }
 
-diff = ymag-newYmag;
-if (abs(diff) >  0.01) {
-ymag -= diff/4.0;
-}
+    diff = ymag-newYmag;
+    if (abs(diff) >  0.01) {
+    ymag -= diff/4.0;
+    }
 
-background(0);
-stroke(255, 255, 255);
+    background(0,0);
+    /*stroke(#954595);*/
+    stroke(255,255,255);
+    scale(90);
+    noFill();
 
-scale(90);
-noFill();
-beginShape(TRIANGLES);
 
-/*haut*/
-drawPoints(nodes.node1, nodes.node3, nodes.node2)
-drawPoints(nodes.node4, nodes.node3, nodes.node2)
-drawPoints(nodes.node3, nodes.node5, nodes.node4);
-drawPoints(nodes.node5, nodes.node3, nodes.node1);
+    beginShape(QUADS);
+  
+    drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
 
-/*bas*/
-drawPoints(nodes.node4, nodes.node2, nodes.node6);
-drawPoints(nodes.node4, nodes.node5, nodes.node6);
-drawPoints(nodes.node1, nodes.node6, nodes.node2);
-drawPoints(nodes.node1, nodes.node6, nodes.node5);
+  endShape();
 
-endShape();
-
-popMatrix();
+    popMatrix();
+    
 }
 </script>
                             <canvas></canvas>
@@ -332,7 +406,7 @@ popMatrix();
                 </form>
                 <div class="formIns">
                     <h2>Bienvenue</h2>
-                    <p>Personnalisez votre Sidome en répondant à ces questions! </p>
+                    <p>Personnalisez votre Sidôme en répondant à ces questions! </p>
                     <div class="sidomeImage">
                         <div class="sidomeImageIns">
                             <script type="text/processing">
@@ -343,64 +417,89 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(400, 400, WEBGL);
+size(500, 500, WEBGL);
 colorMode(RGB, 1);
 strokeWeight(10);
 }
 
-function drawPoints(pt1, pt2, pt3) {
-vertex(pt1.x, pt1.y, pt1.z);
-vertex(pt2.x, pt2.y, pt2.z);
-vertex(pt3.x, pt3.y, pt3.z);
-}
+function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
+        // +Z "front" face
+        vertex(v1.x, v1.y, v1.z); // v1
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v3.x, v3.y, v3.z); // v3
+        vertex(v4.x, v4.y, v4.z); // v4
+ 
+        // -Z "back" face
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v7.x, v7.y, v7.z); // v7
+        vertex(v8.x, v8.y, v8.z); // v8
+ 
+        // +Y "bottom" face
+        vertex(v4.x, v4.y, v4.z); // v4
+        vertex(v3.x, v3.y, v3.z); // v3
+        vertex(v8.x, v8.y, v8.z); // v8
+        vertex(v7.x, v7.y, v7.z); // v7
+ 
+        // -Y "top" face
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v1.x, v1.y, v1.z); // v1
+ 
+        // +X "right" face
+        vertex(v2.x, v2.y, v2.z); // v2
+        vertex(v5.x, v5.y, v5.z); // v5
+        vertex(v8.x, v8.y, v8.z); // v8
+        vertex(v3.x, v3.y, v3.z); // v3
+ 
+        // -X "left" face
+        vertex(v6.x, v6.y, v6.z); // v6
+        vertex(v1.x, v1.y, v1.z); // v1
+        vertex(v4.x, v4.y, v4.z); // v4
+        vertex(v7.x, v7.y, v7.z); // v7
+    }
 
 void draw()  {
 
-var nodes = $(".form2").val().sidome.nodes;
+    var nodes = $(".form1").val().sidome.nodes;
 
-pushMatrix();
-translate(width/2, height/2, -30);
+    pushMatrix();
+    translate(width/2, height/2, -30);
 
-// ROTATION:
-a += 0.005;
-if(a > TWO_PI) {
-a = 0.0;
-}
-rotateX(a * 1.5);
-rotateY(a * 1.5);
+    // ROTATION:
+    a += 0.005;
+    if(a > TWO_PI) {
+    a = 0.0;
+    }
+    rotateX(a * 1.5);
+    rotateY(a * 1.5);
 
-float diff = xmag-newXmag;
-if (abs(diff) >  0.01) {
-xmag -= diff/4.0;
-}
+    float diff = xmag-newXmag;
+    if (abs(diff) >  0.01) {
+    xmag -= diff/4.0;
+    }
 
-diff = ymag-newYmag;
-if (abs(diff) >  0.01) {
-ymag -= diff/4.0;
-}
+    diff = ymag-newYmag;
+    if (abs(diff) >  0.01) {
+    ymag -= diff/4.0;
+    }
 
-background(0,0);
-stroke(255, 255, 255);
+    background(0,0);
+    /*stroke(#954595);*/
+    stroke(255,255,255);
+    scale(90);
+    noFill();
 
-scale(90);
-noFill();
-beginShape(TRIANGLES);
 
-/*haut*/
-drawPoints(nodes.node1, nodes.node3, nodes.node2)
-drawPoints(nodes.node4, nodes.node3, nodes.node2)
-drawPoints(nodes.node3, nodes.node5, nodes.node4);
-drawPoints(nodes.node5, nodes.node3, nodes.node1);
+    beginShape(QUADS);
+  
+    drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
 
-/*bas*/
-drawPoints(nodes.node4, nodes.node2, nodes.node6);
-drawPoints(nodes.node4, nodes.node5, nodes.node6);
-drawPoints(nodes.node1, nodes.node6, nodes.node2);
-drawPoints(nodes.node1, nodes.node6, nodes.node5);
+  endShape();
 
-endShape();
-
-popMatrix();
+    popMatrix();
+    
 }
 </script>
                             <canvas class="keep-canvas keep-canvas2"></canvas>
@@ -480,7 +579,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(300, 300, WEBGL);
+size(500, 500, WEBGL);
 colorMode(RGB, 1);
 strokeWeight(10);
 }

@@ -18,69 +18,43 @@ function initJSON(form, badge)
             "nodes": {
                 "node1": {
                     "x": -1,
-                    "y": 0,
-                    "z": 0,
-                    "faces": {       // each faces on where the node is needed
-                        "face1": 1,
-                        "face2": 4,
-                        "face3": 7,
-                        "face4": 8
-                    }
+                    "y": -1,
+                    "z": 1
                 },
                 "node2": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 1,
-                    "faces": {
-                        "face1": 1,
-                        "face2": 2,
-                        "face3": 5,
-                        "face4": 7
-                    }
+                    "x": 1,
+                    "y":-1,
+                    "z": 1
                 },
                 "node3": {
-                    "x": 0,
+                    "x": 1,
                     "y": 1,
-                    "z": 0,
-                    "faces": {
-                        "face1": 1,
-                        "face2": 2,
-                        "face3": 3,
-                        "face4": 4
-                    }
+                    "z": 1
                 },
                 "node4": {
-                    "x": 1,
-                    "y": 0,
-                    "z": 0,
-                    "faces": {
-                        "face1": 2,
-                        "face2": 3,
-                        "face3": 5,
-                        "face4": 6
-                    }
+                    "x": -1,
+                    "y": 1,
+                    "z": 1
                 },
                 "node5": {
-                    "x": 0,
-                    "y": 0,
-                    "z": -1,
-                    "faces": {
-                        "face1": 3,
-                        "face2": 4,
-                        "face3": 6,
-                        "face4": 8
-                    }
+                    "x": 1,
+                    "y": -1,
+                    "z": -1
                 },
                 "node6": {
-                    "x": 0,
+                    "x": -1,
                     "y": -1,
-                    "z": 0,
-                    "faces": {
-                        "face1": 5,
-                        "face2": 6,
-                        "face3": 7,
-                        "face4": 8
-                    }
+                    "z": -1
+                },
+                "node7": {
+                    "x": -1,
+                    "y": 1,
+                    "z": -1
+                },
+                "node8": {
+                    "x": 1,
+                    "y": 1,
+                    "z": -1
                 }
             }
         }
@@ -165,6 +139,15 @@ function getUser(input) {
     }
 }
 
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
 $(document).ready(function(){
     "use strict";
 
@@ -181,16 +164,35 @@ $(document).ready(function(){
 
         if (sliderRel === "1") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
+
         } else if (sliderRel === "2") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
+
         } else if (sliderRel === "3") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / 50;
-        } else if (sliderRel === "4") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
+
+        } else if (sliderRel === "4") {
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
+
         } else if (sliderRel === "5") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
+            
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+
         } else if (sliderRel === "6") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+
         }
     });
 
@@ -200,16 +202,28 @@ $(document).ready(function(){
 		
         if (sliderRel === "1") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.color.r = Math.floor( Math.random() * 256 );
+            $(this).parents(".form").val().sidome.color.b = Math.floor( Math.random() * 256 );
         } else if (sliderRel === "2") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.color.r = Math.floor( Math.random() * 256 );
+            $(this).parents(".form").val().sidome.color.b = Math.floor( Math.random() * 256 );
         } else if (sliderRel === "3") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.color.r = Math.floor( Math.random() * 256 );
+            $(this).parents(".form").val().sidome.color.b = Math.floor( Math.random() * 256 );
         } else if (sliderRel === "4") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.color.r = Math.floor( Math.random() * 256 );
+            $(this).parents(".form").val().sidome.color.b = Math.floor( Math.random() * 256 );
         } else if (sliderRel === "5") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.color.r = Math.floor( Math.random() * 256 );
+            $(this).parents(".form").val().sidome.color.b = Math.floor( Math.random() * 256 );
         } else if (sliderRel === "6") {
             $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.color.r = Math.floor( Math.random() * 256 );
+            $(this).parents(".form").val().sidome.color.b = Math.floor( Math.random() * 256 );
         }
     });
 	
@@ -225,14 +239,16 @@ $(document).ready(function(){
         clearInterval($(a).parent().val().refreshIntervalId);
         putSidome($(a).parent().val().sidome);
 
-        a.css("display","none");
-        a.parents(".form").children(".remerciement").css("display","block");
+        a.hide( "blind", 1000 );
+
+        //a.css("display","none");
+        //a.parents(".form").children(".remerciement").css("display","block");
         var c = a.children(".sidomeImage").children('.sidomeImageIns').children('canvas');
 
         a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
         a.parents(".form").children(".remerciement").append(c);
         a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre Sidôme dans la Sidosphère ! </p></h1><h1>Bonne journée au SIDO!</h1>");
-
+        $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
         c.draggable();
 	});

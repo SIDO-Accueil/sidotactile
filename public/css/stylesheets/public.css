@@ -390,11 +390,11 @@ border-right: 0px solid transparent;
   border-left: 1px solid #fff;
 }
 
-.bienvenue1{
+.form1{
   border-right: 1px solid #fff;
 }
 
-.bienvenue2{
+.form2{
   border-left: 1px solid #fff;
 }
 
@@ -420,4 +420,8 @@ border-right: 0px solid transparent;
 
 .formIns .welcome{
   float:left;
+}
+
+.bienvenue canvas, .remerciement canvas{
+  width: 40%;
 }

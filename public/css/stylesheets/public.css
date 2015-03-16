@@ -151,7 +151,7 @@ input {
 }
 /* line 95, ../sass/public.scss */
 .form .sliderSection {
-  padding-bottom: 30px;
+  padding-bottom: 40px;
 }
 /* line 97, ../sass/public.scss */
 .form .sliderSection h3 {
@@ -175,6 +175,7 @@ input {
   background: black;
   display: block;
   z-index: 3;
+  top:0;
 }
 
 /*SLIDER*/
@@ -315,9 +316,10 @@ input {
 }
 
 .custom{
-	width:100% !important;
+	width:78% !important;
 	border-radius:0 !important;
 	height:5px !important;
+  float:center;
 }
 
 .custom::-webkit-slider-thumb{
@@ -355,7 +357,7 @@ body{
 }
 
 .remerciement h1 {
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .bienvenue {
@@ -380,10 +382,42 @@ border-right: 40px solid transparent;
 border-right: 0px solid transparent; 
 }
 
-.form1{
+.form1 .formIns{
   border-right: 1px solid #fff;
 }
 
-.form2{
+.form2 .formIns{
   border-left: 1px solid #fff;
+}
+
+.bienvenue1{
+  border-right: 1px solid #fff;
+}
+
+.bienvenue2{
+  border-left: 1px solid #fff;
+}
+
+.remerciement1{
+  border-right: 1px solid #fff;
+}
+
+.remerciement2{
+  border-left: 1px solid #fff;
+}
+
+.gauche{
+  float:left;
+  width:10%;
+  text-align:center;
+}
+
+.droite{
+  float:right;
+  width:10%;
+  text-align:center;
+}
+
+.formIns .welcome{
+  float:left;
 }

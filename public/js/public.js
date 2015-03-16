@@ -169,44 +169,45 @@ $(document).ready(function(){
         var sliderRel = $(this).attr("rel");
 
         if (sliderRel === "1") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / -50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.1;
 
         } else if (sliderRel === "2") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / -50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.1;
 
         } else if (sliderRel === "3") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / 50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.1;
 
         } else if (sliderRel === "4") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / 50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / 50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.1;
 
         } else if (sliderRel === "5") {
 
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / -50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.1;
 
         } else if (sliderRel === "6") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / -50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.1;
 
         } else if (sliderRel === "7") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / -50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage /  50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage /  50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.1;
+
         } else if (sliderRel === "8") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = valuePercentage / 50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = valuePercentage / 50;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = valuePercentage / -50;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.1;
         }
 
     });

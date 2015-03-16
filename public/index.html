@@ -42,7 +42,7 @@ float a = 1.0;
 void setup()  {
 size(500, 500, WEBGL);
 colorMode(RGB, 1);
-strokeWeight(10);
+strokeWeight(3);
 }
 
 function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
@@ -113,13 +113,14 @@ void draw()  {
     stroke(255,255,255);
     scale(90);
     noFill();
-
+    //fill(128,0,29,2);
+    //lights();
 
     beginShape(QUADS);
   
     drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
 
-  endShape();
+    endShape();
 
     popMatrix();
     
@@ -154,7 +155,7 @@ void setup()  {
 	/*fill(#BF6FBF);
     lights();*/
 	colorMode(RGB, 1);
-	strokeWeight(10);
+	strokeWeight(3);
 }
 
 function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
@@ -307,7 +308,7 @@ float a = 1.0;
 void setup()  {
 size(500, 500, WEBGL);
 colorMode(RGB, 1);
-strokeWeight(10);
+strokeWeight(3);
 }
 
 function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
@@ -419,7 +420,7 @@ float a = 1.0;
 void setup()  {
 size(500, 500, WEBGL);
 colorMode(RGB, 1);
-strokeWeight(10);
+strokeWeight(3);
 }
 
 function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
@@ -581,7 +582,7 @@ float a = 1.0;
 void setup()  {
 size(500, 500, WEBGL);
 colorMode(RGB, 1);
-strokeWeight(10);
+strokeWeight(3);
 }
 
 function drawPoints(pt1, pt2, pt3) {

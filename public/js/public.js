@@ -84,7 +84,7 @@ function reinitialisation(canvas)
 
     var remerciement = $(canvas).parents(".form").children(".remerciement");
     var bienvenue  = $(canvas).parents(".form").children(".bienvenue");
-    $("input [type=\"text\"]").val("");
+    $(canvas).parents(".form").children("input").val("");
 
     $(canvas).parents(".form").find(".questionHidden").val("62.5");
     $(canvas).parents(".form").find(".slider").val(50);
@@ -92,7 +92,7 @@ function reinitialisation(canvas)
     $(canvas).parents(".form").find(".sidomeImageIns").append(canvas);
     $(remerciement).html("");
     $(remerciement).hide( "blind", 1000 );
-    $(bienvenue).show( "clip", 3000 );
+    $(bienvenue).show( "clip", 2000 );
 }
 
 function getPerson(id) {
@@ -174,9 +174,13 @@ function getUser(input) {
                             putSidome(sidome);
                         }, 5000 );
                         form.value.refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                        
                     });
                 });
             });
+        console.log($(form).children("input"));
+        $(form).children("input").val("");
     }
 }
 

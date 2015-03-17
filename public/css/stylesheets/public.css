@@ -165,7 +165,7 @@ input {
 }
 /* line 106, ../sass/public.scss */
 .form .sidomeImage {
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 /* line 109, ../sass/public.scss */
 .form .sidomeImage .sidomeImageIns canvas {
@@ -409,14 +409,14 @@ border-right: 0px solid transparent;
 
 .gauche{
   float:left;
-  width:35%;
+  width:37%;
   text-align:center;
   padding-top: 10px;
 }
 
 .droite{
   float:right;
-  width:35%;
+  width:37%;
   text-align:center;
   padding-top: 10px;
 }

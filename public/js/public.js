@@ -1,5 +1,21 @@
 /*eslint-env jquery, browser */
 
+Array.prototype.shuffle = function() {
+    var s = [];
+    while (this.length) s.push(this.splice(Math.random() * this.length, 1)[0]);
+    while (s.length) this.push(s.pop());
+    return this;
+}
+
+var tab = new Array(1, 2, 3, 4, 5, 6, 7, 8);
+//console.log(tab);
+
+function getAttr(input, i)
+{
+
+    input.attributes[2].value = tab[i];
+}
+
 function initJSON(form, badge)
 {
     "use strict";
@@ -17,44 +33,44 @@ function initJSON(form, badge)
             },
             "nodes": {
                 "node1": {
-                    "x": -1,
-                    "y": -1,
-                    "z": 1
+                    "x": -1.25,
+                    "y": -1.25,
+                    "z": 1.25
                 },
                 "node2": {
-                    "x": 1,
-                    "y":-1,
-                    "z": 1
+                    "x": 1.25,
+                    "y":-1.25,
+                    "z": 1.25
                 },
                 "node3": {
-                    "x": 1,
-                    "y": 1,
-                    "z": 1
+                    "x": 1.25,
+                    "y": 1.25,
+                    "z": 1.25
                 },
                 "node4": {
-                    "x": -1,
-                    "y": 1,
-                    "z": 1
+                    "x": -1.25,
+                    "y": 1.25,
+                    "z": 1.25
                 },
                 "node5": {
-                    "x": 1,
-                    "y": -1,
-                    "z": -1
+                    "x": 1.25,
+                    "y": -1.25,
+                    "z": -1.25
                 },
                 "node6": {
-                    "x": -1,
-                    "y": -1,
-                    "z": -1
+                    "x": -1.25,
+                    "y": -1.25,
+                    "z": -1.25
                 },
                 "node7": {
-                    "x": -1,
-                    "y": 1,
-                    "z": -1
+                    "x": -1.25,
+                    "y": 1.25,
+                    "z": -1.25
                 },
                 "node8": {
-                    "x": 1,
-                    "y": 1,
-                    "z": -1
+                    "x": 1.25,
+                    "y": 1.25,
+                    "z": -1.25
                 }
             }
         }
@@ -109,16 +125,28 @@ function putSidome(sidome) {
 
 function getUser(input) {
     "use strict";
+
+    tab.shuffle();
+    console.log(tab);
+
     if(input.value != "")
     {
-
-        $(input.nextSibling.nextSibling).hide( "blind", 1000 );
-
         var form = input.parentNode;
-
+        //console.log($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"));
+        $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
+            //console.log($(this).children(".sliderSectionIns").children("input"));
+            var temp = $(this).children(".sliderSectionIns").children("input");
+            var i = $(temp).attr("rel");
+            $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
+            //$(this).children(".sliderSectionIns").children("input").attr("rel") = 88;
+            //console.log($(this).children(".sliderSectionIns").children("input").attr("rel"));
+        });
+        $(input.nextSibling.nextSibling).hide( "blind", 1000 );
+        
         $(form.childNodes[7]).show( "clip", 3000 );
         form.value.sidome.id = input.value;
 
+        console.log( $(form.childNodes[7]));
         var prenom = "John";
         // form.childNodes[7].childNodes[1].innerHTML += " " + prenom; // TODO BUG ICI
 
@@ -169,45 +197,45 @@ $(document).ready(function(){
         var sliderRel = $(this).attr("rel");
 
         if (sliderRel === "1") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.25;
 
         } else if (sliderRel === "2") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.25;
 
         } else if (sliderRel === "3") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.25;
 
         } else if (sliderRel === "4") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / 50)+0.25;
 
         } else if (sliderRel === "5") {
 
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.25;
 
         } else if (sliderRel === "6") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / -50)-0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.25;
 
         } else if (sliderRel === "7") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage /  50)+0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / -50)-0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage /  50)+0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.25;
 
         } else if (sliderRel === "8") {
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.1;
-            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.1;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].x = (valuePercentage / 50)+0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].y = (valuePercentage / 50)+0.25;
+            $(this).parents(".form").val().sidome.nodes["node" + sliderRel].z = (valuePercentage / -50)-0.25;
         }
 
     });

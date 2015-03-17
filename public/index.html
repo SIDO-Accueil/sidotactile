@@ -141,7 +141,7 @@ void draw()  {
                     </fieldset>
                 </form>
                 <div class="formIns">
-                    <div class="welcome"><br/><br/><h2>Bienvenue</h2><p><br/><br/><br/><br/>Personnalisez votre Sidôme en répondant à ces questions! </p></div>
+                    <div class="welcome"><br/><h2>Bienvenue</h2><p><br/><br/><br/><br/>Personnalisez votre Sidôme en répondant à ces questions! </p></div>
                     <div class="sidomeImage">
                         <div class="sidomeImageIns">
                             <script type="text/processing">
@@ -151,7 +151,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-	size(700, 700, WEBGL);
+	size(800, 800, WEBGL);
 	/*fill(#BF6FBF);
     lights();*/
 	colorMode(RGB, 1);
@@ -245,62 +245,67 @@ void draw()  {
                     <div class="wrapperSliders">
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>1.</strong> Avez-vous déjà vu un oiseau nager dans l'eau?</h2>
-                                <!--<div class="slider" rel="1"></div>-->
+                                <h2>Transport et géolocalisation :</h2>
+                                <input type="range" class="slider custom" rel="1">
                                 <div class="gauche">
-                                    Non
-                                </div><input type="range" class="slider custom" rel="1"><div class="droite">
-                                    Oui
+                                    J’ai demandé ma route au premier Lyonnais que j’ai croisé pour venir.
+                                </div><div class="droite">
+                                    Impossible de me perdre pour au Sido avec baskets connectées.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>2.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h2>
+                                <h2>Vacances déconnectées :</h2>
+                                <input type="range" class="slider custom" rel="2">
                                 <div class="gauche">
-                                    Pas du tout
-                                </div><input type="range" class="slider custom" rel="2"><div class="droite">
-                                    Très Nombreux
+                                    En vacances, le WIFI et la 4G sont coupés, de toutes façons ça ne capte pas dans le Larzac.
+                                </div><div class="droite">
+                                    Je profite de mon temps libre pour mettre à jour mon profil Linkedin.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>3.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h2>
+                                <h2>Sécurité et OpenData :</h2>
+                                <input type="range" class="slider custom" rel="3">
                                 <div class="gauche">
-                                    Peu
-                                </div><input type="range" class="slider custom" rel="3"><div class="droite">
-                                    Beaucoup
+                                    J’ai ressorti mon Nokia 3310 pour être tranquille.
+                                </div><div class="droite">
+                                    J’aime que l’on sache où je suis.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>4.</strong> Pensez-vous que Raphaël Statelesscat perds la tête et commence à dire n'importe quoi ?</h2>
+                                <h2>Écologie :</h2>
+                                <input type="range" class="slider custom" rel="4">
                                 <div class="gauche">
-                                    Non
-                                </div><input type="range" class="slider custom" rel="4"><div class="droite">
-                                    Oui
+                                    À la maison c’est toilettes sèches.
+                                </div><div class="droite">
+                                    Mon bonsaï est nourri à la Data.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>5.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h2>
+                                <h2>Sport :</h2>
+                                <input type="range" class="slider custom" rel="5">
                                 <div class="gauche">
-                                    Pas du tout
-                                </div><input type="range" class="slider custom" rel="5"><div class="droite">
-                                    Pourquoi pas
+                                    Pas besoin de coach personnel pour savoir que mes performances sont au top.
+                                </div><div class="droite">
+                                    Mon smartphone m’indique mes calories, je sais quand je dois aller courir.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>6.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h2>
+                                <h2>Quantified Self :</h2>
+                                <input type="range" class="slider custom" rel="6">
                                 <div class="gauche">
-                                    Non
-                                </div><input type="range" class="slider custom" rel="6"><div class="droite">
-                                    Oui
+                                    J’ai rendez-vous chez mon médecin ce mois ci on verra si tout va bien.
+                                </div><div class="droite">
+                                    Je ne tombe plus malade depuis que j’ai mon médecin dans la poche.
                                 </div>
                             </div>
                         </div>
@@ -430,7 +435,7 @@ void draw()  {
                     </fieldset>
                 </form>
                 <div class="formIns">
-                    <div class="welcome"><br/><br/><h2>Bienvenue</h2><p><br/><br/><br/><br/>Personnalisez votre Sidôme en répondant à ces questions! </p></div>
+                    <div class="welcome"><br/><h2>Bienvenue</h2><p><br/><br/><br/><br/>Personnalisez votre Sidôme en répondant à ces questions! </p></div>
                     
                     <div class="sidomeImage">
                         <div class="sidomeImageIns">
@@ -442,7 +447,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(700, 700, WEBGL);
+size(800, 800, WEBGL);
 colorMode(RGB, 1);
 strokeWeight(3);
 }
@@ -533,62 +538,67 @@ void draw()  {
                     <div class="wrapperSliders">
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>1.</strong> Avez-vous déjà vu un oiseau nager dans l'eau?</h2>
-                                <!--<div class="slider" rel="1"></div>-->
+                                <h2>Transport et géolocalisation :</h2>
+                                <input type="range" class="slider custom" rel="1">
                                 <div class="gauche">
-                                    Non
-                                </div><input type="range" class="slider custom" rel="1"><div class="droite">
-                                    Oui
+                                    J’ai demandé ma route au premier Lyonnais que j’ai croisé pour venir.
+                                </div><div class="droite">
+                                    Impossible de me perdre pour au Sido avec baskets connectées.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>2.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h2>
+                                <h2>Vacances déconnectées :</h2>
+                                <input type="range" class="slider custom" rel="2">
                                 <div class="gauche">
-                                    Pas du tout
-                                </div><input type="range" class="slider custom" rel="2"><div class="droite">
-                                    Très Nombreux
+                                    En vacances, le WIFI et la 4G sont coupés, de toutes façons ça ne capte pas dans le Larzac.
+                                </div><div class="droite">
+                                    Je profite de mon temps libre pour mettre à jour mon profil Linkedin.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>3.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h2>
+                                <h2>Sécurité et OpenData :</h2>
+                                <input type="range" class="slider custom" rel="3">
                                 <div class="gauche">
-                                    Peu
-                                </div><input type="range" class="slider custom" rel="3"><div class="droite">
-                                    Beaucoup
+                                    J’ai ressorti mon Nokia 3310 pour être tranquille.
+                                </div><div class="droite">
+                                    J’aime que l’on sache où je suis.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>4.</strong> Pensez-vous que Raphaël Statelesscat perds la tête et commence à dire n'importe quoi ?</h2>
+                                <h2>Écologie :</h2>
+                                <input type="range" class="slider custom" rel="4">
                                 <div class="gauche">
-                                    Non
-                                </div><input type="range" class="slider custom" rel="4"><div class="droite">
-                                    Oui
+                                    À la maison c’est toilettes sèches.
+                                </div><div class="droite">
+                                    Mon bonsaï est nourri à la Data.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>5.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h2>
+                                <h2>Sport :</h2>
+                                <input type="range" class="slider custom" rel="5">
                                 <div class="gauche">
-                                    Pas du tout
-                                </div><input type="range" class="slider custom" rel="5"><div class="droite">
-                                    Pourquoi pas
+                                    Pas besoin de coach personnel pour savoir que mes performances sont au top.
+                                </div><div class="droite">
+                                    Mon smartphone m’indique mes calories, je sais quand je dois aller courir.
                                 </div>
                             </div>
                         </div>
                         <div class="sliderSection">
                             <div class="sliderSectionIns">
-                                <h2><strong>6.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit in risus dolor efficitur</h2>
+                                <h2>Quantified Self :</h2>
+                                <input type="range" class="slider custom" rel="6">
                                 <div class="gauche">
-                                    Non
-                                </div><input type="range" class="slider custom" rel="6"><div class="droite">
-                                    Oui
+                                    J’ai rendez-vous chez mon médecin ce mois ci on verra si tout va bien.
+                                </div><div class="droite">
+                                    Je ne tombe plus malade depuis que j’ai mon médecin dans la poche.
                                 </div>
                             </div>
                         </div>
@@ -629,7 +639,7 @@ float newXmag, newYmag = 0;
 float a = 1.0;
 
 void setup()  {
-size(700, 700, WEBGL);
+size(800, 800, WEBGL);
 colorMode(RGB, 1);
 strokeWeight(3);
 }

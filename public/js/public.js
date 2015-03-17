@@ -80,7 +80,7 @@ function initJSON(form, badge)
 function reinitialisation(canvas)
 {
 
-    initJSON($(canvas).parents(".form"),"");
+    initJSON($(canvas).parents(".form"),"<NUMERO DE BADGE>");
 
     var remerciement = $(canvas).parents(".form").children(".remerciement");
     var bienvenue  = $(canvas).parents(".form").children(".bienvenue");

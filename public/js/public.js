@@ -89,6 +89,8 @@ function reinitialisation(canvas)
     $(canvas).parents(".form").find(".questionHidden").val("62.5");
     $(canvas).parents(".form").find(".slider").val(50);
 
+    $(canvas).draggable( 'destroy' );
+    $(canvas).unbind("click");
     $(canvas).parents(".form").find(".sidomeImageIns").append(canvas);
     $(remerciement).html("");
     $(remerciement).hide( "blind", 1000 );

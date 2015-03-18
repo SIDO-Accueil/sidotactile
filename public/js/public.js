@@ -89,7 +89,7 @@ function reinitialisation(canvas)
     $(canvas).parents(".form").find(".questionHidden").val("62.5");
     $(canvas).parents(".form").find(".slider").val(50);
 
-    $(canvas).draggable( 'destroy' );
+    //$(canvas).draggable( 'destroy' );
     $(canvas).unbind("click");
     $(canvas).parents(".form").find(".sidomeImageIns").append(canvas);
     $(remerciement).html("");
@@ -307,7 +307,7 @@ $(document).ready(function(){
         a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre Sidôme dans la Sidosphère ! </p></h1><h1>Bonne journée au SIDO!</h1>");
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
-        c.draggable();
+        //c.draggable();
         c.click(function(){
             reinitialisation(this);
         });

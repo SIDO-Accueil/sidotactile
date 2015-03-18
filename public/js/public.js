@@ -81,7 +81,7 @@ function reinitialisation(canvas)
 {
 
     initJSON($(canvas).parents(".form"),"<NUMERO DE BADGE>");
-
+    $(canvas).parents(".form").val().occupe = false;
     var remerciement = $(canvas).parents(".form").children(".remerciement");
     var bienvenue  = $(canvas).parents(".form").children(".bienvenue");
     $(canvas).parents(".form").children("input").val("");
@@ -150,39 +150,60 @@ function getUser(input) {
 
     if(input.value != "")
     {
-        var form = input.parentNode;
 
-        $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
-            var temp = $(this).children(".sliderSectionIns").children("input");
-            var i = $(temp).attr("rel");
-            $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
-        });
-        $(input.nextSibling.nextSibling).hide( "blind", 1000 );
-        
-        $(form.childNodes[7]).show( "clip", 3000 );
-        form.value.sidome.id = input.value;
+        var form = null;
 
-        var prenom = "John";
-        // form.childNodes[7].childNodes[1].innerHTML += " " + prenom; // TODO BUG ICI
+        if($(".form1").val().occupe == true) // Si c'est déjà occupé
+        {
+            if($(".form2").val().occupe == false)
+            { // Si le second ne l'est pas
+                form = $(".form2");
+                //console.log(form);
+            }
+        }
+        else {
+            form = $(".form1");
+            //console.log(form);
+        }
+        //var form = input.parentNode;
 
-        getPerson(input.value)
-            .then(function(json) {
+        if(form != null){
+           
+            $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
+                var temp = $(this).children(".sliderSectionIns").children("input");
+                var i = $(temp).attr("rel");
+                $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
+            });
+            $(form).children(".bienvenue").hide( "blind", 1000 );
+            
+            $(form).children(".formIns").show( "clip", 3000 );
+            $(form).val().sidome.id = input.value;
 
-                postPerson(json).then(function() {
+            var prenom = "John";
+            // form.childNodes[7].childNodes[1].innerHTML += " " + prenom; // TODO BUG ICI
 
-                    var sidome = form.value.sidome;
-                    postSidome(sidome).then(function(){
-                        var refreshIntervalId = setInterval( function() {
-                            putSidome(sidome);
-                        }, 5000 );
-                        form.value.refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+            getPerson(input.value)
+                .then(function(json) {
 
-                        
+                    postPerson(json).then(function() {
+
+                        var sidome = form.value.sidome;
+                        postSidome(sidome).then(function(){
+                            var refreshIntervalId = setInterval( function() {
+                                putSidome(sidome);
+                            }, 5000 );
+                            form.value.refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                            
+                        });
                     });
                 });
-            });
-        console.log($(form).children("input"));
-        $(form).children("input").val("");
+            //console.log($(form).children("input"));
+            $(form).children("input").val("");
+            $(form).val().occupe = true;
+
+        }
+
+        input.value = "";
     }
 }
 
@@ -247,7 +268,9 @@ $(document).ready(function(){
     "use strict";
 
 	$(".form").each(function(){
-		initJSON($(this), "<NUMERO DE BADGE>");
+        
+        initJSON($(this), "<NUMERO DE BADGE>");
+        $(this).val().occupe = false;
 	});
 
 	// RESET THE FORM VALUES BECAUSE SOME BROWSERS USE CACHED VALUES

@@ -315,8 +315,10 @@ $(document).ready(function(){
     });
 
 	// BUTTONS
-	$(".buttonRestart").click(function(){
-		cleanForm($(this).parents(".form"));
+	$(".go").click(function(){
+        var form = $(this).parents(".form");
+		$(form).children(".bienvenue").hide( "blind", 1000 );
+        $(form).children(".formIns").show( "clip", 3000 );
 	});
 
 	$(".buttonStop").click(function(){

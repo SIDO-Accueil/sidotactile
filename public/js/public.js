@@ -296,10 +296,17 @@ $(document).ready(function(){
         clearInterval($(a).parent().val().refreshIntervalId);
         putSidome($(a).parent().val().sidome);
 
+        var canvasData = $(".keep-canvas1")[0].toDataURL("image/png");
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/image" + $(a).parent().val().sidome.id,
+            data: canvasData,
+            processData: false,
+            contentType: "application/"
+        });
+
         a.hide( "blind", 1000 );
 
-        //a.css("display","none");
-        //a.parents(".form").children(".remerciement").css("display","block");
         var c = a.children(".sidomeImage").children('.sidomeImageIns').children('canvas');
 
         a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
@@ -307,7 +314,6 @@ $(document).ready(function(){
         a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre Sidôme dans la Sidosphère ! </p></h1><h1>Bonne journée au SIDO!</h1>");
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
-        //c.draggable();
         c.click(function(){
             reinitialisation(this);
         });

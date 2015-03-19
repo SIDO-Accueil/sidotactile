@@ -184,10 +184,10 @@ function getUser(input) {
 
             getPerson(input.value)
                 .then(function(json) {
-
+                    $(form).find(".welcome").find("h2").append(' ' + json.prenom);
                     postPerson(json).then(function() {
 
-                        var sidome = form.value.sidome;
+                        var sidome = $(form).val().sidome;
                         postSidome(sidome).then(function(){
                             var refreshIntervalId = setInterval( function() {
                                 putSidome(sidome);

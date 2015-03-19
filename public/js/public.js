@@ -108,6 +108,17 @@ function getPerson(id) {
     });
 }
 
+function getSidome(id) {
+    "use strict";
+
+    // returns a promises that fullfiled with the json object
+    return $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/sidomes/" + id,
+        accept: "application/json"
+    });
+}
+
 function postPerson(json) {
     "use strict";
 
@@ -175,7 +186,6 @@ function getUser(input) {
                 $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
             });
             $(form).children(".bienvenue").hide( "blind", 1000 );
-            
             $(form).children(".formIns").show( "clip", 3000 );
             $(form).val().sidome.id = input.value;
 
@@ -192,8 +202,30 @@ function getUser(input) {
                             var refreshIntervalId = setInterval( function() {
                                 putSidome(sidome);
                             }, 5000 );
-                            form.value.refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
-                            
+                            $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                        }).fail(function() {
+                            console.log( "error" );
+                        });
+                    }).fail(function() {
+
+                        // POST /persons failed, user already exist
+                        var sidome = $(form).val().sidome;
+                        postSidome(sidome).then(function(){
+                            var refreshIntervalId = setInterval( function() {
+                                putSidome(sidome);
+                            }, 5000 );
+                            $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                        }).fail(function() {
+
+                            // The sidome already exist
+                            // we get it
+                            getSidome(sidome.id).then(function(si) {
+                                $(form).val().sidome = si;
+                                var refreshIntervalId = setInterval( function() {
+                                    putSidome(si);
+                                }, 5000 );
+                                $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                            });
                         });
                     });
                 });

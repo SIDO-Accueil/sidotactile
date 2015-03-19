@@ -158,14 +158,11 @@ function getUser(input) {
             if($(".form2").val().occupe == false)
             { // Si le second ne l'est pas
                 form = $(".form2");
-                //console.log(form);
             }
         }
         else {
             form = $(".form1");
-            //console.log(form);
         }
-        //var form = input.parentNode;
 
         if(form != null){
            
@@ -179,12 +176,11 @@ function getUser(input) {
             $(form).children(".formIns").show( "clip", 3000 );
             $(form).val().sidome.id = input.value;
 
-            var prenom = "John";
             // form.childNodes[7].childNodes[1].innerHTML += " " + prenom; // TODO BUG ICI
 
             getPerson(input.value)
                 .then(function(json) {
-                    $(form).find(".welcome").find("h2").append(' ' + json.prenom);
+                    //$(form).find(".welcome").find("h2").append(' ' + json.prenom);
                     postPerson(json).then(function() {
 
                         var sidome = $(form).val().sidome;
@@ -192,7 +188,7 @@ function getUser(input) {
                             var refreshIntervalId = setInterval( function() {
                                 putSidome(sidome);
                             }, 5000 );
-                            form.value.refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                            $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
                             
                         });
                     });

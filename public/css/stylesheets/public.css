@@ -16,7 +16,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font: inherit;
-  font-size: 100%;
+  font-size: 12px;
   vertical-align: baseline;
 }
 
@@ -70,7 +70,7 @@ body {
   padding: 0;
   font-size: 1em;
   line-height: 1.3em;
-  font-family: sans-serif;
+  /*font-family: sans-serif;*/
   font-weight: 300;
   background: black;
   color: white;
@@ -284,7 +284,7 @@ input {
 /*BUTTONS*/
 /* line 194, ../sass/public.scss */
 .buttons {
-  padding-top: 40px;
+  padding-top: 15px;
 }
 /* line 196, ../sass/public.scss */
 .buttons .buttonsIns {
@@ -312,15 +312,21 @@ input {
 }
 /* line 216, ../sass/public.scss */
 .buttons .buttonStop {
-  float: right;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+.buttons .go {
+  margin: 0 auto;
+  font-size: 20px;
+  width:15%;
 }
 
 .custom{
-	width:78% !important;
+	width:50% !important;
 	border-radius:0 !important;
 	height:5px !important;
   float:center;
-    margin-left: 12%;
 }
 
 .custom::-webkit-slider-thumb{
@@ -361,8 +367,17 @@ body{
   padding-bottom: 20px;
 }
 
+.bienvenue h1 {
+    font-size: 25px;
+  }
+
+  .bienvenue h1 b{
+    font-size: 35px;
+    padding-bottom: 10px;
+  }
+
 .bienvenue {
-  padding-top:40%;
+  padding-top:15%;
 }
 
 .haut{
@@ -383,42 +398,26 @@ border-right: 40px solid transparent;
 border-right: 0px solid transparent; 
 }
 
-.form1 .formIns{
+.form1 .formIns, .form1, .remerciement1{
   border-right: 1px solid #fff;
 }
 
-.form2 .formIns{
-  border-left: 1px solid #fff;
-}
-
-.form1{
-  border-right: 1px solid #fff;
-}
-
-.form2{
-  border-left: 1px solid #fff;
-}
-
-.remerciement1{
-  border-right: 1px solid #fff;
-}
-
-.remerciement2{
+.form2 .formIns, .remerciement2, .form2 {
   border-left: 1px solid #fff;
 }
 
 .gauche{
   float:left;
-  width:37%;
+  width:24%;
   text-align:center;
-  padding-top: 10px;
+  left:0;
 }
 
 .droite{
   float:right;
-  width:37%;
+  width:24%;
+  right:0;
   text-align:center;
-  padding-top: 10px;
 }
 
 .formIns .welcome{
@@ -426,17 +425,17 @@ border-right: 0px solid transparent;
 }
 
 .bienvenue canvas, .remerciement canvas{
-  width: 40%;
+  width: 55%;
 }
 
 input[type="range"]::-webkit-slider-thumb {
     width: 25px;
     height: 25px;
     background:#000 !important;
-    border: 2px solid;
+    border: 4px solid #fff;
 }
 
 .sliderSectionIns h2{
   text-align:center;
-  padding-top: 40px;
+  padding-top: 20px;
 }

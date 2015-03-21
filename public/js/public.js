@@ -297,6 +297,12 @@ function reponseQuestion(input)
 $(document).ready(function(){
     "use strict";
 
+    $(document).on('contextmenu', 'body', function(e)
+    {
+        e.preventDefault();
+        return false;
+    });
+
 	$(".form").each(function(){
         
         initJSON($(this), "<NUMERO DE BADGE>");

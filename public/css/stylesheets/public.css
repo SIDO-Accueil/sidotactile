@@ -75,7 +75,7 @@ body {
   background: black;
   color: white;
   height: 100%;
-  font-family: 'Inconsolata', sans-serif;
+  font-family: 'Inconsolata', sans-serif !important;
 }
 
 /* line 43, ../sass/public.scss */
@@ -130,18 +130,18 @@ input {
 /*STYLE*/
 /* line 79, ../sass/public.scss */
 .wrapperAll {
-  padding: 10px;
+  padding: 0;
 }
 
 /*FORMS*/
 /* line 84, ../sass/public.scss */
 .form {
-  width: 49.5%;
+  width: 49.90%;
   float: left;
 }
 /* line 87, ../sass/public.scss */
 .form .formIns {
-  padding: 20px;
+  padding: 0 20px 25px 20px;
 }
 /* line 90, ../sass/public.scss */
 .form h2 {
@@ -169,8 +169,8 @@ input {
 }
 /* line 109, ../sass/public.scss */
 .form .sidomeImage .sidomeImageIns canvas {
-  width: 40%;
-  height: 40%;
+  width: 33%;
+  height: 33%;
   margin: auto;
   background: black;
   display: block;
@@ -284,7 +284,7 @@ input {
 /*BUTTONS*/
 /* line 194, ../sass/public.scss */
 .buttons {
-  padding-top: 15px;
+  padding-top: 0;
 }
 /* line 196, ../sass/public.scss */
 .buttons .buttonsIns {
@@ -327,16 +327,15 @@ input {
 	border-radius:0 !important;
 	height:5px !important;
   float:center;
+  margin-left: 12px;
 }
 
 .custom::-webkit-slider-thumb{
 	background:#fff !important;
 }
 
-.remerciement, .bienvenue{
-	/*float:bottom;*/
-	
-  
+.remerciement, .bienvenue, .bye-bye{
+
   width:100%;
   text-align: center;
   display: inline-block;
@@ -346,7 +345,7 @@ input {
   display:none;
 }
 
-.remerciement{
+.remerciement, .bye-bye{
   display:none;
 }
 
@@ -367,7 +366,7 @@ body{
   padding-bottom: 20px;
 }
 
-.bienvenue h1 {
+.bienvenue h1 , .bye-bye h1{
     font-size: 25px;
   }
 
@@ -377,7 +376,7 @@ body{
   }
 
 .bienvenue {
-  padding-top:15%;
+  padding-top:20%;
 }
 
 .haut{
@@ -406,11 +405,16 @@ border-right: 0px solid transparent;
   border-left: 1px solid #fff;
 }
 
+.form2{
+  right:0;
+}
+
 .gauche{
   float:left;
   width:24%;
   text-align:center;
   left:0;
+  font-size: 14px;
 }
 
 .droite{
@@ -424,8 +428,12 @@ border-right: 0px solid transparent;
   float:left;
 }
 
-.bienvenue canvas, .remerciement canvas{
+.bienvenue canvas{
   width: 55%;
+}
+
+.remerciement canvas{
+  width:45%;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -438,4 +446,15 @@ input[type="range"]::-webkit-slider-thumb {
 .sliderSectionIns h2{
   text-align:center;
   padding-top: 20px;
+  padding-bottom: 15px;
+  font-size: 18px;
+}
+
+.bye-bye{
+  height: inherit;
+}
+
+.bye-bye div{
+
+  padding-top: 42%;
 }

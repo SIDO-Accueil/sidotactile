@@ -82,7 +82,7 @@ function reinitialisation(canvas)
 
     initJSON($(canvas).parents(".form"),"<NUMERO DE BADGE>");
     $(canvas).parents(".form").val().occupe = false;
-    var remerciement = $(canvas).parents(".form").children(".remerciement");
+    var remerciement = $(canvas).parents(".form").children(".bye-bye");
     var bienvenue  = $(canvas).parents(".form").children(".bienvenue");
     $(canvas).parents(".form").children("input").val("");
 
@@ -349,12 +349,19 @@ $(document).ready(function(){
 
         a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
         a.parents(".form").children(".remerciement").append(c);
-        a.parents(".form").children(".remerciement").append("<h1><p>Merci de votre participation !</p> <p>Un mail contenant votre sidome vous sera envoyé.</p> <p>Envoyez votre Sidôme dans la Sidosphère ! </p></h1><h1>Bonne journée au SIDO!</h1>");
+        //a.parents(".form").children(".remerciement").append("<h1><p>Bravo !</p><p>Vous avez envoyé votre</p> <p>SIdÔme dans la</p> <p>SIdOsphère !</p></h1>");
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
         c.click(function(){
-            reinitialisation(this);
-        });
+            //console.log($(this).parents(".form").children(".bye-bye"));
+            $(this).parents(".remerciement").hide( "blind", 1000 );
+            $(this).parents(".form").children(".bye-bye").show( "clip", 4000 );
+           // reinitialisation(this);
+           /*setTimeout(function(event) {
+                // your code goes here...
+                console.log(event.target);
+                reinitialisation(toto);
+            }, 20 * 1000  });*/
 	});
 
 	// FORM SUBMIT

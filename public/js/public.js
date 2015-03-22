@@ -361,7 +361,7 @@ $(document).ready(function(){
                 // your code goes here...
                 console.log(event.target);
                 reinitialisation(toto);
-            }, 20 * 1000  });*/
+            }, 20 * 1000 */ });
 	});
 
 	// FORM SUBMIT

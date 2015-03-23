@@ -349,19 +349,15 @@ $(document).ready(function(){
 
         a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
         a.parents(".form").children(".remerciement").append(c);
-        //a.parents(".form").children(".remerciement").append("<h1><p>Bravo !</p><p>Vous avez envoyé votre</p> <p>SIdÔme dans la</p> <p>SIdOsphère !</p></h1>");
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
         c.click(function(){
-            //console.log($(this).parents(".form").children(".bye-bye"));
             $(this).parents(".remerciement").hide( "blind", 1000 );
             $(this).parents(".form").children(".bye-bye").show( "clip", 4000 );
-           // reinitialisation(this);
-           /*setTimeout(function(event) {
-                // your code goes here...
-                console.log(event.target);
-                reinitialisation(toto);
-            }, 20 * 1000 */ });
+           setTimeout(function(event) {
+               reinitialisation(c);
+            }, 10000);
+        });
 	});
 
 	// FORM SUBMIT

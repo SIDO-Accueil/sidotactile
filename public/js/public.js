@@ -90,8 +90,7 @@ function reinitialisation(canvas)
     $(canvas).parents(".form").find(".slider").val(50);
 
     //$(canvas).draggable( 'destroy' );
-    $(canvas).unbind("click");
-    $(canvas).parents(".form").find(".sidomeImageIns").append(canvas);
+    /*$(canvas).unbind("click");*/
     /*$(remerciement).html("");*/
     $(remerciement).hide( "blind", 1000 );
     $(accueil).show( "clip", 2000 );
@@ -347,14 +346,12 @@ $(document).ready(function(){
 
         a.hide( "blind", 1000 );
 
-        var c = a.children(".sidomeImage").children('.sidomeImageIns').children('canvas');
-        a.parents(".form").children(".remerciement").html("");
-        a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
-        a.parents(".form").children(".remerciement").append(c);
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
-        c.click(function(){
+	});
 
+    /*$(".remerciement-canvas").click(function(){
+            var c = $(this);
             $(this).parents(".remerciement").hide( "blind", 1000 );
             $(this).parents(".form").children(".bye-bye").show( "clip", 4000 );
 
@@ -362,8 +359,7 @@ $(document).ready(function(){
                reinitialisation(c);
             }, 10000); 
 
-        });
-	});
+        });*/
 
 	// FORM SUBMIT
 	$(".formSite").submit(function(evt){

@@ -432,10 +432,6 @@ border-right: 0px solid transparent;
   width: 55%;
 }
 
-.remerciement canvas{
-  width:45%;
-}
-
 input[type="range"]::-webkit-slider-thumb {
     width: 25px;
     height: 25px;
@@ -468,3 +464,4 @@ input[type="range"]::-webkit-slider-thumb {
 .accueil{
   height:inherit;
 }
+

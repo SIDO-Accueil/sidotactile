@@ -92,7 +92,7 @@ function reinitialisation(canvas)
     //$(canvas).draggable( 'destroy' );
     $(canvas).unbind("click");
     $(canvas).parents(".form").find(".sidomeImageIns").append(canvas);
-    $(remerciement).html("");
+    /*$(remerciement).html("");*/
     $(remerciement).hide( "blind", 1000 );
     $(accueil).show( "clip", 2000 );
 }
@@ -348,12 +348,13 @@ $(document).ready(function(){
         a.hide( "blind", 1000 );
 
         var c = a.children(".sidomeImage").children('.sidomeImageIns').children('canvas');
-
+        a.parents(".form").children(".remerciement").html("");
         a.parents(".form").children(".remerciement").append('<div class="fleche"> <div class="haut"></div><div class="bas"></div> </div>');
         a.parents(".form").children(".remerciement").append(c);
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
         c.click(function(){
+
             $(this).parents(".remerciement").hide( "blind", 1000 );
             $(this).parents(".form").children(".bye-bye").show( "clip", 4000 );
 

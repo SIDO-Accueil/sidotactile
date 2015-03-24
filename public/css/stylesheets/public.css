@@ -345,7 +345,7 @@ input {
   display:none;
 }
 
-.remerciement, .bye-bye{
+.remerciement, .bye-bye, .bienvenue{
   display:none;
 }
 
@@ -457,4 +457,14 @@ input[type="range"]::-webkit-slider-thumb {
 .bye-bye div{
 
   padding-top: 42%;
+}
+
+.img-accueil{
+  margin: 0 10%;
+  max-height: 85%;
+  padding-top: 100px;
+
+}
+.accueil{
+  height:inherit;
 }

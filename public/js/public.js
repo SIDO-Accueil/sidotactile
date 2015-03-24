@@ -158,6 +158,7 @@ function getUser(input) {
     "use strict";
 
     tab.shuffle();
+    console.log(tab);
 
     if(input.value != "")
     {
@@ -182,8 +183,9 @@ function getUser(input) {
                 var i = $(temp).attr("rel");
                 $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
             });
-            $(form).children(".bienvenue").hide( "blind", 1000 );
-            $(form).children(".formIns").show( "clip", 3000 );
+
+            $(form).children(".accueil").hide( "blind", 1000 );
+            $(form).children(".bienvenue").show( "clip", 3000 );
             $(form).val().sidome.id = input.value;
 
             // form.childNodes[7].childNodes[1].innerHTML += " " + prenom; // TODO BUG ICI
@@ -297,11 +299,11 @@ function reponseQuestion(input)
 $(document).ready(function(){
     "use strict";
 
-    $(document).on('contextmenu', 'body', function(e)
+    /*$(document).on('contextmenu', 'body', function(e)
     {
         e.preventDefault();
         return false;
-    });
+    });*/
 
 	$(".form").each(function(){
         
@@ -356,12 +358,11 @@ $(document).ready(function(){
             //console.log($(this).parents(".form").children(".bye-bye"));
             $(this).parents(".remerciement").hide( "blind", 1000 );
             $(this).parents(".form").children(".bye-bye").show( "clip", 4000 );
-           // reinitialisation(this);
-           /*setTimeout(function(event) {
-                // your code goes here...
-                console.log(event.target);
-                reinitialisation(toto);
-            }, 20 * 1000 */ });
+           
+            setTimeout(function(event) {
+               reinitialisation(c);
+            }, 10000); 
+        });
 	});
 
 	// FORM SUBMIT

@@ -458,15 +458,31 @@ input[type="range"]::-webkit-slider-thumb {
 
 .img-accueil{
   padding: 0 16.6%;
-  max-height: 85%;
+  max-height: 80%;
   padding-top: 100px;
 
 }
 .accueil{
   height:inherit;
+  z-index:2;
 }
 
 .username{
     font-size: 35px;
   padding-bottom: 10px;
+}
+
+.input_userid{
+  background-color: black;
+  color:black;
+    float: left;
+}
+
+.input_userid:focus{
+  text-shadow:none;
+  background-color: black;
+  box-shadow:none;
+  color:black;
+  opacity:1;
+  outline: none !important;
 }

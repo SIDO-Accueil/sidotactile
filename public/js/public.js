@@ -352,6 +352,13 @@ function reponseQuestion(input)
 $(document).ready(function(){
     "use strict";
 
+    //$(".input_userid").focus();
+    setInterval( function() { $(".input_userid").focus(); }, 200 );
+    $(".accueil").click(function(e)
+    {
+        $(".input_userid").focus();
+    });
+
     $(document).on('contextmenu', 'body', function(e)
     {
         e.preventDefault();

@@ -422,6 +422,7 @@ border-right: 0px solid transparent;
   width:24%;
   right:0;
   text-align:center;
+  font-size: 14px;
 }
 
 .formIns .welcome{
@@ -465,3 +466,7 @@ input[type="range"]::-webkit-slider-thumb {
   height:inherit;
 }
 
+.username{
+    font-size: 35px;
+  padding-bottom: 10px;
+}

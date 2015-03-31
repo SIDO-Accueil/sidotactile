@@ -35,7 +35,7 @@
                 </div>
                 <div class="bienvenue bienvenue1">
                    
-                    <h1><b>Bonjour John !</b></h1><br/><h1> Personnalisez votre sidôme </h1>
+                    <h1><b>Bonjour <span class ="username" >John</span> !</b></h1><br/><h1> Personnalisez votre SIdÔme </h1>
                     <script type="text/processing">
 
 
@@ -255,9 +255,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>TRANSPORT ET GÉOLOCALISATION :</h2>
                                 <div class="gauche">
-                                    J’ai demandé ma route au premier Lyonnais que j’ai croisé pour venir.
+                                    J’ai demandé ma route au<br/> premier lyonnais que j’ai <br/>croisé pour venir
                                 </div><input type="range" class="slider custom" rel="1"><div class="droite">
-                                    Impossible<br/>de me perdre pour aller</br>au Sido avec baskets connectées.
+                                    Impossible<br/>de me perdre pour aller</br>au SIdO avec baskets<br/> connectées
                                 </div>
                             </div>
                         </div>
@@ -265,9 +265,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>SÉCURITÉ ET OPENDATA :</h2>
                                 <div class="gauche">
-                                    J’ai ressorti mon Nokia 3310 pour être tranquille.
+                                    J’ai ressorti mon Nokia<br/> 3310 pour être <br/>tranquille
                                 </div><input type="range" class="slider custom" rel="3"><div class="droite">
-                                    J’aime que l’on sache<br/>où je suis.
+                                    J’aime que l’on sache<br/>où je suis
                                 </div>
                             </div>
                         </div>
@@ -275,9 +275,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>ÉCOLOGIE :</h2>
                                 <div class="gauche">
-                                    À la maison c’est toilettes sèches.
+                                    À la maison c’est<br/> toilettes sèches
                                 </div><input type="range" class="slider custom" rel="4"><div class="droite">
-                                    Mon bonsaï est nourri<br/>à la Data.
+                                    Mon bonsaï est nourri<br/>à la Data
                                 </div>
                             </div>
                         </div>
@@ -285,9 +285,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>SPORT :</h2>
                                 <div class="gauche">
-                                    Pas besoin de coach personnel pour savoir<br/>que mes performances<br/>sont au top.
+                                    Pas besoin de coach<br/> personnel pour savoir<br/>que mes performances<br/>sont au top
                                 </div><input type="range" class="slider custom" rel="5"><div class="droite">
-                                    Mon smartphone</br>m’indique mes<br/>calories, je sais quand<br/>je dois aller courir.
+                                    Mon smartphone</br>m’indique mes<br/>calories, je sais quand<br/>je dois aller courir
                                 </div>
                             </div>
                         </div>
@@ -295,9 +295,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>QUANTIFIED SELF :</h2>
                                 <div class="gauche">
-                                    J’ai rendez-vous chez mon médecin ce mois ci on verra si tout va bien.
+                                    J’ai rendez-vous chez mon <br/>médecin ce mois ci on<br/>verra si tout va bien
                                 </div><input type="range" class="slider custom" rel="6"><div class="droite">
-                                    Je ne tombe plus<br/>malade depuis que<br/>j’ai mon médecin<br/>dans la poche.
+                                    Je ne tombe plus<br/>malade depuis que<br/>j’ai mon médecin<br/>dans la poche
                                 </div>
                             </div>
                         </div>
@@ -305,9 +305,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>SURVEILLANCE :</h2>
                                 <div class="gauche">
-                                    Médor ne dort jamais.
+                                    Médor ne dort jamais
                                 </div><input type="range" class="slider custom" rel="2"><div class="droite">
-                                    Je suis connecté<br>24h/24 aux caméras<br/>de mon quartier.
+                                    Je suis connecté<br>24h/24 aux caméras<br/>de mon quartier
                                 </div>
                             </div>
                         </div>
@@ -327,7 +327,7 @@ void draw()  {
                         float newXmag, newYmag = 0;
                         float a = 1.0;
                         int xmax = 950;
-                        int ymax = 950;
+                        int ymax = 1070;
                         int xboule = xmax / 2;
                         int yboule = ymax / 3;
                         int xsido = xmax / 2;
@@ -338,58 +338,94 @@ void draw()  {
                         int degrem = 2;
                         int test = 0;
                         int cl1 = 220;
-                        int cl2 = 26;
-                        int cl3 = 0;
+                        int cl2 = 90;
+                        int cl3 = 40;
+						int blanco = 255;
                         int click;
                         int coloration = 0;
+						
+						int cpppt = 0;
+						int ajustblanc = 15;
+						
+						int cttp = 0;
 
                         float rotati = 0.005;
 
+						float changecl11 = -1.6;//(80 / 50);
+						float changecl21 = -1.4;//(70 / 50);
+						float changecl31 = +1;//(50 / 50);
+						float changecl12 = -1.83333333;//(110 / 60);
+						float changecl22 = +1;//(60 / 60);
+						float changecl32 = +1.16666667;//(70 / 60);
+						int change = 1;
                         void setup()  {
                         size(xmax, ymax, WEBGL);
-                        //lights();
                         //colorMode(RGB, 1);
                         strokeWeight(3);
                         }
 
                         function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
                                 fill(cl1, cl2, cl3);
-                                stroke(0);
+                                noStroke();
                                 //stroke(cl1, cl2, cl3);
                                // +Z "front" face
+							    fill(cl1, cl2, cl3);
                                 vertex(v1.x, v1.y, v1.z); // v1
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v2.x, v2.y, v2.z); // v2
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v3.x, v3.y, v3.z); // v3
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v4.x, v4.y, v4.z); // v4
                          
                                 // -Z "back" face
+								fill(cl1, cl2, cl3);
                                 vertex(v5.x, v5.y, v5.z); // v5
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v6.x, v6.y, v6.z); // v6
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v7.x, v7.y, v7.z); // v7
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v8.x, v8.y, v8.z); // v8
                          
                                 // +Y "bottom" face
+								fill(cl1, cl2, cl3);
                                 vertex(v4.x, v4.y, v4.z); // v4
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v3.x, v3.y, v3.z); // v3
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v8.x, v8.y, v8.z); // v8
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v7.x, v7.y, v7.z); // v7
                          
                                 // -Y "top" face
+								fill(cl1, cl2, cl3);
                                 vertex(v6.x, v6.y, v6.z); // v6
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v5.x, v5.y, v5.z); // v5
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v2.x, v2.y, v2.z); // v2
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v1.x, v1.y, v1.z); // v1
                          
                                 // +X "right" face
+								fill(cl1, cl2, cl3);
                                 vertex(v2.x, v2.y, v2.z); // v2
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v5.x, v5.y, v5.z); // v5
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v8.x, v8.y, v8.z); // v8
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v3.x, v3.y, v3.z); // v3
                          
                                 // -X "left" face
+								fill(cl1, cl2, cl3);
                                 vertex(v6.x, v6.y, v6.z); // v6
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v1.x, v1.y, v1.z); // v1
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v4.x, v4.y, v4.z); // v4
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v7.x, v7.y, v7.z); // v7
                                 //noFill();
                             }
@@ -400,6 +436,7 @@ void draw()  {
                             int xecart = (x - xpos) / 14;
                             int yecart = (y - ypos) / 14;
                             int cpt = 15;
+							stroke(255);
                             
                             while (cpt-- != 0){
                             ellipse(xpos, ypos, 7, 7);
@@ -409,31 +446,42 @@ void draw()  {
                         }
 
                         void    couleur(){
-                         if (cl2 < 100 && cl2 > 25)
-                          {
-                            if (test == 0)
-                            {
-                             cl2 += degrem;
-                            }
-                            test++;
-                            if (test == 3)
-                            test = 0;
-                             if (degrem < 0)
-                              {
-                             cl1 -= degrem * 1;
-                             cl3 += degrem * 1;
-                              }
-                             else
-                              {
-                             cl3 += degrem * 1;
-                             cl1 -= degrem * 1;
-                              } 
-                            }
-                          else
-                          {
-                            degrem = -degrem;
-                            cl2 += 2 * degrem;
-                          }
+                         if (change == 1)
+							{
+							 cl1 += changecl11;
+							 cl2 += changecl21;
+							 cl3 += changecl31;
+							if ((cl1 < 140 || cl2 < 20 || cl3 > 90) && changecl31 > 0)
+							  change = 2;
+							else if ((cl1 > 220 || cl2 > 90 || cl3 < 40) && changecl31 < 0)
+							{
+							  changecl11 = -changecl11;
+								changecl12 = -changecl12;
+								changecl21 = -changecl21;
+								changecl22 = -changecl22;
+								changecl31 = -changecl31;
+								changecl32 = -changecl32;  
+							}
+							}
+						  else if (change == 2)
+							{
+							 cl1 += changecl12;
+							 cl2 += changecl22;
+							 cl3 += changecl32;
+							if ((cl1 < 30 || cl2 > 80 || cl3 > 160) && changecl31 > 0)
+							  {
+								changecl11 = -changecl11;
+								changecl12 = -changecl12;
+								changecl21 = -changecl21;
+								changecl22 = -changecl22;
+								changecl31 = -changecl31;
+								changecl32 = -changecl32;
+							  }
+							  else if ((cl1 > 140 || cl2 < 20 || cl3 < 90) && changecl31 < 0)
+							  {
+							   change = 1; 
+							  }
+							}
                         }
 
                         void draw()  {
@@ -442,10 +490,10 @@ void draw()  {
                             stroke (255);
                             fill(255);
                             //noFill();
-                            
-                            textSize(40);
-                            text("Lancez votre SIdÔme", xmax / 2 - 5 * 40 + 20, 0, -130);
-                            text("dans la SIdOsphère", xmax / 2 - 4 * 40, 50, -130);
+                            //pointLight(51, 102, 126, 0.5, 0.4, 0.2);
+                            //textSize(40);
+                            //text("Lancez votre SIdÔme", xmax / 2 - 5 * 40 + 20, 0, -130);
+                            //text("dans la SIdOsphère", xmax / 2 - 4 * 40, 50, -130);
                             var nodes = $(".form1").val().sidome.nodes;
                             
                             //couleur();
@@ -475,15 +523,16 @@ void draw()  {
                             }
 
                             /*stroke(#954595);*/
-                            stroke(cl1, cl2, cl3);
+                            //stroke(cl1, cl2, cl3);
+							noStroke();
                             scale(50);
                             //noFill();
                             
                             beginShape(QUADS);
                             
-                            drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
+                                drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
 
-                          endShape();
+                            endShape();
 
                             popMatrix();
                             //rect(0, 0, width, height);
@@ -493,6 +542,20 @@ void draw()  {
                                 angry(mouseX, mouseY);
                                 fill(cl1, cl2, cl3);
                             }
+							else if (xdis == 0 && ydis == 0)
+							{
+								//fill(blanco);
+								cppt = 1;
+								while (cppt != 12)
+									{
+										fill(blanco, blanco, blanco);
+										blanco += ajustblanc;
+										if (blanco > 165 || blanco < 0)
+											blanco = 0;
+										ellipse (xmax / 2, ymax / 2 + cppt * 40, 10, 10);
+										cppt = cppt + 1;
+									}
+							}
                             if (coloration == 0)
                             couleur();  
                             xsido -= xdis;
@@ -510,6 +573,13 @@ void draw()  {
                                 }, 5000); 
                                 
                                 setTimeout(function(event) {
+									changecl11 = -1.6;//(80 / 50);
+									changecl21 = -1.4;//(70 / 50);
+									changecl31 = +1;//(50 / 50);
+									changecl12 = -1.83333333;//(110 / 60);
+									changecl22 = +1;//(60 / 60);
+									changecl32 = +1.16666667;//(70 / 60);
+									change = 1;
                                     coloration = 0;
                                     xmag = 0;
                                     ymag = 0;
@@ -517,7 +587,7 @@ void draw()  {
                                     newYmag = 0;
                                     a = 1.0;
                                     xmax = 950;
-                                    ymax = 950;
+                                    ymax = 1070;
                                     xboule = xmax / 2;
                                     yboule = ymax / 3;
                                     xsido = xmax / 2;
@@ -528,8 +598,8 @@ void draw()  {
                                     degrem = 2;
                                     test = 0;
                                     cl1 = 220;
-                                    cl2 = 26;
-                                    cl3 = 0;
+                                    cl2 = 90;
+                                    cl3 = 40;
                                     click = 0;
                                 }, 1000); 
                             }
@@ -603,7 +673,7 @@ void draw()  {
                     <img src="img/accueil.png" class="img-accueil" />
                 </div>
                 <div class="bienvenue bienvenue2">
-                     <h1><b>Bonjour John !</b></h1><br/><h1> Personnalisez votre sidôme </h1>
+                     <h1><b>Bonjour John !</b></h1><br/><h1> Personnalisez votre SIdÔme </h1>
                     <script type="text/processing">
 
 
@@ -820,9 +890,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>TRANSPORT ET GÉOLOCALISATION :</h2>
                                 <div class="gauche">
-                                    J’ai demandé ma route au premier Lyonnais que j’ai croisé pour venir.
+                                    J’ai demandé ma route au <br/>premier lyonnais que j’ai <br/>croisé pour venir
                                 </div><input type="range" class="slider custom" rel="1"><div class="droite">
-                                    Impossible<br/>de me perdre pour aller</br>au Sido avec baskets connectées.
+                                    Impossible<br/>de me perdre pour aller</br>au SIdO avec baskets <br/>connectées
                                 </div>
                             </div>
                         </div>
@@ -830,9 +900,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>SÉCURITÉ ET OPENDATA :</h2>
                                 <div class="gauche">
-                                    J’ai ressorti mon Nokia 3310 pour être tranquille.
+                                    J’ai ressorti mon Nokia<br/> 3310 pour être<br/> tranquille
                                 </div><input type="range" class="slider custom" rel="3"><div class="droite">
-                                    J’aime que l’on sache<br/>où je suis.
+                                    J’aime que l’on sache<br/>où je suis
                                 </div>
                             </div>
                         </div>
@@ -840,9 +910,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>ÉCOLOGIE :</h2>
                                 <div class="gauche">
-                                    À la maison c’est toilettes sèches.
+                                    À la maison c’est <br/>toilettes sèches
                                 </div><input type="range" class="slider custom" rel="4"><div class="droite">
-                                    Mon bonsaï est nourri<br/>à la Data.
+                                    Mon bonsaï est nourri<br/>à la Data
                                 </div>
                             </div>
                         </div>
@@ -850,9 +920,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>SPORT :</h2>
                                 <div class="gauche">
-                                    Pas besoin de coach personnel pour savoir<br/>que mes performances<br/>sont au top.
+                                    Pas besoin de coach<br/> personnel pour savoir<br/>que mes performances<br/>sont au top
                                 </div><input type="range" class="slider custom" rel="5"><div class="droite">
-                                    Mon smartphone</br>m’indique mes<br/>calories, je sais quand<br/>je dois aller courir.
+                                    Mon smartphone</br>m’indique mes<br/>calories, je sais quand<br/>je dois aller courir
                                 </div>
                             </div>
                         </div>
@@ -860,9 +930,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>QUANTIFIED SELF :</h2>
                                 <div class="gauche">
-                                    J’ai rendez-vous chez mon médecin ce mois ci on verra si tout va bien.
+                                    J’ai rendez-vous chez mon<br/> médecin ce mois ci on <br/>verra si tout va bien
                                 </div><input type="range" class="slider custom" rel="6"><div class="droite">
-                                    Je ne tombe plus<br/>malade depuis que<br/>j’ai mon médecin<br/>dans la poche.
+                                    Je ne tombe plus<br/>malade depuis que<br/>j’ai mon médecin<br/>dans la poche
                                 </div>
                             </div>
                         </div>
@@ -870,9 +940,9 @@ void draw()  {
                             <div class="sliderSectionIns">
                                 <h2>SURVEILLANCE :</h2>
                                 <div class="gauche">
-                                    Médor ne dort jamais.
+                                    Médor ne dort jamais
                                 </div><input type="range" class="slider custom" rel="2"><div class="droite">
-                                    Je suis connecté<br>24h/24 aux caméras<br/>de mon quartier.
+                                    Je suis connecté<br>24h/24 aux caméras<br/>de mon quartier
                                 </div>
                             </div>
                         </div>
@@ -892,7 +962,7 @@ void draw()  {
                         float newXmag, newYmag = 0;
                         float a = 1.0;
                         int xmax = 950;
-                        int ymax = 950;
+                        int ymax = 1070;
                         int xboule = xmax / 2;
                         int yboule = ymax / 3;
                         int xsido = xmax / 2;
@@ -903,13 +973,25 @@ void draw()  {
                         int degrem = 2;
                         int test = 0;
                         int cl1 = 220;
-                        int cl2 = 26;
-                        int cl3 = 0;
+                        int cl2 = 90;
+                        int cl3 = 40;
+						int blanco = 0;
+						int poscharge = 0;
                         int click;
                         int coloration = 0;
+						
+						int cpppt = 0;
+						int ajustblanc = 15;
 
                         float rotati = 0.005;
 
+						float changecl11 = -1.6;//(80 / 50);
+						float changecl21 = -1.4;//(70 / 50);
+						float changecl31 = +1;//(50 / 50);
+						float changecl12 = -1.83333333;//(110 / 60);
+						float changecl22 = +1;//(60 / 60);
+						float changecl32 = +1.16666667;//(70 / 60);
+						int change = 1;
                         void setup()  {
                         size(xmax, ymax, WEBGL);
                         //lights();
@@ -919,42 +1001,67 @@ void draw()  {
 
                         function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
                                 fill(cl1, cl2, cl3);
-                                stroke(0);
+                                //stroke(0);
+								noStroke();
                                 //stroke(cl1, cl2, cl3);
                                // +Z "front" face
+							    fill(cl1, cl2, cl3);
                                 vertex(v1.x, v1.y, v1.z); // v1
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v2.x, v2.y, v2.z); // v2
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v3.x, v3.y, v3.z); // v3
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v4.x, v4.y, v4.z); // v4
                          
                                 // -Z "back" face
+								fill(cl1, cl2, cl3);
                                 vertex(v5.x, v5.y, v5.z); // v5
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v6.x, v6.y, v6.z); // v6
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v7.x, v7.y, v7.z); // v7
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v8.x, v8.y, v8.z); // v8
                          
                                 // +Y "bottom" face
+								fill(cl1, cl2, cl3);
                                 vertex(v4.x, v4.y, v4.z); // v4
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v3.x, v3.y, v3.z); // v3
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v8.x, v8.y, v8.z); // v8
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v7.x, v7.y, v7.z); // v7
                          
                                 // -Y "top" face
+								fill(cl1, cl2, cl3);
                                 vertex(v6.x, v6.y, v6.z); // v6
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v5.x, v5.y, v5.z); // v5
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v2.x, v2.y, v2.z); // v2
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v1.x, v1.y, v1.z); // v1
                          
                                 // +X "right" face
+								fill(cl1, cl2, cl3);
                                 vertex(v2.x, v2.y, v2.z); // v2
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v5.x, v5.y, v5.z); // v5
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v8.x, v8.y, v8.z); // v8
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v3.x, v3.y, v3.z); // v3
                          
                                 // -X "left" face
+								fill(cl1, cl2, cl3);
                                 vertex(v6.x, v6.y, v6.z); // v6
+								fill(cl1 - 20, cl2 - 20, cl3 - 20);
                                 vertex(v1.x, v1.y, v1.z); // v1
+								fill(cl1 - 30, cl2 - 30, cl3 - 30);
                                 vertex(v4.x, v4.y, v4.z); // v4
+								fill(cl1 - 40, cl2 - 40, cl3 - 40);
                                 vertex(v7.x, v7.y, v7.z); // v7
                                 //noFill();
                             }
@@ -965,6 +1072,7 @@ void draw()  {
                             int xecart = (x - xpos) / 14;
                             int yecart = (y - ypos) / 14;
                             int cpt = 15;
+							stroke(255);
                             
                             while (cpt-- != 0){
                             ellipse(xpos, ypos, 7, 7);
@@ -974,31 +1082,42 @@ void draw()  {
                         }
 
                         void    couleur(){
-                         if (cl2 < 100 && cl2 > 25)
-                          {
-                            if (test == 0)
-                            {
-                             cl2 += degrem;
-                            }
-                            test++;
-                            if (test == 3)
-                            test = 0;
-                             if (degrem < 0)
-                              {
-                             cl1 -= degrem * 1;
-                             cl3 += degrem * 1;
-                              }
-                             else
-                              {
-                             cl3 += degrem * 1;
-                             cl1 -= degrem * 1;
-                              } 
-                            }
-                          else
-                          {
-                            degrem = -degrem;
-                            cl2 += 2 * degrem;
-                          }
+                          if (change == 1)
+							{
+							 cl1 += changecl11;
+							 cl2 += changecl21;
+							 cl3 += changecl31;
+							if ((cl1 < 140 || cl2 < 20 || cl3 > 90) && changecl31 > 0)
+							  change = 2;
+							else if ((cl1 > 220 || cl2 > 90 || cl3 < 40) && changecl31 < 0)
+								{
+								changecl11 = -changecl11;
+								changecl12 = -changecl12;
+								changecl21 = -changecl21;
+								changecl22 = -changecl22;
+								changecl31 = -changecl31;
+								changecl32 = -changecl32;  
+								}
+							}
+						  else if (change == 2)
+							{
+							 cl1 += changecl12;
+							 cl2 += changecl22;
+							 cl3 += changecl32;
+							if ((cl1 < 30 || cl2 > 80 || cl3 > 160) && changecl31 > 0)
+							  {
+								changecl11 = -changecl11;
+								changecl12 = -changecl12;
+								changecl21 = -changecl21;
+								changecl22 = -changecl22;
+								changecl31 = -changecl31;
+								changecl32 = -changecl32;
+							  }
+							  else if ((cl1 > 140 || cl2 < 20 || cl3 < 90) && changecl31 < 0)
+							  {
+							   change = 1; 
+							  }
+							}
                         }
 
                         void draw()  {
@@ -1007,10 +1126,10 @@ void draw()  {
                             stroke (255);
                             fill(255);
                             //noFill();
-                            
-                            textSize(40);
-                            text("Lancez votre SIdÔme", xmax / 2 - 5 * 40 + 20, 0, -130);
-                            text("dans la SIdOsphère", xmax / 2 - 4 * 40, 50, -130);
+                            //directionalLight(cl1, cl2, cl3, xsido, y, -30);
+                            //textSize(40);
+                            //text("Lancez votre SIdÔme", xmax / 2 - 5 * 40 + 20, 0, -130);
+                            //text("dans la SIdOsphère", xmax / 2 - 4 * 40, 50, -130);
                             var nodes = $(".form2").val().sidome.nodes;
                             
                             //couleur();
@@ -1040,7 +1159,8 @@ void draw()  {
                             }
 
                             /*stroke(#954595);*/
-                            stroke(cl1, cl2, cl3);
+                            //stroke(cl1, cl2, cl3);
+							noStroke();
                             scale(50);
                             //noFill();
                             
@@ -1058,8 +1178,22 @@ void draw()  {
                                 angry(mouseX, mouseY);
                                 fill(cl1, cl2, cl3);
                             }
+							else if (xdis == 0 && ydis == 0)
+							{
+								//fill(blanco);
+								cppt = 1;
+								while (cppt != 12)
+									{
+										fill(blanco, blanco, blanco);
+										blanco += ajustblanc;
+										if (blanco > 165 || blanco < 0)
+											blanco = 0;
+										ellipse (xmax / 2, ymax / 2 + cppt * 40, 10, 10);
+										cppt = cppt + 1;
+									}
+							}
                             if (coloration == 0)
-                            couleur();  
+								couleur();  
                             xsido -= xdis;
                             ysido -= ydis;
                             if (xsido + 150 < 0 || ysido + 150 < 0 || xsido - 150 > width || ysido - 150 > height)
@@ -1075,14 +1209,21 @@ void draw()  {
                                 }, 5000); 
                                 
                                 setTimeout(function(event) {
-                                  coloration = 0;
+									changecl11 = -1.6;//(80 / 50);
+									changecl21 = -1.4;//(70 / 50);
+									changecl31 = +1;//(50 / 50);
+									changecl12 = -1.83333333;//(110 / 60);
+									changecl22 = +1;//(60 / 60);
+									changecl32 = +1.16666667;//(70 / 60);
+									change = 1;
+									coloration = 0;
                                     xmag = 0;
                                     ymag = 0;
                                     newXmag = 0;
                                     newYmag = 0;
                                     a = 1.0;
                                     xmax = 950;
-                                    ymax = 950;
+                                    ymax = 1070;
                                     xboule = xmax / 2;
                                     yboule = ymax / 3;
                                     xsido = xmax / 2;
@@ -1093,8 +1234,8 @@ void draw()  {
                                     degrem = 2;
                                     test = 0;
                                     cl1 = 220;
-                                    cl2 = 26;
-                                    cl3 = 0;
+                                    cl2 = 90;
+                                    cl3 = 40;
                                     click = 0;
                                 }, 1000); 
                                 

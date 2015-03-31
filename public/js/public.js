@@ -20,7 +20,7 @@ function initJSON(form, badge)
 {
     "use strict";
 
-	form.val(
+    form.val(
     {
         "sidome": {
             "default": true, // the sidome is a cube by default
@@ -96,13 +96,24 @@ function reinitialisation(canvas)
     $(accueil).show( "clip", 2000 );
 }
 
+function getPersonExtern(id) {
+    "use strict";
+
+    // returns a promises that fullfiled with the json object
+    return $.ajax({
+        type: "GET",
+        url: "http://www.sido-event.com/inscriptions/sido_connecte/get/"+ id + "/bypass",
+        accept: "application/json"
+    });
+}
+
 function getPerson(id) {
     "use strict";
 
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://localhost:3000/persons/" + id,
+        url: "http://sido.qze.fr:3000/persons/" + id,
         accept: "application/json"
     });
 }
@@ -113,7 +124,7 @@ function getSidome(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://localhost:3000/sidomes/" + id,
+        url: "http://sido.qze.fr:3000/sidomes/" + id,
         accept: "application/json"
     });
 }
@@ -123,7 +134,7 @@ function postPerson(json) {
 
     return $.ajax({
         type: "POST",
-        url: "http://localhost:3000/persons",
+        url: "http://sido.qze.fr:3000/persons",
         data: JSON.stringify(json),
         processData: false,
         contentType: "application/json"
@@ -135,7 +146,7 @@ function postSidome(sidome) {
 
     return $.ajax({
         type: "POST",
-        url: "http://localhost:3000/sidomes",
+        url: "http://sido.qze.fr:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -146,7 +157,7 @@ function putSidome(sidome) {
     "use strict";
     $.ajax({
         type: "PUT",
-        url: "http://localhost:3000/sidomes",
+        url: "http://sido.qze.fr:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -156,8 +167,7 @@ function putSidome(sidome) {
 function getUser(input) {
     "use strict";
 
-    tab.shuffle();
-    console.log(tab);
+    
 
     if(input.value != "")
     {
@@ -176,23 +186,49 @@ function getUser(input) {
         }
 
         if(form != null){
-           
+
+            tab.shuffle();
+            console.log(tab);
             $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
                 var temp = $(this).children(".sliderSectionIns").children("input");
                 var i = $(temp).attr("rel");
                 $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
             });
-
-            $(form).children(".accueil").hide( "blind", 1000 );
-            $(form).children(".bienvenue").show( "clip", 3000 );
+            
             $(form).val().sidome.id = input.value;
 
-            // form.childNodes[7].childNodes[1].innerHTML += " " + prenom; // TODO BUG ICI
-
             getPerson(input.value)
-                .then(function(json) {
+                .then(function(json) {  // Réponse 200 ok   person already exists
                     //$(form).find(".welcome").find("h2").append(' ' + json.prenom);
-                    postPerson(json).then(function() {
+                    // we get his sidome
+                    var prenom = json.prenom;
+                    $(form).children(".bienvenue").find(".username").html(prenom);
+                    getSidome($(form).val().sidome.id).then(function(si) {
+                        $(form).val().sidome = si;
+
+                        $(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
+
+                        var refreshIntervalId = setInterval( function() {
+                            putSidome(si);
+                        }, 5000 );
+                        $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                    }).fail(function() {    // He doesn't have sidome
+                        var sidome = $(form).val().sidome;
+                        postSidome(sidome).then(function(){
+
+                            
+
+                            var refreshIntervalId = setInterval( function() {
+                                putSidome(sidome);
+                            }, 5000 );
+                            $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                        }).fail(function() {
+                            console.log( "error" );
+                        });
+                    });
+
+                    /*postPerson(json).then(function() {
 
                         var sidome = $(form).val().sidome;
                         postSidome(sidome).then(function(){
@@ -224,16 +260,34 @@ function getUser(input) {
                                 }, 5000 );
                                 $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
                             });
+                        });
+                    });*/
+                }).fail(function(){  // Réponse 404 Not found on our database
+                    getPersonExtern(input.value).then(function(person){       //Search in Sido database  - then 200 ok
+                        var prenom = "Thomas";
+                        $(form).children(".bienvenue").find(".username").html(prenom);
+                        postPerson(person).then(function() {        // Posts it in the base
+                            var sidome = $(form).val().sidome;
+                            postSidome(sidome).then(function(){     //Create a sidome
+                                var refreshIntervalId = setInterval( function() {
+                                    putSidome(sidome);
+                                }, 5000 );
+                                $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                            }).fail(function(){     // Réponse 409 already exists ???
+                                
+                            });
+                        }).fail(function(){     // Réponse 404 not in their base (or 409 person already exists ???)
 
                         });
-                    });
+                    })
                 });
             //console.log($(form).children("input"));
             $(form).children("input").val("");
             $(form).val().occupe = true;
 
+            $(form).children(".accueil").hide( "blind", 100 );
+            $(form).children(".bienvenue").show( "clip", 300 );
         }
-
         input.value = "";
     }
 }
@@ -304,32 +358,32 @@ $(document).ready(function(){
         return false;
     });
 
-	$(".form").each(function(){
+    $(".form").each(function(){
         
         initJSON($(this), "<NUMERO DE BADGE>");
         $(this).val().occupe = false;
-	});
+    });
 
-	// RESET THE FORM VALUES BECAUSE SOME BROWSERS USE CACHED VALUES
-	$(".questionHidden").val(50);
+    // RESET THE FORM VALUES BECAUSE SOME BROWSERS USE CACHED VALUES
+    $(".questionHidden").val(50);
 
     $("input[type=\"range\"]").on("touchmove", function() {
         reponseQuestion(this);
     });
 
-	$("input[type=\"range\"]").change(function () {
+    $("input[type=\"range\"]").change(function () {
         reponseQuestion(this);
     });
 
-	// BUTTONS
-	$(".go").click(function(){
+    // BUTTONS
+    $(".go").click(function(){
         var form = $(this).parents(".form");
-		$(form).children(".bienvenue").hide( "blind", 1000 );
+        $(form).children(".bienvenue").hide( "blind", 1000 );
         $(form).children(".formIns").show( "clip", 3000 );
-	});
+    });
 
-	$(".buttonStop").click(function(){
-		// Not sure what to do here
+    $(".buttonStop").click(function(){
+        // Not sure what to do here
         var a = $(this).parents(".formIns");
 
         clearInterval($(a).parent().val().refreshIntervalId);
@@ -338,7 +392,7 @@ $(document).ready(function(){
         var canvasData = $(".keep-canvas1")[0].toDataURL("image/png");
         $.ajax({
             type: "POST",
-            url: "http://localhost:3000/image" + $(a).parent().val().sidome.id,
+            url: "http://sido.qze.fr:3000/image" + $(a).parent().val().sidome.id,
             data: canvasData,
             processData: false,
             contentType: "application/"
@@ -348,7 +402,7 @@ $(document).ready(function(){
 
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
-	});
+    });
 
     /*$(".remerciement-canvas").click(function(){
             var c = $(this);
@@ -361,14 +415,14 @@ $(document).ready(function(){
 
         });*/
 
-	// FORM SUBMIT
-	$(".formSite").submit(function(evt){
-		evt.stopImmediatePropagation();
-		$.post($(this).attr("action"), $(this).serialize(), function(response){
+    // FORM SUBMIT
+    $(".formSite").submit(function(evt){
+        evt.stopImmediatePropagation();
+        $.post($(this).attr("action"), $(this).serialize(), function(response){
 
-		});
-		return false;
-	});
+        });
+        return false;
+    });
 
 });
 
@@ -382,9 +436,9 @@ $(window).resize(function() {
 
 function cleanForm(formDiv) {
     "use strict";
-	
+    
     $(formDiv).find(".questionHidden").val("62.5");
-	$(formDiv).find(".slider").val(50);
+    $(formDiv).find(".slider").val(50);
     initJSON(formDiv, $(formDiv).val().sidome.id);
     console.log($(formDiv).val().sidome);
 }

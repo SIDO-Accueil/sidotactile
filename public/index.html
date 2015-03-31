@@ -618,11 +618,19 @@ void draw()  {
 
                         void mouseReleased(float x, float y) {
                             if (mouseY > ysido + 50 && click == 1){
-                            xsido = mouseX;
-                            ysido = mouseY;
-                            xdis = (mouseX - width / 2) / 13;
-                            ydis = (mouseY- height / 3) / 13;
-                            coloration = 1;
+                                xsido = mouseX;
+                                ysido = mouseY;
+                                xdis = (mouseX - width / 2) / 13;
+                                ydis = (mouseY- height / 3) / 13;
+                                coloration = 1;
+
+                                var colorSidome = $(".form1").val().sidome.color;
+                                colorSidome.r = cl1;
+                                colorSidome.g = cl2;
+                                colorSidome.b = cl3;
+                                $(".form1").val().sidome.default = false;
+
+                                putSidome($(".form1").val().sidome);
                             }
                             click = 0;
                         }
@@ -673,7 +681,7 @@ void draw()  {
                     <img src="img/accueil.png" class="img-accueil" />
                 </div>
                 <div class="bienvenue bienvenue2">
-                     <h1><b>Bonjour John !</b></h1><br/><h1> Personnalisez votre SIdÔme </h1>
+                    <h1><b>Bonjour <span class ="username" >John</span> !</b></h1><br/><h1> Personnalisez votre SIdÔme </h1>
                     <script type="text/processing">
 
 
@@ -1255,13 +1263,23 @@ void draw()  {
 
                         void mouseReleased(float x, float y) {
                             if (mouseY > ysido + 50 && click == 1){
-                            xsido = mouseX;
-                            ysido = mouseY;
-                            xdis = (mouseX - width / 2) / 13;
-                            ydis = (mouseY- height / 3) / 13;
-                            coloration = 1;
+                                xsido = mouseX;
+                                ysido = mouseY;
+                                xdis = (mouseX - width / 2) / 13;
+                                ydis = (mouseY- height / 3) / 13;
+                                coloration = 1;
+
+                                var colorSidome = $(".form1").val().sidome.color;
+                                colorSidome.r = cl1;
+                                colorSidome.g = cl2;
+                                colorSidome.b = cl3;
+                                $(".form1").val().sidome.default = false;
+
+                                putSidome($(".form1").val().sidome);
                             }
                             click = 0;
+
+
                         }
 
                         void mousePressed() {

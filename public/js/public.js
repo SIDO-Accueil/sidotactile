@@ -197,7 +197,7 @@ function getUser(input) {
             
             $(form).val().sidome.id = input.value;
 
-            getPerson(input.value)
+            getPerson($(form).val().sidome.id)
                 .then(function(json) {  // Réponse 200 ok   person already exists
                     //$(form).find(".welcome").find("h2").append(' ' + json.prenom);
                     // we get his sidome
@@ -263,7 +263,7 @@ function getUser(input) {
                         });
                     });*/
                 }).fail(function(){  // Réponse 404 Not found on our database
-                    getPersonExtern(input.value).then(function(person){       //Search in Sido database  - then 200 ok
+                    getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
                         var prenom = "Thomas";
                         $(form).children(".bienvenue").find(".username").html(prenom);
                         postPerson(person).then(function() {        // Posts it in the base

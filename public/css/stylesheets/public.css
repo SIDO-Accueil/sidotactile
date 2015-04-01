@@ -356,10 +356,15 @@ input {
 
 body{
   margin-left: 0 !important;
+  /*overflow:hidden;*/
 }
 
 .bienvenue input{
   float : top;
+}
+
+.bienvenue{
+  height:inherit;
 }
 
 .remerciement h1 {
@@ -397,13 +402,13 @@ border-right: 40px solid transparent;
 border-right: 0px solid transparent; 
 }
 
-.form1 .formIns, .form1, .remerciement1{
+/*.form1 .formIns, .accueil1, .remerciement1, .bienvenue1{
   border-right: 1px solid #fff;
 }
 
-.form2 .formIns, .remerciement2, .form2 {
+.form2 .formIns, .remerciement2, .accueil2, .bienvenue2 {
   border-left: 1px solid #fff;
-}
+}*/
 
 .form2{
   right:0;
@@ -486,3 +491,16 @@ input[type="range"]::-webkit-slider-thumb {
   opacity:1;
   outline: none !important;
 }
+
+.separation{
+  position:relative;
+  width:1px;
+  background-color: white;
+  height: inherit;
+  float:left;
+  z-index:666;
+}
+
+/*.wrapperSliders{
+  overflow: auto;
+}*/

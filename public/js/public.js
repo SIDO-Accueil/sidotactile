@@ -89,11 +89,8 @@ function reinitialisation(canvas)
     $(canvas).parents(".form").find(".questionHidden").val("62.5");
     $(canvas).parents(".form").find(".slider").val(50);
 
-    //$(canvas).draggable( 'destroy' );
-    /*$(canvas).unbind("click");*/
-    /*$(remerciement).html("");*/
     $(remerciement).hide( "blind", 1000 );
-    $(accueil).show( "clip", 2000 );
+    $(accueil).show( "fold", 1000 );
 }
 
 function getPersonExtern(id) {
@@ -199,7 +196,6 @@ function getUser(input) {
 
             getPerson($(form).val().sidome.id)
                 .then(function(json) {  // Réponse 200 ok   person already exists
-                    //$(form).find(".welcome").find("h2").append(' ' + json.prenom);
                     // we get his sidome
                     var prenom = json.prenom;
                     $(form).children(".bienvenue").find(".username").html(prenom);
@@ -281,7 +277,6 @@ function getUser(input) {
                         });
                     })
                 });
-            //console.log($(form).children("input"));
             $(form).children("input").val("");
             $(form).val().occupe = true;
 
@@ -352,12 +347,7 @@ function reponseQuestion(input)
 $(document).ready(function(){
     "use strict";
 
-    //$(".input_userid").focus();
     setInterval( function() { $(".input_userid").focus(); }, 200 );
-    $(".accueil").click(function(e)
-    {
-        $(".input_userid").focus();
-    });
 
     $(document).on('contextmenu', 'body', function(e)
     {
@@ -410,17 +400,6 @@ $(document).ready(function(){
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );
 
     });
-
-    /*$(".remerciement-canvas").click(function(){
-            var c = $(this);
-            $(this).parents(".remerciement").hide( "blind", 1000 );
-            $(this).parents(".form").children(".bye-bye").show( "clip", 4000 );
-
-            setTimeout(function(event) {
-               reinitialisation(c);
-            }, 10000); 
-
-        });*/
 
     // FORM SUBMIT
     $(".formSite").submit(function(evt){

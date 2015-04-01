@@ -287,6 +287,7 @@ function getUser(input) {
                 }).fail(function(){  // Réponse 404 Not found on our database
                     getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
                         var prenom = person.prenom;
+                        console.log(person);
                         $(form).children(".bienvenue").find(".username").html(prenom);
                         postPerson(person).then(function() {        // Posts it in the base
                             var sidome = $(form).val().sidome;

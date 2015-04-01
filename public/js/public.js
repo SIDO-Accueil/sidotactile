@@ -93,18 +93,30 @@ function reinitialisation(canvas)
     $(accueil).show( "fold", 1000 );
 }
 
+function checkSidome(sidome, form) {
+    "use strict";
+
+    // returns a promises that fullfiled with the json object
+    /*return $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/persons/" + id,
+        accept: "application/json"
+    });*/
+console.log("hahahaa");
+}
+
 function getPersonExtern(badge) {
     "use strict";
 
     // returns a promises that fullfiled with the json object
-    //return $.ajax({
-    //    type: "GET",
-    //    url: "http://www.sido-event.com/inscriptions/sido_connecte/get/"+ id + "/bypass",
-    //    accept: "application/json"
-    //});
+    return $.ajax({
+        type: "GET",
+        url: "http://www.sido-event.com/inscriptions/sido_connecte/get/"+ id + "/bypass",
+        accept: "application/json"
+    });
 
     // FOR TESTING PURPOSE ONLY, WAITING FOR THE SIDO PERSON API:
-    return new Promise(function (resolve, reject) {
+   /* return new Promise(function (resolve, reject) {
         var johndoe = {
             "id": badge,
             "civilite": "M.",
@@ -115,7 +127,7 @@ function getPersonExtern(badge) {
             "company": md5(md5(md5(md5(md5(badge)))))
         };
         resolve(johndoe);
-    });
+    });*/
 }
 
 function getPerson(id) {
@@ -198,14 +210,6 @@ function getUser(input) {
 
         if(form != null){
 
-            tab.shuffle();
-            console.log(tab);
-            $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
-                var temp = $(this).children(".sliderSectionIns").children("input");
-                var i = $(temp).attr("rel");
-                $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
-            });
-            
             $(form).val().sidome.id = input.value;
 
             getPerson($(form).val().sidome.id)
@@ -213,25 +217,33 @@ function getUser(input) {
                     // we get his sidome
                     var prenom = json.prenom;
                     $(form).children(".bienvenue").find(".username").html(prenom);
-                    getSidome($(form).val().sidome.id).then(function(si) {
+                    getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists
                         $(form).val().sidome = si;
 
-                        $(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
+                        //$(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
 
                         var refreshIntervalId = setInterval( function() {
                             putSidome(si);
                         }, 5000 );
                         $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                        checkSidome($(form).val().sidome, $(form));
+
                     }).fail(function() {    // He doesn't have sidome
                         var sidome = $(form).val().sidome;
                         postSidome(sidome).then(function(){
-
-                            
-
                             var refreshIntervalId = setInterval( function() {
                                 putSidome(sidome);
                             }, 5000 );
                             $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                            tab.shuffle();
+                            console.log(tab);
+                            $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
+                                var temp = $(this).children(".sliderSectionIns").children("input");
+                                var i = $(temp).attr("rel");
+                                $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
+                            });
 
                         }).fail(function() {
                             console.log( "error" );
@@ -274,7 +286,7 @@ function getUser(input) {
                     });*/
                 }).fail(function(){  // Réponse 404 Not found on our database
                     getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
-                        var prenom = "Thomas";
+                        var prenom = person.prenom;
                         $(form).children(".bienvenue").find(".username").html(prenom);
                         postPerson(person).then(function() {        // Posts it in the base
                             var sidome = $(form).val().sidome;
@@ -283,8 +295,28 @@ function getUser(input) {
                                     putSidome(sidome);
                                 }, 5000 );
                                 $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                                tab.shuffle();
+                                console.log(tab);
+                                $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
+                                    var temp = $(this).children(".sliderSectionIns").children("input");
+                                    var i = $(temp).attr("rel");
+                                    $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
+                                });
+
                             }).fail(function(){     // Réponse 409 already exists ???
                                 
+                                /*$(form).val().sidome = si;
+
+                                //$(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
+
+                                var refreshIntervalId = setInterval( function() {
+                                    putSidome(si);
+                                }, 5000 );
+                                $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                                checkSidome($(form).val().sidome);*/
+
                             });
                         }).fail(function(){     // Réponse 404 not in their base (or 409 person already exists ???)
 
@@ -396,6 +428,7 @@ $(document).ready(function(){
     $(".buttonStop").click(function(){
         // Not sure what to do here
         var a = $(this).parents(".formIns");
+        var canvas = $(a).parents(".form").children(".remerciement").children(".keep-canvas");
 
         clearInterval($(a).parent().val().refreshIntervalId);
         putSidome($(a).parent().val().sidome);
@@ -403,7 +436,7 @@ $(document).ready(function(){
         var canvasData = $(".keep-canvas1")[0].toDataURL("image/png");
         $.ajax({
             type: "POST",
-            url: "http://localhost:3000/image" + $(a).parent().val().sidome.id,
+            url: "http://localhost:3000/image/" + $(a).parent().val().sidome.id,
             data: canvasData,
             processData: false,
             contentType: "application/"

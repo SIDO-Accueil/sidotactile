@@ -111,7 +111,7 @@ function getPersonExtern(badge) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://www.sido-event.com/inscriptions/sido_connecte/get/"+ id + "/bypass",
+        url: "http://www.sido-event.com/inscriptions/sido_connecte/get/"+ badge + "/bypass",
         accept: "application/json"
     });
 

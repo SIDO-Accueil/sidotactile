@@ -152,12 +152,12 @@ function getSidome(id) {
     });
 }
 
-function postPerson(json) {
+function postPerson(json, badge) {
     "use strict";
 
     return $.ajax({
         type: "POST",
-        url: "http://localhost:3000/persons/" + json.id,
+        url: "http://localhost:3000/persons/" + badge,
         data: JSON.stringify(json),
         processData: false,
         contentType: "application/json"
@@ -289,7 +289,8 @@ function getUser(input) {
                         var prenom = person.prenom;
                         console.log(person);
                         $(form).children(".bienvenue").find(".username").html(prenom);
-                        postPerson(person).then(function() {        // Posts it in the base
+                        console.log( $(form).children(".bienvenue").find(".username"));
+                        postPerson(person, $(form).val().sidome.id).then(function() {        // Posts it in the base
                             var sidome = $(form).val().sidome;
                             postSidome(sidome).then(function(){     //Create a sidome
                                 var refreshIntervalId = setInterval( function() {

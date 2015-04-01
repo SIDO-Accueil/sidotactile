@@ -93,14 +93,28 @@ function reinitialisation(canvas)
     $(accueil).show( "fold", 1000 );
 }
 
-function getPersonExtern(id) {
+function getPersonExtern(badge) {
     "use strict";
 
     // returns a promises that fullfiled with the json object
-    return $.ajax({
-        type: "GET",
-        url: "http://www.sido-event.com/inscriptions/sido_connecte/get/"+ id + "/bypass",
-        accept: "application/json"
+    //return $.ajax({
+    //    type: "GET",
+    //    url: "http://www.sido-event.com/inscriptions/sido_connecte/get/"+ id + "/bypass",
+    //    accept: "application/json"
+    //});
+
+    // FOR TESTING PURPOSE ONLY, WAITING FOR THE SIDO PERSON API:
+    return new Promise(function (resolve, reject) {
+        var johndoe = {
+            "id": badge,
+            "civilite": "M.",
+            "nom": md5(badge),
+            "prenom": md5(md5(badge)),
+            "twitter": "@" + md5(md5(badge)) + md5(badge),
+            "email": md5(md5(md5(badge))) + "@mail.me",
+            "company": md5(md5(md5(md5(md5(badge)))))
+        };
+        resolve(johndoe);
     });
 }
 
@@ -110,7 +124,7 @@ function getPerson(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://sido.qze.fr:3000/persons/" + id,
+        url: "http://localhost:3000/persons/" + id,
         accept: "application/json"
     });
 }
@@ -121,7 +135,7 @@ function getSidome(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://sido.qze.fr:3000/sidomes/" + id,
+        url: "http://localhost:3000/sidomes/" + id,
         accept: "application/json"
     });
 }
@@ -131,7 +145,7 @@ function postPerson(json) {
 
     return $.ajax({
         type: "POST",
-        url: "http://sido.qze.fr:3000/persons",
+        url: "http://localhost:3000/persons/" + json.id,
         data: JSON.stringify(json),
         processData: false,
         contentType: "application/json"
@@ -143,7 +157,7 @@ function postSidome(sidome) {
 
     return $.ajax({
         type: "POST",
-        url: "http://sido.qze.fr:3000/sidomes",
+        url: "http://localhost:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -154,7 +168,7 @@ function putSidome(sidome) {
     "use strict";
     $.ajax({
         type: "PUT",
-        url: "http://sido.qze.fr:3000/sidomes",
+        url: "http://localhost:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -389,7 +403,7 @@ $(document).ready(function(){
         var canvasData = $(".keep-canvas1")[0].toDataURL("image/png");
         $.ajax({
             type: "POST",
-            url: "http://sido.qze.fr:3000/image" + $(a).parent().val().sidome.id,
+            url: "http://localhost:3000/image" + $(a).parent().val().sidome.id,
             data: canvasData,
             processData: false,
             contentType: "application/"

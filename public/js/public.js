@@ -85,7 +85,7 @@ function reinitialisation(canvas)
     var remerciement = $(canvas).parents(".form").children(".bye-bye");
     var accueil  = $(canvas).parents(".form").children(".accueil");
     $(canvas).parents(".form").children("input").val("");
-
+    $(canvas).parents(".form").children(".bienvenue").find(".username").html("");
     $(canvas).parents(".form").find(".questionHidden").val("62.5");
     $(canvas).parents(".form").find(".slider").val(50);
 
@@ -158,7 +158,7 @@ function postPerson(json, badge) {
     return $.ajax({
         type: "POST",
         url: "http://localhost:3000/persons/" + badge,
-        data: JSON.stringify(json),
+        data: json,
         processData: false,
         contentType: "application/json"
     });
@@ -288,7 +288,9 @@ function getUser(input) {
                     getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
                         var prenom = person.prenom;
                         console.log(person);
+
                         $(form).children(".bienvenue").find(".username").html(prenom);
+                        console.log(person.prenom);
                         console.log( $(form).children(".bienvenue").find(".username"));
                         postPerson(person, $(form).val().sidome.id).then(function() {        // Posts it in the base
                             var sidome = $(form).val().sidome;

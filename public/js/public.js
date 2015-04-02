@@ -217,7 +217,7 @@ function getUser(input) {
                     // we get his sidome
                     var user = JSON.parse(json);
                     var prenom = user.prenom;
-                    $(form).children(".bienvenue").find(".username").html(prenom);
+                    $(form).find(".username").html(prenom);
                     getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists
                         $(form).val().sidome = si;
 
@@ -289,11 +289,11 @@ function getUser(input) {
                     getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
                         var user = JSON.parse(person);
                         var prenom = user.prenom;
-                        console.log(person);
+                        console.log(user);
 
-                        $(form).children(".bienvenue").find(".username").html(prenom);
-                        console.log(person.prenom);
-                        console.log( $(form).children(".bienvenue").find(".username"));
+                        $(form).find(".username").html(prenom);
+                        console.log(prenom);
+                        console.log( $(form).find(".username"));
                         postPerson(person, $(form).val().sidome.id).then(function() {        // Posts it in the base
                             var sidome = $(form).val().sidome;
                             postSidome(sidome).then(function(){     //Create a sidome
@@ -318,7 +318,7 @@ function getUser(input) {
 
                                 var refreshIntervalId = setInterval( function() {
                                     putSidome(si);
-                                }, 5000 );
+                                }, 5000 );²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²² ²²²
                                 $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
 
                                 checkSidome($(form).val().sidome);*/

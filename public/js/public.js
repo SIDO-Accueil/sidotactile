@@ -215,7 +215,8 @@ function getUser(input) {
             getPerson($(form).val().sidome.id)
                 .then(function(json) {  // Réponse 200 ok   person already exists
                     // we get his sidome
-                    var prenom = json.prenom;
+                    var user = JSON.parse(json);
+                    var prenom = user.prenom;
                     $(form).children(".bienvenue").find(".username").html(prenom);
                     getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists
                         $(form).val().sidome = si;
@@ -286,7 +287,8 @@ function getUser(input) {
                     });*/
                 }).fail(function(){  // Réponse 404 Not found on our database
                     getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
-                        var prenom = person.prenom;
+                        var user = JSON.parse(person);
+                        var prenom = user.prenom;
                         console.log(person);
 
                         $(form).children(".bienvenue").find(".username").html(prenom);

@@ -23,7 +23,7 @@ function initJSON(form, badge)
     form.val(
     {
         "sidome": {
-            "default": true, // the sidome is a cube by default
+            "finish": false, // the sidome is a cube by default
             "visible": true,  // visibilty
             "id": badge,
             "color": {
@@ -103,6 +103,21 @@ function checkSidome(sidome, form) {
         accept: "application/json"
     });*/
 console.log("hahahaa");
+
+    /*var nodes = sidome.nodes;
+    for(var i = 0; i < 8; i++){
+        var t = 0;
+        var node = nodes["node"+i];
+        var temp = 0;
+        if(abs(node.x) == 1.25 && abs(node.y) == 1.25 && abs(node.z) == 1.25 ){
+            //if(temp > 2)
+
+        }else{
+            $(form).children(".formIns").children(".wrapperSliders").children(".sliderSection")[t].children(".sliderSectionIns").children("input");
+            t++;
+        }
+        
+    }*/
 }
 
 function getPersonExtern(badge) {
@@ -398,6 +413,16 @@ function reponseQuestion(input)
 
 $(document).ready(function(){
     "use strict";
+
+    /*var form = $(".form1");
+
+    for(var i = 0; i < 8; i++){
+        var t = 0;
+        console.log($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection")[t].children(".sliderSectionIns").children("input"));
+        t++;        
+    }*/
+
+
 
     setInterval( function() { $(".input_userid").focus(); }, 200 );
 

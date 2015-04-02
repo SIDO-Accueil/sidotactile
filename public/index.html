@@ -15,9 +15,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-    <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
     <script type="text/javascript" src="js/processing.min.js"></script>
-    <script type="text/javascript" src="js/md5.min.js"></script>
     <script type="text/javascript" src="js/public.js"></script>
 
     <!--JS for range-touch-->
@@ -30,7 +28,7 @@
         <div class="forms">
 
             <div class="form form1">
-                <input type="text" class="input_userid" style="height:0px; width:1px; border:none;" onChange="getUser(this);" />
+                <input type="text" onChange="getUser(this);" />
                 <div class="accueil accueil1">
 
                     <img src="img/accueil.png" class="img-accueil" />
@@ -462,14 +460,16 @@ void draw()  {
                         int cl1 = 220;
                         int cl2 = 90;
                         int cl3 = 40;
-                        int blanco = 255;
+                        int blanco = 0;
+                        int blancoi = 0;
+                        int poscharge = 0;
                         int click;
                         int coloration = 0;
                         
                         int cpppt = 0;
+                        int cppt = 0;
+                        int compteur;
                         int ajustblanc = 15;
-                        
-                        int cttp = 0;
 
                         float rotati = 0.005;
 
@@ -667,15 +667,24 @@ void draw()  {
                             else if (xdis == 0 && ydis == 0)
                             {
                                 //fill(blanco);
-                                cppt = 1;
-                                while (cppt != 12)
+                                compteur = 13;
+                                blanco = blancoi;
+                                while (compteur != 1)
                                     {
-                                        fill(blanco, blanco, blanco);
-                                        blanco += ajustblanc;
-                                        if (blanco > 165 || blanco < 0)
+                                        fill(255 - blanco);
+                                        blanco = blanco + ajustblanc;
+                                        if (blanco >= 180 || blanco < 0)
                                             blanco = 0;
-                                        ellipse (xmax / 2, ymax / 2 + cppt * 40, 10, 10);
-                                        cppt = cppt + 1;
+                                        ellipse (xmax / 2, ymax / 2 + compteur * 40, 10, 10);
+                                        compteur--;
+                                    }
+                                    cppt++;
+                                    if (cppt == 10)
+                                    {
+                                    blancoi = blancoi + ajustblanc;
+                                        if (blancoi >= 180 || blancoi < 0)
+                                            blancoi = 0;
+                                        cppt = 0;
                                     }
                             }
                             if (coloration == 0)
@@ -750,7 +759,7 @@ void draw()  {
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form1").val().sidome.default = false;
+                                $(".form1").val().sidome.finish = true;
 
                                 putSidome($(".form1").val().sidome);
                             }
@@ -797,7 +806,7 @@ void draw()  {
                      <div><h1>Bravo ! <br/><br/>Vous avez envoyé votre<br/><br/>SIdÔme dans la<br/><br/>SIdOsphère !</h1></div>
                 </div>
             </div>
-            <div class="separation"></div>
+
             <div class="form form2">
                 <div class="accueil accueil2">
                     <img src="img/accueil.png" class="img-accueil" />
@@ -1225,11 +1234,14 @@ void draw()  {
                         int cl2 = 90;
                         int cl3 = 40;
                         int blanco = 0;
+                        int blancoi = 0;
                         int poscharge = 0;
                         int click;
                         int coloration = 0;
                         
                         int cpppt = 0;
+                        int cppt = 0;
+                        int compteur;
                         int ajustblanc = 15;
 
                         float rotati = 0.005;
@@ -1431,15 +1443,24 @@ void draw()  {
                             else if (xdis == 0 && ydis == 0)
                             {
                                 //fill(blanco);
-                                cppt = 1;
-                                while (cppt != 12)
+                                compteur = 13;
+                                blanco = blancoi;
+                                while (compteur != 1)
                                     {
-                                        fill(blanco, blanco, blanco);
-                                        blanco += ajustblanc;
-                                        if (blanco > 165 || blanco < 0)
+                                        fill(255 - blanco);
+                                        blanco = blanco + ajustblanc;
+                                        if (blanco >= 180 || blanco < 0)
                                             blanco = 0;
-                                        ellipse (xmax / 2, ymax / 2 + cppt * 40, 10, 10);
-                                        cppt = cppt + 1;
+                                        ellipse (xmax / 2, ymax / 2 + compteur * 40, 10, 10);
+                                        compteur--;
+                                    }
+                                    cppt++;
+                                    if (cppt == 10)
+                                    {
+                                    blancoi = blancoi + ajustblanc;
+                                        if (blancoi >= 180 || blancoi < 0)
+                                            blancoi = 0;
+                                        cppt = 0;
                                     }
                             }
                             if (coloration == 0)
@@ -1515,13 +1536,11 @@ void draw()  {
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form2").val().sidome.default = false;
+                                $(".form2").val().sidome.finish = true;
 
                                 putSidome($(".form2").val().sidome);
                             }
                             click = 0;
-
-
                         }
 
                         void mousePressed() {
@@ -1567,7 +1586,6 @@ void draw()  {
             <div class="clearer"></div>
         </div>
     </div>
-    
 </div>
 </body>
 </html>

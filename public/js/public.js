@@ -230,7 +230,7 @@ function getUser(input) {
             getPerson($(form).val().sidome.id)
                 .then(function(json) {  // Réponse 200 ok   person already exists
                     // we get his sidome
-                    var user = JSON.parse(json);
+                    var user = json;
                     var prenom = user.prenom;
                     $(form).find(".username").html(prenom);
                     getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists

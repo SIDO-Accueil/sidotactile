@@ -15,11 +15,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/processing.min.js"></script>
-    <script type="text/javascript" src="js/public.js"></script>
 
-    <!--JS for range-touch-->
-    <script type="text/javascript" src="js/range-touch.min.js"></script>
+    <script type="text/javascript" src="js/processing.js"></script>
+    <script type="text/javascript" src="js/public.js"></script>
 
 </head>
 <body>
@@ -443,7 +441,7 @@ void draw()  {
                     <script type="text/processing">
 
 
-                        float xmag, ymag = 0;
+                       float xmag, ymag = 0;
                         float newXmag, newYmag = 0;
                         float a = 1.0;
                         int xmax = 950;
@@ -463,7 +461,7 @@ void draw()  {
                         int blanco = 0;
                         int blancoi = 0;
                         int poscharge = 0;
-                        int click;
+                        int click = 0;
                         int coloration = 0;
                         
                         int cpppt = 0;
@@ -471,6 +469,9 @@ void draw()  {
                         int compteur;
                         int ajustblanc = 15;
 
+                        int posx = xmax / 2;
+                        int posy = ymax / 3;
+                        
                         float rotati = 0.005;
 
                         float changecl11 = -1.6;//(80 / 50);
@@ -480,16 +481,19 @@ void draw()  {
                         float changecl22 = +1;//(60 / 60);
                         float changecl32 = +1.16666667;//(70 / 60);
                         int change = 1;
-
+                        
                         void setup()  {
-                            size(xmax, ymax, WEBGL);
-                            //colorMode(RGB, 1);
-                            strokeWeight(3);
+                        size(xmax, ymax, WEBGL);
+                        //lights();
+                        //colorMode(RGB, 1);
+                        strokeWeight(3);
                         }
 
                         function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
                                 fill(cl1, cl2, cl3);
+                                //stroke(0);
                                 noStroke();
+                                //stroke(255);
                                 //stroke(cl1, cl2, cl3);
                                // +Z "front" face
                                 fill(cl1, cl2, cl3);
@@ -569,7 +573,7 @@ void draw()  {
                         }
 
                         void    couleur(){
-                         if (change == 1)
+                          if (change == 1)
                             {
                              cl1 += changecl11;
                              cl2 += changecl21;
@@ -577,14 +581,14 @@ void draw()  {
                             if ((cl1 < 140 || cl2 < 20 || cl3 > 90) && changecl31 > 0)
                               change = 2;
                             else if ((cl1 > 220 || cl2 > 90 || cl3 < 40) && changecl31 < 0)
-                            {
-                              changecl11 = -changecl11;
+                                {
+                                changecl11 = -changecl11;
                                 changecl12 = -changecl12;
                                 changecl21 = -changecl21;
                                 changecl22 = -changecl22;
                                 changecl31 = -changecl31;
                                 changecl32 = -changecl32;  
-                            }
+                                }
                             }
                           else if (change == 2)
                             {
@@ -608,23 +612,19 @@ void draw()  {
                         }
 
                         void draw()  {
+//println(click);
 
-                            background(0, 50);
+                             //println("x = " +posx);
+                             //println("y = " +posy);
+                            background(0);
                             stroke (255);
                             fill(255);
-                            //noFill();
-                            //pointLight(51, 102, 126, 0.5, 0.4, 0.2);
-                            //textSize(40);
-                            //text("Lancez votre SIdÔme", xmax / 2 - 5 * 40 + 20, 0, -130);
-                            //text("dans la SIdOsphère", xmax / 2 - 4 * 40, 50, -130);
+                            
                             var nodes = $(".form1").val().sidome.nodes;
                             
                             //couleur();
                             pushMatrix();
-                            if (click == 1)
-                            translate(mouseX, mouseY, -30);
-                            else
-                            translate(xsido, ysido, -30);
+                            translate(posx, posy, -30);
                             
                             // ROTATION:
                             a += rotati;
@@ -634,7 +634,7 @@ void draw()  {
                             rotateX(a * 0.5);
                             rotateY(a * 0.5);
                             
-
+                            
                             float diff = xmag-newXmag;
                             if (abs(diff) >  0.01) {
                             xmag -= diff/4.0;
@@ -653,16 +653,16 @@ void draw()  {
                             
                             beginShape(QUADS);
                             
-                                drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
+                            drawPoints(nodes.node1, nodes.node2, nodes.node3, nodes.node4, nodes.node5, nodes.node6, nodes.node7, nodes.node8);
 
-                            endShape();
+                          endShape();
 
                             popMatrix();
                             //rect(0, 0, width, height);
                             if (click == 1){
                                 fill(255);
-                                if (mouseY > ysido + 50)
-                                angry(mouseX, mouseY);
+                                if (posy > ysido + 50)
+                                angry(posx, posy);
                                 fill(cl1, cl2, cl3);
                             }
                             else if (xdis == 0 && ydis == 0)
@@ -688,15 +688,16 @@ void draw()  {
                                         cppt = 0;
                                     }
                             }
+                            
                             if (coloration == 0)
-                            couleur();  
-                            xsido -= xdis;
-                            ysido -= ydis;
-                            if (xsido + 150 < 0 || ysido + 150 < 0 || xsido - 150 > width || ysido - 150 > height)
+                                couleur();  
+                            posx -= xdis;
+                            posy -= ydis;
+                            if (posx + 150 < 0 || posy + 150 < 0 || posx - 150 > width || posy - 150 > height)
                             {
                                 //kill();
                                 var c = $(".remerciement-canvas1");
-
+                                
                                 $(c).parents(".remerciement").hide( "blind", 0 );
                                 $(c).parents(".form").children(".bye-bye").show( "clip", 2000 );
 
@@ -726,7 +727,8 @@ void draw()  {
                                     ysido = ymax / 3;
                                     xdis = 0;
                                     ydis = 0;
-
+                                    posx = xmax / 2;
+                                    posy = ymax / 3;
                                     degrem = 2;
                                     test = 0;
                                     cl1 = 220;
@@ -734,82 +736,65 @@ void draw()  {
                                     cl3 = 40;
                                     click = 0;
                                 }, 1000); 
+                                
                             }
                         }
 
-                        void mousePress(float x, float y) {
-                        angry(x, y);
-                        }
-
-                        void mouseMove(float x, float y) {
-                            if (x != 0 && y != 0){
-                                x = mouseX;
-                                y = mouseY;
+                        void controlPress(float x, float y) {
+                            if (x < xboule + 80 && x > xboule - 80 && y < yboule + 80 && y > yboule - 80){
+                                click = 1;
+                                //angry(x, y);
+                                xboule = x;
+                                yboule = y;        
+                                }
                             }
+
+                        void controlMove(float x, float y) {
+                             if (x != 0 && y != 0){
+                                posx = x;
+                                posy = y;
+                                click = 1;
+                                }
                         }
 
-                        void mouseReleased(float x, float y) {
-                            if (mouseY > ysido + 50 && click == 1){
-                                xsido = mouseX;
-                                ysido = mouseY;
-                                xdis = (mouseX - width / 2) / 13;
-                                ydis = (mouseY- height / 3) / 13;
+                        void controlReleased(float x, float y) {
+                       //     if (y > ysido + 50 && click == 1){
+                                xsido = posx;
+                                ysido = posy;
+                                xdis = (posx - width / 2) / 13;
+                                ydis = (posy - height / 3) / 13;
                                 coloration = 1;
 
                                 var colorSidome = $(".form1").val().sidome.color;
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form1").val().sidome.finish = true;
-
-                                // CAPTURE D ECRAN POUR L EMAIL
-                                var canvasData = $(".remerciement-canvas1")[0].toDataURL("image/png");
-                                $.ajax({
-                                    type: "POST",
-                                    url: "http://localhost:3000/image/" + $('.form1').val().sidome.id,
-                                    data: canvasData,
-                                    processData: false,
-                                    contentType: "application/"
-                                });
-
-
+                                $(".form1").val().sidome.default = false;
 
                                 putSidome($(".form1").val().sidome);
-                            }
+                           // }
                             click = 0;
                         }
 
-                        void mousePressed() {
-                            if (mouseX < xboule + 80 && mouseX > xboule - 80 && mouseY < yboule + 80 && mouseY > yboule - 80){
-                                click = 1;
-                                mousePress(mouseX, mouseY);
-                                xboule = mouseX;
-                                yboule = mouseY;        
-                                }
-                        }
-                        void mouseDragged() {(mouseX, mouseY)
-                        mouseMove(mouseX, mouseY);
-                        }
-                        void mouseRelease() {
-                        mouseReleased(mouseX, mouseY);
-                        }
-
                         void touchStart(TouchEvent t) {
-                          for (int i = 0; i < t.changedTouches.length;i++) 
+                         for (int i = 0; i < t.changedTouches.length;i++) 
                           {
+                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
                             controlPress(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                         void touchMove(TouchEvent t) {
                           for (int i = 0; i < t.changedTouches.length;i++) 
                           {
+                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
                             controlMove(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                         void touchEnd(TouchEvent t) {
                           for (int i = 0; i < t.changedTouches.length;i++) 
                           {
-                            controlRelease(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
+                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
+                            controlReleased(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                     </script>
@@ -1229,7 +1214,7 @@ void draw()  {
                     <script type="text/processing">
 
 
-                        float xmag, ymag = 0;
+                      float xmag, ymag = 0;
                         float newXmag, newYmag = 0;
                         float a = 1.0;
                         int xmax = 950;
@@ -1249,7 +1234,7 @@ void draw()  {
                         int blanco = 0;
                         int blancoi = 0;
                         int poscharge = 0;
-                        int click;
+                        int click = 0;
                         int coloration = 0;
                         
                         int cpppt = 0;
@@ -1257,6 +1242,9 @@ void draw()  {
                         int compteur;
                         int ajustblanc = 15;
 
+                        int posx = xmax / 2;
+                        int posy = ymax / 3;
+                        
                         float rotati = 0.005;
 
                         float changecl11 = -1.6;//(80 / 50);
@@ -1266,6 +1254,7 @@ void draw()  {
                         float changecl22 = +1;//(60 / 60);
                         float changecl32 = +1.16666667;//(70 / 60);
                         int change = 1;
+                        
                         void setup()  {
                         size(xmax, ymax, WEBGL);
                         //lights();
@@ -1396,23 +1385,19 @@ void draw()  {
                         }
 
                         void draw()  {
+//println(click);
 
-                            background(0, 50);
+                             //println("x = " +posx);
+                             //println("y = " +posy);
+                            background(0);
                             stroke (255);
                             fill(255);
-                            //noFill();
-                            //directionalLight(cl1, cl2, cl3, xsido, y, -30);
-                            //textSize(40);
-                            //text("Lancez votre SIdÔme", xmax / 2 - 5 * 40 + 20, 0, -130);
-                            //text("dans la SIdOsphère", xmax / 2 - 4 * 40, 50, -130);
+                            
                             var nodes = $(".form2").val().sidome.nodes;
                             
                             //couleur();
                             pushMatrix();
-                            if (click == 1)
-                            translate(mouseX, mouseY, -30);
-                            else
-                            translate(xsido, ysido, -30);
+                            translate(posx, posy, -30);
                             
                             // ROTATION:
                             a += rotati;
@@ -1422,7 +1407,7 @@ void draw()  {
                             rotateX(a * 0.5);
                             rotateY(a * 0.5);
                             
-
+                            
                             float diff = xmag-newXmag;
                             if (abs(diff) >  0.01) {
                             xmag -= diff/4.0;
@@ -1449,8 +1434,8 @@ void draw()  {
                             //rect(0, 0, width, height);
                             if (click == 1){
                                 fill(255);
-                                if (mouseY > ysido + 50)
-                                angry(mouseX, mouseY);
+                                if (posy > ysido + 50)
+                                angry(posx, posy);
                                 fill(cl1, cl2, cl3);
                             }
                             else if (xdis == 0 && ydis == 0)
@@ -1476,11 +1461,12 @@ void draw()  {
                                         cppt = 0;
                                     }
                             }
+                            
                             if (coloration == 0)
                                 couleur();  
-                            xsido -= xdis;
-                            ysido -= ydis;
-                            if (xsido + 150 < 0 || ysido + 150 < 0 || xsido - 150 > width || ysido - 150 > height)
+                            posx -= xdis;
+                            posy -= ydis;
+                            if (posx + 150 < 0 || posy + 150 < 0 || posx - 150 > width || posy - 150 > height)
                             {
                                 //kill();
                                 var c = $(".remerciement-canvas2");
@@ -1505,6 +1491,8 @@ void draw()  {
                                     ymag = 0;
                                     newXmag = 0;
                                     newYmag = 0;
+                                    posx = xmax / 2;
+                                    posy = ymax / 3;
                                     a = 1.0;
                                     xmax = 950;
                                     ymax = 1070;
@@ -1526,67 +1514,61 @@ void draw()  {
                             }
                         }
 
-                        void mousePress(float x, float y) {
-                        angry(x, y);
-                        }
-
-                        void mouseMove(float x, float y) {
-                            if (x != 0 && y != 0){
-                                x = mouseX;
-                                y = mouseY;
+                        void controlPress(float x, float y) {
+                            if (x < xboule + 80 && x > xboule - 80 && y < yboule + 80 && y > yboule - 80){
+                                click = 1;
+                                //angry(x, y);
+                                xboule = x;
+                                yboule = y;        
+                                }
                             }
+
+                        void controlMove(float x, float y) {
+                             if (x != 0 && y != 0){
+                                posx = x;
+                                posy = y;
+                                click = 1;
+                                }
                         }
 
-                        void mouseReleased(float x, float y) {
-                            if (mouseY > ysido + 50 && click == 1){
-                                xsido = mouseX;
-                                ysido = mouseY;
-                                xdis = (mouseX - width / 2) / 13;
-                                ydis = (mouseY- height / 3) / 13;
+                        void controlReleased(float x, float y) {
+                           if (y > ysido + 50 && click == 1){
+                                xsido = posx;
+                                ysido = posy;
+                                xdis = (posx - width / 2) / 13;
+                                ydis = (posy - height / 3) / 13;
                                 coloration = 1;
 
                                 var colorSidome = $(".form2").val().sidome.color;
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form2").val().sidome.finish = true;
+                                $(".form2").val().sidome.default = false;
 
                                 putSidome($(".form2").val().sidome);
                             }
                             click = 0;
                         }
 
-                        void mousePressed() {
-                            if (mouseX < xboule + 80 && mouseX > xboule - 80 && mouseY < yboule + 80 && mouseY > yboule - 80){
-                                click = 1;
-                                mousePress(mouseX, mouseY);
-                                xboule = mouseX;
-                                yboule = mouseY;        
-                                }
-                        }
-                        void mouseDragged() {(mouseX, mouseY)
-                        mouseMove(mouseX, mouseY);
-                        }
-                        void mouseRelease() {
-                        mouseReleased(mouseX, mouseY);
-                        }
-
                         void touchStart(TouchEvent t) {
-                          for (int i = 0; i < t.changedTouches.length;i++) 
+                         for (int i = 0; i < t.changedTouches.length;i++) 
                           {
+                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
                             controlPress(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                         void touchMove(TouchEvent t) {
                           for (int i = 0; i < t.changedTouches.length;i++) 
                           {
+                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
                             controlMove(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                         void touchEnd(TouchEvent t) {
                           for (int i = 0; i < t.changedTouches.length;i++) 
                           {
-                            controlRelease(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
+                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
+                            controlReleased(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                     </script>

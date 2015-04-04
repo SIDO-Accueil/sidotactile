@@ -480,10 +480,11 @@ void draw()  {
                         float changecl22 = +1;//(60 / 60);
                         float changecl32 = +1.16666667;//(70 / 60);
                         int change = 1;
+
                         void setup()  {
-                        size(xmax, ymax, WEBGL);
-                        //colorMode(RGB, 1);
-                        strokeWeight(3);
+                            size(xmax, ymax, WEBGL);
+                            //colorMode(RGB, 1);
+                            strokeWeight(3);
                         }
 
                         function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
@@ -760,6 +761,18 @@ void draw()  {
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
                                 $(".form1").val().sidome.finish = true;
+
+                                // CAPTURE D ECRAN POUR L EMAIL
+                                var canvasData = $(".remerciement-canvas1")[0].toDataURL("image/png");
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:3000/image/" + $('.form1').val().sidome.id,
+                                    data: canvasData,
+                                    processData: false,
+                                    contentType: "application/"
+                                });
+
+
 
                                 putSidome($(".form1").val().sidome);
                             }

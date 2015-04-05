@@ -121,8 +121,8 @@ function checkSidome(sidome, form) {
         //var i = $(temp).attr("rel");
         /*console.log(i);
         console.log(tableau[i-1]);*/
-        console.log($(temp).attr("rel"));
-        console.log($(form).val().sidome.nodes["node" + tableau[i]].y);
+        //console.log($(temp).attr("rel"));
+        //console.log($(form).val().sidome.nodes["node" + tableau[i]].y);
         $(temp).val(val * 50);
         $(temp).attr("rel",tableau[i]);
         i += 1;
@@ -225,11 +225,18 @@ function getUser(input) {
         {
             if($(".form2").val().occupe == false)
             { // Si le second ne l'est pas
-                form = $(".form2");
+
+                if(!($(".form1").val().sidome.id === input.value))
+                    form = $(".form2");
             }
         }
         else {
-            form = $(".form1");
+            if($(".form2").val().occupe == true){
+                if(!($(".form2").val().sidome.id === input.value) ){
+                    form = $(".form1");
+                }
+            }
+            else form = $(".form1");  
         }
 
         if(form != null){
@@ -238,15 +245,15 @@ function getUser(input) {
             
             getPerson($(form).val().sidome.id).then(function(json, textStatus, jqXHR) {  // Réponse 200 ok   person already exists
                 // we get his sidome
-                console.log(json);
+                /*console.log(json);
                 console.log(jqXHR.status);
-                console.log(jqXHR.status === 200);
+                console.log(jqXHR.status === 200);*/
                 var user = json;
                 var prenom = user.prenom;
                 $(form).find(".username").html(prenom);
                 getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists 200
                     $(form).val().sidome = si;
-
+                    $(form).val().sidome.finish = false;
                     //$(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
 
                     var refreshIntervalId = setInterval( function() {
@@ -288,7 +295,7 @@ function getUser(input) {
                         if(errorThrown === "Not Found"){
                             console.log( "error" );
                         }
-                        console(jqXHR)
+                        console(jqXHR.status)
                     });
                 });
 
@@ -330,11 +337,11 @@ function getUser(input) {
                 getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
                     var user = JSON.parse(person);
                     var prenom = user.prenom;
-                    console.log(user);
+                    //console.log(user);
 
                     $(form).find(".username").html(prenom);
-                    console.log(prenom);
-                    console.log( $(form).find(".username"));
+                    //console.log(prenom);
+                    //console.log( $(form).find(".username"));
                     postPerson(person, $(form).val().sidome.id).then(function() {        // Posts it in the base
                         var sidome = $(form).val().sidome;
                         postSidome(sidome).then(function(){     //Create a sidome
@@ -362,6 +369,7 @@ function getUser(input) {
                             if(jqXHR.status === 409){
                                 getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists 200
                                     $(form).val().sidome = si;
+                                    $(form).val().sidome.finish = false;
                                     var refreshIntervalId = setInterval( function() {
                                         putSidome(si);
                                     }, 5000 );
@@ -556,5 +564,5 @@ function cleanForm(formDiv) {
     $(formDiv).find(".questionHidden").val("62.5");
     $(formDiv).find(".slider").val(50);
     initJSON(formDiv, $(formDiv).val().sidome.id);
-    console.log($(formDiv).val().sidome);
+    //console.log($(formDiv).val().sidome);
 }

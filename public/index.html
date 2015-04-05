@@ -19,6 +19,9 @@
     <script type="text/javascript" src="js/processing.js"></script>
     <script type="text/javascript" src="js/public.js"></script>
 
+    <!--JS for range-touch-->
+
+
 </head>
 <body>
 <div id="bodyFrame">
@@ -27,7 +30,7 @@
 
             <div class="form form1">
                 <input type="text" class="input_userid" style="height:0px; width:1px; border:none;" onChange="getUser(this);" />
-                <div class="accueil accueil1">
+                  <div class="accueil accueil1">
 
                     <img src="img/accueil.png" class="img-accueil" />
                 </div>
@@ -482,6 +485,8 @@ void draw()  {
                         float changecl32 = +1.16666667;//(70 / 60);
                         int change = 1;
                         
+                        int touch = 0;
+                        
                         void setup()  {
                         size(xmax, ymax, WEBGL);
                         //lights();
@@ -750,7 +755,7 @@ void draw()  {
                             }
 
                         void controlMove(float x, float y) {
-                             if (x != 0 && y != 0){
+                             if (x != 0 && y != 0 && click == 1){
                                 posx = x;
                                 posy = y;
                                 click = 1;
@@ -758,7 +763,7 @@ void draw()  {
                         }
 
                         void controlReleased(float x, float y) {
-                       //     if (y > ysido + 50 && click == 1){
+                            if (y > ysido + 50 && click == 1){
                                 xsido = posx;
                                 ysido = posy;
                                 xdis = (posx - width / 2) / 13;
@@ -769,41 +774,36 @@ void draw()  {
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form1").val().sidome.finish = true;
-
-                                // CAPTURE D ECRAN POUR L EMAIL
-                                var canvasData = $(".remerciement-canvas1")[0].toDataURL("image/png");
-                                $.ajax({
-                                    type: "POST",
-                                    url: "http://localhost:3000/image/" + $('.form1').val().sidome.id,
-                                    data: canvasData,
-                                    processData: false,
-                                    contentType: "application/"
-                                });
+                                $(".form1").val().sidome.default = false;
 
                                 putSidome($(".form1").val().sidome);
-                           // }
+                            }
+                            else
+                            {
+                            posx = xmax / 2;
+                            posy = ymax / 3;
                             click = 0;
+                            }
                         }
 
                         void touchStart(TouchEvent t) {
                          for (int i = 0; i < t.changedTouches.length;i++) 
                           {
-                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
+                          if (t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
                             controlPress(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                         void touchMove(TouchEvent t) {
                           for (int i = 0; i < t.changedTouches.length;i++) 
-                          {
-                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
-                            controlMove(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
+                            {
+                          if (t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
+                          controlMove(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                         void touchEnd(TouchEvent t) {
                           for (int i = 0; i < t.changedTouches.length;i++) 
                           {
-                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
+                          if (t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
                             controlReleased(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
@@ -1265,6 +1265,8 @@ void draw()  {
                         float changecl32 = +1.16666667;//(70 / 60);
                         int change = 1;
                         
+                        int touch = 0;
+                        
                         void setup()  {
                         size(xmax, ymax, WEBGL);
                         //lights();
@@ -1534,7 +1536,7 @@ void draw()  {
                             }
 
                         void controlMove(float x, float y) {
-                             if (x != 0 && y != 0){
+                             if (x != 0 && y != 0 && click == 1){
                                 posx = x;
                                 posy = y;
                                 click = 1;
@@ -1553,42 +1555,36 @@ void draw()  {
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form2").val().sidome.finish = true;
-
-
-                                // CAPTURE D ECRAN POUR L EMAIL
-                                var canvasData = $(".remerciement-canvas2")[0].toDataURL("image/png");
-                                $.ajax({
-                                    type: "POST",
-                                    url: "http://localhost:3000/image/" + $('.form2').val().sidome.id,
-                                    data: canvasData,
-                                    processData: false,
-                                    contentType: "application/"
-                                });
+                                $(".form2").val().sidome.default = false;
 
                                 putSidome($(".form2").val().sidome);
                             }
+                            else
+                            {
+                            posx = xmax / 2;
+                            posy = ymax / 3;
                             click = 0;
+                            }
                         }
-
+                        
                         void touchStart(TouchEvent t) {
                          for (int i = 0; i < t.changedTouches.length;i++) 
                           {
-                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
                             controlPress(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                         void touchMove(TouchEvent t) {
                           for (int i = 0; i < t.changedTouches.length;i++) 
                           {
-                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
+                          if (i != 0)
+                            controlMove(t.changedTouches[i].offsetX - xmax, t.changedTouches[i].offsetY);
+                            else
                             controlMove(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }
                         void touchEnd(TouchEvent t) {
                           for (int i = 0; i < t.changedTouches.length;i++) 
                           {
-                          if(t.changedTouches[i].offsetX > 0 && t.changedTouches[i].offsetX < xmax && t.changedTouches[i].offsetY > 0 && t.changedTouches[i].offsetY < ymax)
                             controlReleased(t.changedTouches[i].offsetX, t.changedTouches[i].offsetY);
                           }
                         }

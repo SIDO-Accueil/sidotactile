@@ -96,28 +96,37 @@ function reinitialisation(canvas)
 function checkSidome(sidome, form) {
     "use strict";
 
-    // returns a promises that fullfiled with the json object
-    /*return $.ajax({
-        type: "GET",
-        url: "http://localhost:3000/persons/" + id,
-        accept: "application/json"
-    });*/
-console.log("hahahaa");
+    var tableau = [];
+    for(var i = 1; i < 9; i++){
+        var node = $(form).val().sidome.nodes["node"+i];
 
-    /*var nodes = sidome.nodes;
-    for(var i = 0; i < 8; i++){
-        var t = 0;
-        var node = nodes["node"+i];
-        var temp = 0;
-        if(abs(node.x) == 1.25 && abs(node.y) == 1.25 && abs(node.z) == 1.25 ){
-            //if(temp > 2)
-
-        }else{
-            $(form).children(".formIns").children(".wrapperSliders").children(".sliderSection")[t].children(".sliderSectionIns").children("input");
-            t++;
-        }
-        
+        if(!(Math.abs(node.x) === 1.25 && Math.abs(node.y) === 1.25 && Math.abs(node.z) === 1.25))    tableau[tableau.length]=i;
+    }
+    console.log(tableau);
+    var j = 1;
+    while(tableau.length < 6){
+        if( tableau.indexOf(j) === -1 )
+            tableau[tableau.length] = j;
+        j++;
+    }
+    /*for(var i = 1; i < 9; i++){
+        console.log($($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection")[i]).children(".sliderSectionIns").children("input"));
+        $(input).parents(".form").val().sidome.nodes["node" + sliderRel].z
     }*/
+    var i = 0;
+
+    $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
+        var temp = $(this).children(".sliderSectionIns").children("input");
+        var val = Math.abs($(form).val().sidome.nodes["node" + tableau[i]].y) - 0.25;
+        //var i = $(temp).attr("rel");
+        /*console.log(i);
+        console.log(tableau[i-1]);*/
+        console.log($(temp).attr("rel"));
+        console.log($(form).val().sidome.nodes["node" + tableau[i]].y);
+        $(temp).val(val * 50);
+        $(temp).attr("rel",tableau[i]);
+        i += 1;
+    });
 }
 
 function getPersonExtern(badge) {
@@ -151,7 +160,7 @@ function getPerson(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://localhost:3000/persons/" + id,
+        url: "http://sido.qze.fr:3001/persons/" + id,
         accept: "application/json"
     });
 }
@@ -162,7 +171,7 @@ function getSidome(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://localhost:3000/sidomes/" + id,
+        url: "http://sido.qze.fr:3001/sidomes/" + id,
         accept: "application/json"
     });
 }
@@ -172,7 +181,7 @@ function postPerson(json, badge) {
 
     return $.ajax({
         type: "POST",
-        url: "http://localhost:3000/persons/" + badge,
+        url: "http://sido.qze.fr:3001/persons/" + badge,
         data: json,
         processData: false,
         contentType: "application/json"
@@ -184,7 +193,7 @@ function postSidome(sidome) {
 
     return $.ajax({
         type: "POST",
-        url: "http://localhost:3000/sidomes",
+        url: "http://sido.qze.fr:3001/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -195,8 +204,18 @@ function putSidome(sidome) {
     "use strict";
     $.ajax({
         type: "PUT",
-        url: "http://localhost:3000/sidomes",
+        url: "http://sido.qze.fr:3001/sidomes",
         data: JSON.stringify(sidome),
+        processData: false,
+        contentType: "application/json"
+    });
+}
+
+function testPOST() {
+    "use strict";
+    return $.ajax({
+        type: "POST",
+        url: "http://sido.qze.fr:4242/personsjson409",
         processData: false,
         contentType: "application/json"
     });
@@ -227,27 +246,119 @@ function getUser(input) {
 
             $(form).val().sidome.id = input.value;
 
-            getPerson($(form).val().sidome.id)
-                .then(function(json) {  // Réponse 200 ok   person already exists
-                    // we get his sidome
-                    var user = json;
-                    var prenom = user.prenom;
-                    $(form).find(".username").html(prenom);
-                    getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists
-                        $(form).val().sidome = si;
+            /*testPOST().then(function( data, textStatus, jqXHR ){
+                console.log(data);
+                console.log(textStatus);
+                console.log(jqXHR.status);
+            }).fail(function( jqXHR, textStatus, errorThrown ){
+                console.log(JSON.parse(jqXHR.responseText));
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            });*/
+            
+            getPerson($(form).val().sidome.id).then(function(json, textStatus, jqXHR) {  // Réponse 200 ok   person already exists
+                // we get his sidome
+                console.log(json);
+                console.log(jqXHR.status);
+                console.log(jqXHR.status === 200);
+                var user = json;
+                var prenom = user.prenom;
+                $(form).find(".username").html(prenom);
+                getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists 200
+                    $(form).val().sidome = si;
 
-                        //$(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
+                    //$(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
 
+                    var refreshIntervalId = setInterval( function() {
+                        putSidome(si);
+                    }, 5000 );
+                    $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                    checkSidome($(form).val().sidome, $(form));
+
+                    $(form).children("input").val("");
+                    $(form).val().occupe = true;
+
+                    $(form).children(".accueil").hide( "blind", 100 );
+                    $(form).children(".bienvenue").show( "clip", 300 );
+
+                }).fail(function(jqXHR, textStatus, errorThrown) {    // He doesn't have sidome
+                    var sidome = $(form).val().sidome;
+                    postSidome(sidome).then(function(){
                         var refreshIntervalId = setInterval( function() {
-                            putSidome(si);
+                            putSidome(sidome);
                         }, 5000 );
                         $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
 
-                        checkSidome($(form).val().sidome, $(form));
+                        tab.shuffle();
+                        console.log(tab);
+                        $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
+                            var temp = $(this).children(".sliderSectionIns").children("input");
+                            var i = $(temp).attr("rel");
+                            $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
+                        });
 
-                    }).fail(function() {    // He doesn't have sidome
+                        $(form).children("input").val("");
+                        $(form).val().occupe = true;
+
+                        $(form).children(".accueil").hide( "blind", 100 );
+                        $(form).children(".bienvenue").show( "clip", 300 );
+
+                    }).fail(function(jqXHR, textStatus, errorThrown) {  // Sidome already exists
+                        if(errorThrown === "Not Found"){
+                            console.log( "error" );
+                        }
+                        console(jqXHR)
+                    });
+                });
+
+                /*postPerson(json).then(function() {
+
+                    var sidome = $(form).val().sidome;
+                    postSidome(sidome).then(function(){
+                        var refreshIntervalId = setInterval( function() {
+                            putSidome(sidome);
+                        }, 5000 );
+                        $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                    }).fail(function() {
+                        console.log( "error" );
+                    });
+                }).fail(function() {
+
+                    // POST /persons failed, user already exist
+                    var sidome = $(form).val().sidome;
+                    postSidome(sidome).then(function(){
+                        var refreshIntervalId = setInterval( function() {
+                            putSidome(sidome);
+                        }, 5000 );
+                        $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                    }).fail(function() {
+
+                        // The sidome already exist
+                        // we get it
+                        getSidome(sidome.id).then(function(si) {
+                            $(form).val().sidome = si;
+                            var refreshIntervalId = setInterval( function() {
+                                putSidome(si);
+                            }, 5000 );
+                            $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                        });
+                    });
+                });*/
+            }).fail(function(jqXHR, textStatus, errorThrown){  // Réponse 404 Not found on our database
+                getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
+                    var user = JSON.parse(person);
+                    var prenom = user.prenom;
+                    console.log(user);
+
+                    $(form).find(".username").html(prenom);
+                    console.log(prenom);
+                    console.log( $(form).find(".username"));
+                    postPerson(person, $(form).val().sidome.id).then(function() {        // Posts it in the base
                         var sidome = $(form).val().sidome;
-                        postSidome(sidome).then(function(){
+                        postSidome(sidome).then(function(){     //Create a sidome
                             var refreshIntervalId = setInterval( function() {
                                 putSidome(sidome);
                             }, 5000 );
@@ -261,94 +372,75 @@ function getUser(input) {
                                 $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
                             });
 
-                        }).fail(function() {
-                            console.log( "error" );
-                        });
-                    });
+                            $(form).children("input").val("");
+                            $(form).val().occupe = true;
 
-                    /*postPerson(json).then(function() {
+                            $(form).children(".accueil").hide( "blind", 100 );
+                            $(form).children(".bienvenue").show( "clip", 300 );
 
-                        var sidome = $(form).val().sidome;
-                        postSidome(sidome).then(function(){
+                        }).fail(function(jqXHR, textStatus, errorThrown){     // Réponse 409 already exists ???
+                            
+                            if(jqXHR.status === 409){
+                                getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists 200
+                                    $(form).val().sidome = si;
+                                    var refreshIntervalId = setInterval( function() {
+                                        putSidome(si);
+                                    }, 5000 );
+                                    $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+
+                                    checkSidome($(form).val().sidome, $(form));
+
+                                    $(form).children("input").val("");
+                                    $(form).val().occupe = true;
+
+                                    $(form).children(".accueil").hide( "blind", 100 );
+                                    $(form).children(".bienvenue").show( "clip", 300 );
+
+                                });
+                            }
+                            else if(jqXHR.status === 404){
+                                console.log("Error");
+                            }
+                            /*$(form).val().sidome = si;
+
+                            //$(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
+
                             var refreshIntervalId = setInterval( function() {
-                                putSidome(sidome);
-                            }, 5000 );
+                                putSidome(si);
+                            }, 5000 );²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²² ²²²
                             $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
 
-                        }).fail(function() {
-                            console.log( "error" );
+                            checkSidome($(form).val().sidome);*/
+
                         });
-                    }).fail(function() {
-
-                        // POST /persons failed, user already exist
-                        var sidome = $(form).val().sidome;
-                        postSidome(sidome).then(function(){
-                            var refreshIntervalId = setInterval( function() {
-                                putSidome(sidome);
-                            }, 5000 );
-                            $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
-                        }).fail(function() {
-
-                            // The sidome already exist
-                            // we get it
-                            getSidome(sidome.id).then(function(si) {
+                    }).fail(function(jqXHR, textStatus, errorThrown){     // Réponse  409 person already exists 
+                        if(jqXHR.status === 409){
+                            getSidome($(form).val().sidome.id).then(function(si) {      //sidome already exists 200
                                 $(form).val().sidome = si;
                                 var refreshIntervalId = setInterval( function() {
                                     putSidome(si);
                                 }, 5000 );
                                 $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
-                            });
-                        });
-                    });*/
-                }).fail(function(){  // Réponse 404 Not found on our database
-                    getPersonExtern($(form).val().sidome.id).then(function(person){       //Search in Sido database  - then 200 ok
-                        var user = JSON.parse(person);
-                        var prenom = user.prenom;
-                        console.log(user);
 
-                        $(form).find(".username").html(prenom);
-                        console.log(prenom);
-                        console.log( $(form).find(".username"));
-                        postPerson(person, $(form).val().sidome.id).then(function() {        // Posts it in the base
-                            var sidome = $(form).val().sidome;
-                            postSidome(sidome).then(function(){     //Create a sidome
-                                var refreshIntervalId = setInterval( function() {
-                                    putSidome(sidome);
-                                }, 5000 );
-                                $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
+                                checkSidome($(form).val().sidome, $(form));
 
-                                tab.shuffle();
-                                console.log(tab);
-                                $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
-                                    var temp = $(this).children(".sliderSectionIns").children("input");
-                                    var i = $(temp).attr("rel");
-                                    $(this).children(".sliderSectionIns").children("input").attr("rel",tab[i]);
-                                });
+                                $(form).children("input").val("");
+                                $(form).val().occupe = true;
 
-                            }).fail(function(){     // Réponse 409 already exists ???
-                                
-                                /*$(form).val().sidome = si;
-
-                                //$(form).children(".form").children(".formIns").find(".button .go").html("Modifier");
-
-                                var refreshIntervalId = setInterval( function() {
-                                    putSidome(si);
-                                }, 5000 );²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²² ²²²
-                                $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
-
-                                checkSidome($(form).val().sidome);*/
+                                $(form).children(".accueil").hide( "blind", 100 );
+                                $(form).children(".bienvenue").show( "clip", 300 );
 
                             });
-                        }).fail(function(){     // Réponse 404 not in their base (or 409 person already exists ???)
-
-                        });
-                    })
+                        }
+                        else if(jqXHR.status === 404){
+                            console.log("Error");
+                        }
+                    });
+                }).fail(function(jqXHR, textStatus, errorThrown){     // Réponse 404 not in their base 
+                        
                 });
-            $(form).children("input").val("");
-            $(form).val().occupe = true;
-
-            $(form).children(".accueil").hide( "blind", 100 );
-            $(form).children(".bienvenue").show( "clip", 300 );
+            });
+            
         }
         input.value = "";
     }
@@ -414,16 +506,6 @@ function reponseQuestion(input)
 $(document).ready(function(){
     "use strict";
 
-    /*var form = $(".form1");
-
-    for(var i = 0; i < 8; i++){
-        var t = 0;
-        console.log($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection")[t].children(".sliderSectionIns").children("input"));
-        t++;        
-    }*/
-
-
-
     setInterval( function() { $(".input_userid").focus(); }, 200 );
 
     $(document).on('contextmenu', 'body', function(e)
@@ -467,7 +549,7 @@ $(document).ready(function(){
         var canvasData = $(".keep-canvas1")[0].toDataURL("image/png");
         $.ajax({
             type: "POST",
-            url: "http://localhost:3000/image/" + $(a).parent().val().sidome.id,
+            url: "http://sido.qze.fr:3001/image/" + $(a).parent().val().sidome.id,
             data: canvasData,
             processData: false,
             contentType: "application/"

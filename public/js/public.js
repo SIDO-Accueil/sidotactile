@@ -546,15 +546,6 @@ $(document).ready(function(){
         clearInterval($(a).parent().val().refreshIntervalId);
         putSidome($(a).parent().val().sidome);
 
-        var canvasData = $(".keep-canvas1")[0].toDataURL("image/png");
-        $.ajax({
-            type: "POST",
-            url: "http://sido.qze.fr:3001/image/" + $(a).parent().val().sidome.id,
-            data: canvasData,
-            processData: false,
-            contentType: "application/"
-        });
-
         a.hide( "blind", 1000 );
 
         $(a.parents(".form").children(".remerciement")).show( "clip", 4000 );

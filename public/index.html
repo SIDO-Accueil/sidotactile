@@ -769,7 +769,17 @@ void draw()  {
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form1").val().sidome.default = false;
+                                $(".form1").val().sidome.finish = true;
+
+                                // CAPTURE D ECRAN POUR L EMAIL
+                                var canvasData = $(".remerciement-canvas1")[0].toDataURL("image/png");
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:3000/image/" + $('.form1').val().sidome.id,
+                                    data: canvasData,
+                                    processData: false,
+                                    contentType: "application/"
+                                });
 
                                 putSidome($(".form1").val().sidome);
                            // }
@@ -1543,7 +1553,18 @@ void draw()  {
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form2").val().sidome.default = false;
+                                $(".form2").val().sidome.finish = true;
+
+
+                                // CAPTURE D ECRAN POUR L EMAIL
+                                var canvasData = $(".remerciement-canvas2")[0].toDataURL("image/png");
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:3000/image/" + $('.form2').val().sidome.id,
+                                    data: canvasData,
+                                    processData: false,
+                                    contentType: "application/"
+                                });
 
                                 putSidome($(".form2").val().sidome);
                             }

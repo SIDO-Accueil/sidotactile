@@ -76,6 +76,7 @@ body {
   color: white;
   height: 100%;
   font-family: 'Inconsolata', sans-serif !important;
+  overflow: hidden;
 }
 
 /* line 43, ../sass/public.scss */

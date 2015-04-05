@@ -160,7 +160,7 @@ function getPerson(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://sido.qze.fr:3001/persons/" + id,
+        url: "http://localhost:3000/persons/" + id,
         accept: "application/json"
     });
 }
@@ -171,7 +171,7 @@ function getSidome(id) {
     // returns a promises that fullfiled with the json object
     return $.ajax({
         type: "GET",
-        url: "http://sido.qze.fr:3001/sidomes/" + id,
+        url: "http://localhost:3000/sidomes/" + id,
         accept: "application/json"
     });
 }
@@ -181,7 +181,7 @@ function postPerson(json, badge) {
 
     return $.ajax({
         type: "POST",
-        url: "http://sido.qze.fr:3001/persons/" + badge,
+        url: "http://localhost:3000/persons/" + badge,
         data: json,
         processData: false,
         contentType: "application/json"
@@ -193,7 +193,7 @@ function postSidome(sidome) {
 
     return $.ajax({
         type: "POST",
-        url: "http://sido.qze.fr:3001/sidomes",
+        url: "http://localhost:3000/sidomes",
         data: JSON.stringify(sidome),
         processData: false,
         contentType: "application/json"
@@ -204,18 +204,8 @@ function putSidome(sidome) {
     "use strict";
     $.ajax({
         type: "PUT",
-        url: "http://sido.qze.fr:3001/sidomes",
+        url: "http://localhost:3000/sidomes",
         data: JSON.stringify(sidome),
-        processData: false,
-        contentType: "application/json"
-    });
-}
-
-function testPOST() {
-    "use strict";
-    return $.ajax({
-        type: "POST",
-        url: "http://sido.qze.fr:4242/personsjson409",
         processData: false,
         contentType: "application/json"
     });
@@ -245,17 +235,6 @@ function getUser(input) {
         if(form != null){
 
             $(form).val().sidome.id = input.value;
-
-            /*testPOST().then(function( data, textStatus, jqXHR ){
-                console.log(data);
-                console.log(textStatus);
-                console.log(jqXHR.status);
-            }).fail(function( jqXHR, textStatus, errorThrown ){
-                console.log(JSON.parse(jqXHR.responseText));
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
-            });*/
             
             getPerson($(form).val().sidome.id).then(function(json, textStatus, jqXHR) {  // Réponse 200 ok   person already exists
                 // we get his sidome

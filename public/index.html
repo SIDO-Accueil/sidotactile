@@ -19,9 +19,6 @@
     <script type="text/javascript" src="js/processing.js"></script>
     <script type="text/javascript" src="js/public.js"></script>
 
-    <!--JS for range-touch-->
-
-
 </head>
 <body>
 <div id="bodyFrame">
@@ -30,7 +27,7 @@
 
             <div class="form form1">
                 <input type="text" class="input_userid" style="height:0px; width:1px; border:none;" onChange="getUser(this);" />
-                  <div class="accueil accueil1">
+                <div class="accueil accueil1">
 
                     <img src="img/accueil.png" class="img-accueil" />
                 </div>
@@ -486,7 +483,7 @@ void draw()  {
                         int change = 1;
                         
                         int touch = 0;
-                        
+
                         void setup()  {
                         size(xmax, ymax, WEBGL);
                         //lights();
@@ -774,15 +771,23 @@ void draw()  {
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form1").val().sidome.default = false;
+                                $(".form1").val().sidome.finish = true;
+
+                                // CAPTURE D ECRAN POUR L EMAIL
+                                var canvasData = $(".remerciement-canvas1")[0].toDataURL("image/png");
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:3000/image/" + $('.form1').val().sidome.id,
+                                    data: canvasData,
+                                    processData: false,
+                                    contentType: "application/"
+                                });
 
                                 putSidome($(".form1").val().sidome);
-                            }
-                            else
-                            {
-                            posx = xmax / 2;
-                            posy = ymax / 3;
-                            click = 0;
+                            }else {
+                                posx = xmax / 2;
+                                posy = ymax / 3;
+                                click = 0;
                             }
                         }
 
@@ -1264,7 +1269,7 @@ void draw()  {
                         float changecl22 = +1;//(60 / 60);
                         float changecl32 = +1.16666667;//(70 / 60);
                         int change = 1;
-                        
+
                         int touch = 0;
                         
                         void setup()  {
@@ -1536,7 +1541,7 @@ void draw()  {
                             }
 
                         void controlMove(float x, float y) {
-                             if (x != 0 && y != 0 && click == 1){
+                              if (x != 0 && y != 0 && click == 1){
                                 posx = x;
                                 posy = y;
                                 click = 1;
@@ -1555,7 +1560,18 @@ void draw()  {
                                 colorSidome.r = cl1;
                                 colorSidome.g = cl2;
                                 colorSidome.b = cl3;
-                                $(".form2").val().sidome.default = false;
+                                $(".form2").val().sidome.finish = true;
+
+
+                                // CAPTURE D ECRAN POUR L EMAIL
+                                var canvasData = $(".remerciement-canvas2")[0].toDataURL("image/png");
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:3000/image/" + $('.form2').val().sidome.id,
+                                    data: canvasData,
+                                    processData: false,
+                                    contentType: "application/"
+                                });
 
                                 putSidome($(".form2").val().sidome);
                             }
@@ -1566,7 +1582,7 @@ void draw()  {
                             click = 0;
                             }
                         }
-                        
+
                         void touchStart(TouchEvent t) {
                          for (int i = 0; i < t.changedTouches.length;i++) 
                           {

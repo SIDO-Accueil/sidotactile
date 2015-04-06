@@ -485,10 +485,13 @@ void draw()  {
                         int touch = 0;
 
                         void setup()  {
-                        size(xmax, ymax, WEBGL);
-                        //lights();
-                        //colorMode(RGB, 1);
-                        strokeWeight(3);
+                            size(xmax, ymax, WEBGL);
+                            //lights();
+                            //colorMode(RGB, 1);
+                            strokeWeight(3);
+                            PFont font;
+                            font = loadFont("Inconsolata-Regular.ttf"); 
+                            textFont(font, 32); 
                         }
 
                         function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
@@ -670,25 +673,48 @@ void draw()  {
                             else if (xdis == 0 && ydis == 0)
                             {
                                 //fill(blanco);
-                                compteur = 13;
+                                compteur = 9
+                                textSize(30);
                                 blanco = blancoi;
                                 while (compteur != 1)
                                     {
+                                        //fill(255 - blanco);
                                         fill(255 - blanco);
                                         blanco = blanco + ajustblanc;
                                         if (blanco >= 180 || blanco < 0)
                                             blanco = 0;
-                                        ellipse (xmax / 2, ymax / 2 + compteur * 40, 10, 10);
+                                        //ellipse (xmax / 2, ymax / 2 + compteur * 40, 10, 10);
+                                        //fill(0);
+                                        triangle(xmax / 2 - 18, ymax / 2 - 10 + compteur * 50, xmax / 2 + 18, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 18 + compteur * 50);
+                                        fill(0);
+                                        stroke(0);
+                                        triangle(xmax / 2 - 10, ymax / 2 - 10 + compteur * 50, xmax / 2 + 10, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 7 + compteur * 50);
+                                        triangle(xmax / 2 - 9, ymax / 2 - 10 + compteur * 50, xmax / 2 + 9, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 7 + compteur * 50);
+                                        triangle(xmax / 2 - 8, ymax / 2 - 10 + compteur * 50, xmax / 2 + 8, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 7 + compteur * 50);
+                                        triangle(xmax / 2 - 7, ymax / 2 - 10 + compteur * 50, xmax / 2 + 7, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 7 + compteur * 50);
+                                        triangle(xmax / 2 - 6, ymax / 2 - 10 + compteur * 50, xmax / 2 + 6, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 6 + compteur * 50);
+                                        triangle(xmax / 2 - 5, ymax / 2 - 10 + compteur * 50, xmax / 2 + 5, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 5 + compteur * 50);
+                                        triangle(xmax / 2 - 4, ymax / 2 - 10 + compteur * 50, xmax / 2 + 4, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 4 + compteur * 50);
+                                        triangle(xmax / 2 - 3, ymax / 2 - 10 + compteur * 50, xmax / 2 + 3, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 3 + compteur * 50);
+                                        triangle(xmax / 2 - 2, ymax / 2 - 10 + compteur * 50, xmax / 2 + 2, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 2 + compteur * 50);
+                                        triangle(xmax / 2 - 1, ymax / 2 - 10 + compteur * 50, xmax / 2 + 1, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 1 + compteur * 50);
+                                        triangle(xmax / 2 - 19, ymax / 2 - 10 + compteur * 50, xmax / 2 + 19, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 19 + compteur * 50);
+                                        //triangle(xmax / 2 - 5, ymax / 2 - 10 + compteur * 40, xmax / 2 + 5, ymax / 2 - 10 + compteur * 40, xmax / 2, ymax / 2 + compteur * 40);
                                         compteur--;
                                     }
-                                    cppt++;
-                                    if (cppt == 10)
-                                    {
-                                    blancoi = blancoi + ajustblanc;
-                                        if (blancoi >= 180 || blancoi < 0)
-                                            blancoi = 0;
-                                        cppt = 0;
-                                    }
+                                    
+                                stroke(255);
+                                fill(255);
+                                text("Lancez votre SIdÔme", xmax / 2 - 30 * 5+20, 100);
+                                text("dans la SIdOsphère", xmax / 2 - 30 * 4 +2, 150);
+                                cppt++;
+                                if (cppt == 10)
+                                {
+                                blancoi = blancoi + ajustblanc;
+                                    if (blancoi >= 180 || blancoi < 0)
+                                        blancoi = 0;
+                                    cppt = 0;
+                                }
                             }
                             
                             if (coloration == 0)
@@ -1273,10 +1299,14 @@ void draw()  {
                         int touch = 0;
                         
                         void setup()  {
-                        size(xmax, ymax, WEBGL);
-                        //lights();
-                        //colorMode(RGB, 1);
-                        strokeWeight(3);
+                            size(xmax, ymax, WEBGL);
+                            //lights();
+                            //colorMode(RGB, 1);
+                            strokeWeight(3);
+
+                            PFont font;
+                            font = loadFont("Inconsolata-Regular.ttf"); 
+                            textFont(font, 32); 
                         }
 
                         function drawPoints(v1, v2, v3, v4, v5, v6, v7, v8) {
@@ -1458,25 +1488,48 @@ void draw()  {
                             else if (xdis == 0 && ydis == 0)
                             {
                                 //fill(blanco);
-                                compteur = 13;
+                                compteur = 9
+                                textSize(30);
                                 blanco = blancoi;
                                 while (compteur != 1)
                                     {
+                                        //fill(255 - blanco);
                                         fill(255 - blanco);
                                         blanco = blanco + ajustblanc;
                                         if (blanco >= 180 || blanco < 0)
                                             blanco = 0;
-                                        ellipse (xmax / 2, ymax / 2 + compteur * 40, 10, 10);
+                                        //ellipse (xmax / 2, ymax / 2 + compteur * 40, 10, 10);
+                                        //fill(0);
+                                        triangle(xmax / 2 - 18, ymax / 2 - 10 + compteur * 50, xmax / 2 + 18, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 18 + compteur * 50);
+                                        fill(0);
+                                        stroke(0);
+                                        triangle(xmax / 2 - 10, ymax / 2 - 10 + compteur * 50, xmax / 2 + 10, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 7 + compteur * 50);
+                                        triangle(xmax / 2 - 9, ymax / 2 - 10 + compteur * 50, xmax / 2 + 9, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 7 + compteur * 50);
+                                        triangle(xmax / 2 - 8, ymax / 2 - 10 + compteur * 50, xmax / 2 + 8, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 7 + compteur * 50);
+                                        triangle(xmax / 2 - 7, ymax / 2 - 10 + compteur * 50, xmax / 2 + 7, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 7 + compteur * 50);
+                                        triangle(xmax / 2 - 6, ymax / 2 - 10 + compteur * 50, xmax / 2 + 6, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 6 + compteur * 50);
+                                        triangle(xmax / 2 - 5, ymax / 2 - 10 + compteur * 50, xmax / 2 + 5, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 5 + compteur * 50);
+                                        triangle(xmax / 2 - 4, ymax / 2 - 10 + compteur * 50, xmax / 2 + 4, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 4 + compteur * 50);
+                                        triangle(xmax / 2 - 3, ymax / 2 - 10 + compteur * 50, xmax / 2 + 3, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 3 + compteur * 50);
+                                        triangle(xmax / 2 - 2, ymax / 2 - 10 + compteur * 50, xmax / 2 + 2, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 2 + compteur * 50);
+                                        triangle(xmax / 2 - 1, ymax / 2 - 10 + compteur * 50, xmax / 2 + 1, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 1 + compteur * 50);
+                                        triangle(xmax / 2 - 19, ymax / 2 - 10 + compteur * 50, xmax / 2 + 19, ymax / 2 - 10 + compteur * 50, xmax / 2, ymax / 2 + 19 + compteur * 50);
+                                        //triangle(xmax / 2 - 5, ymax / 2 - 10 + compteur * 40, xmax / 2 + 5, ymax / 2 - 10 + compteur * 40, xmax / 2, ymax / 2 + compteur * 40);
                                         compteur--;
                                     }
-                                    cppt++;
-                                    if (cppt == 10)
-                                    {
-                                    blancoi = blancoi + ajustblanc;
-                                        if (blancoi >= 180 || blancoi < 0)
-                                            blancoi = 0;
-                                        cppt = 0;
-                                    }
+                                    
+                                stroke(255);
+                                fill(255);
+                                text("Lancez votre SIdÔme", xmax / 2 - 30 * 5+20, 100);
+                                text("dans la SIdOsphère", xmax / 2 - 30 * 4 +2, 150);
+                                cppt++;
+                                if (cppt == 10)
+                                {
+                                blancoi = blancoi + ajustblanc;
+                                    if (blancoi >= 180 || blancoi < 0)
+                                        blancoi = 0;
+                                    cppt = 0;
+                                }
                             }
                             
                             if (coloration == 0)

@@ -12,6 +12,28 @@
     "url": "https://github.com/theylooksotired/sidotactile.git"
   },
   "author": "Raphael Cazenave-Leveque <raphael.cazenave@gmail.com>",
+  "contributors": [
+		{
+			"name": "Raphael Cazenave-Leveque",
+			"email": "raphael.cazenave@gmail.com"
+		},
+		{
+			"name": "John Thao",
+			"email": "john.thao.dev@gmail.com"
+		},
+		{
+			"name": "Adrien De Coster",
+			"email": "adrien38200@gmail.com"
+		},
+		{
+			"name": "Raul Leaño-Martinet",
+			"email": "theylooksotired@gmail.com"
+		},
+		{
+			"name": "Alexandre Aubert",
+			"email": "alexandre.aubert@epitech.eu"
+		}
+	],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/theylooksotired/sidotactile/issues"

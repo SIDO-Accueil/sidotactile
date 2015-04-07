@@ -1,5 +1,15 @@
 /*eslint-env jquery, browser */
 
+/**
+*
+*   @contributor: Raphael Cazenave-Leveque  <raphael.cazenave@gmail.com>
+*   @contributor: John Thao                 <john.thao.dev@gmail.com>
+*   @contributor: Adrien De Coster          <adrien38200@gmail.com>
+*   @contributor: Raul Leaño-Martinet       <theylooksotired@gmail.com>
+*   @contributor: Alexandre Aubert          <alexandre.aubert@epitech.eu>
+*
+**/
+
 Array.prototype.shuffle = function() {
     var s = [];
     while (this.length) s.push(this.splice(Math.random() * this.length, 1)[0]);

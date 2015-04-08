@@ -262,7 +262,7 @@ function getUser(input) {
                         }, 5000 );
                         $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
 
-                        tab.shuffle();
+                        //tab.shuffle();
                         console.log(tab);
                         $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
                             var temp = $(this).children(".sliderSectionIns").children("input");
@@ -297,7 +297,7 @@ function getUser(input) {
                             }, 5000 );
                             $(form).val().refreshIntervalId = refreshIntervalId; // save the setInterval ID to break it when SEND button pressed
 
-                            tab.shuffle();
+                            //tab.shuffle();
                             console.log(tab);
                             $.each($(form).children(".formIns").children(".wrapperSliders").children(".sliderSection"),function(){
                                 var temp = $(this).children(".sliderSectionIns").children("input");

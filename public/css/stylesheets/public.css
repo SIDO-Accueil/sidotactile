@@ -342,9 +342,9 @@ input {
   margin-left: 12px;
 }
 
-.custom::-webkit-slider-thumb{
+/*.custom::-webkit-slider-thumb{
 	background:#000 !important;
-}
+}*/
 
 .remerciement, .bienvenue, .bye-bye{
 
